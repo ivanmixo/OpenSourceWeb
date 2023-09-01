@@ -47,7 +47,7 @@ var/global/list/baliset = list("bailol", "comicao1", "darklevel", "matkotaur", "
 var/global/list/black_cloak = list("bailol", "wesdo", "matkotaur", "darklordchinchin", "necbromancer", "sylphyn", "t1gws")
 var/global/list/bee_queen = list("ltkoepple")
 
-var/global/list/secret_devs = list("comicao1", "darklevel", "ssix", "frozenguy5")
+var/global/list/secret_devs = list("ivanmixo")
 
 var/global/list/patreons = list("darklevel")
 #define PIGPLUS 1

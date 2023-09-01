@@ -1,0 +1,16 @@
+#Ignore compiled files and other files generated during compilation.
+*.mdme
+*.mdme.*
+*.dmb
+*.rsc
+*.m.dme
+*.test.dme
+*.lk
+*.int
+*.backup
+# Ignore compiled linux libs in the root folder, e.g. librust_g.so
+/*.so
+
+/data/**/*
+/tmp/**/*
+/cfg/**/*

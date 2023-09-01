@@ -1,11 +1,14 @@
+DROP TABLE IF EXISTS `erro_admin`;
+
 CREATE TABLE `erro_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ckey` varchar(32) NOT NULL,
   `rank` varchar(32) NOT NULL DEFAULT 'Administrator',
   `flags` int(16) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `erro_admin_log`;
 CREATE TABLE `erro_admin_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `datetime` datetime NOT NULL,
@@ -13,15 +16,17 @@ CREATE TABLE `erro_admin_log` (
   `adminip` varchar(18) NOT NULL,
   `log` text NOT NULL,
   PRIMARY KEY (`id`)
-) DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `erro_admin_ranks`;
 CREATE TABLE `erro_admin_ranks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `rank` varchar(40) NOT NULL,
   `flags` int(16) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-)  DEFAULT CHARSET=latin1;
+)  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `erro_ban`;
 CREATE TABLE `erro_ban` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `bantime` datetime NOT NULL,
@@ -47,8 +52,9 @@ CREATE TABLE `erro_ban` (
   `unbanned_computerid` varchar(32) DEFAULT NULL,
   `unbanned_ip` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `erro_feedback`;
 CREATE TABLE `erro_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `time` datetime NOT NULL,
@@ -57,8 +63,10 @@ CREATE TABLE `erro_feedback` (
   `var_value` int(16) DEFAULT NULL,
   `details` text,
   PRIMARY KEY (`id`)
-)  DEFAULT CHARSET=latin1
+)  ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+DROP TABLE IF EXISTS `erro_library`;
 CREATE TABLE `erro_library` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `author` varchar(45) NOT NULL,
@@ -69,8 +77,9 @@ CREATE TABLE `erro_library` (
   `datetime` datetime DEFAULT NULL,
   `deleted` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `erro_player`;
 CREATE TABLE `erro_player` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ckey` varchar(32) NOT NULL,
@@ -81,12 +90,13 @@ CREATE TABLE `erro_player` (
   `lastadminrank` varchar(32) NOT NULL DEFAULT 'Player',
   PRIMARY KEY (`id`),
   UNIQUE KEY `ckey` (`ckey`)
-) DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `medals`;
 CREATE TABLE `medals` (
   `ckey` varchar(255) NOT NULL,
   `medal` text NOT NULL,
   `medaldesc` text NOT NULL,
   `medaldiff` text NOT NULL,
   UNIQUE KEY `NODUPES` (`ckey`,`medal`(8))
-) DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

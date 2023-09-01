@@ -67,35 +67,21 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 	if(config.admin_legacy_system)
 		load_admin_ranks()
 
-		//load text from file
-		var/list/Lines = file2list("config/admins.txt")
+		var/admin_texts = file2text("config/admins.txt")
+		var/regex/admins_regex = new(@"^(?!#)(.+?)\s+=\s+(.+)", "gm")
 
-		//process each line seperately
-		for(var/line in Lines)
-			if(!length(line))				continue
-			if(copytext(line,1,2) == "#")	continue
-
-			//Split the line at every "-"
-			var/list/List = text2list(line, "-")
-			if(!List.len)					continue
-
-			//ckey is before the first "-"
-			var/ckey = ckey(List[1])
-			if(!ckey)						continue
-
-			//rank follows the first "-"
-			var/rank = ""
-			if(List.len >= 2)
-				rank = ckeyEx(List[2])
+		while(admins_regex.Find(admin_texts))
+			var/admin_key = admins_regex.group[1]
+			var/admin_rank = admins_regex.group[2]
 
 			//load permissions associated with this rank
-			var/rights = admin_ranks[rank]
+			var/rights = admin_ranks[admin_rank]
 
 			//create the admin datum and store it for later use
-			var/datum/admins/D = new /datum/admins(rank, rights, ckey)
+			var/datum/admins/D = new /datum/admins(admin_rank, rights, admin_key)
 
 			//find the client for a ckey if they are connected and associate them with the new admin datum
-			D.associate(directory[ckey])
+			D.associate(directory[admin_key])
 
 	else
 		//The current admin system uses SQL

@@ -364,7 +364,7 @@
 	src << browse('code/porco/html/pig.html', "window=outputwindow.browser; size=411x330;")
 
 /mob/proc/defaultButton()
-	client.changebuttoncontent("#options", "<span class='segment1'>" + generateVerbList(list(list("OOC", "OOC"), list("Adminhelp", "Admin Help"), list(".togglegraphics", "Graphics Settings"), list(".addeffects", "(EXPERIMENTAL) Add Effects"), list(".togglefullscreen", "Toggle Fullscreen"), list("LobbyMusic", "Toggle Lobby Music"), list("Midis", "Toggle Midis"), list("AmbiVolume", "Ambience Volume (0-255)"), list("MusicVolume", "Music Volume (0, 255)"))) + "</span>")
+	client.changebuttoncontent("#options", "<span class='segment1'>" + generateVerbList(list(list("OOC", "OOC"), list("Adminhelp", "Admin Help"), list(".togglegraphics", "Graphics Settings"), list(".addeffects", "(EXPERIMENTAL) Add Effects"), list(".togglefullscreen", "Toggle Fullscreen"), list("LobbyMusic", "Toggle Lobby Music"), list("Midis", "Toggle Midis"), list("AmbiVolume", "Ambience Volume (0-255)"), list("MusicVolume", "Music Volume (0, 255)"), list("FixChat", "Fix chat"))) + "</span>")
 	if(istype(src, /mob/new_player) && ticker.current_state == GAME_STATE_PREGAME)
 		client.changebuttoncontent("#chrome", "<span class='segment1'>" + generateVerbList(list(list("MigracaodeTodos", "(100) Allmigration"), list("LimparCromossomos", "(100) Wipe Chromosomes"), list("ForceAspect", "(10) Force Aspect"), list("EscondercargoCustom", "(10) Hide Custom Job"), list("Escondercargo", "(2) Hide Job"), list("ReRolarSpecial", "(2) Reroll Special"), list("silencePigs", "(2) Silence Pigs"), list("Trapokalipsis", "(15) Trapokalipsis"))) + "</span>")
 	else if(istype(src, /mob/living/carbon/human) && ticker.current_state == GAME_STATE_PLAYING)
