@@ -1,4 +1,4 @@
-obj/machinery/atmospherics/pipe
+/obj/machinery/atmospherics/pipe
 
 	var/datum/gas_mixture/air_temporary //used when reconstructing a pipeline that broke
 	var/datum/pipeline/parent
@@ -1122,7 +1122,7 @@ obj/machinery/atmospherics/pipe
 			icon_state = "cap-f"
 
 
-obj/machinery/atmospherics/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if (istype(src, /obj/machinery/atmospherics/pipe/tank))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/pipe/vent))

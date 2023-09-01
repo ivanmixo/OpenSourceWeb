@@ -193,7 +193,7 @@
 	return
 
 /*----------------------------------------
-Proc: AddInfectionImages()
+/Proc: AddInfectionImages()
 Des: Gives the client of the alien an image on each infected mob.
 ----------------------------------------*/
 /mob/living/carbon/alien/proc/AddInfectionImages()
@@ -207,7 +207,7 @@ Des: Gives the client of the alien an image on each infected mob.
 
 
 /*----------------------------------------
-Proc: RemoveInfectionImages()
+/Proc: RemoveInfectionImages()
 Des: Removes all infected images from the alien.
 ----------------------------------------*/
 /mob/living/carbon/alien/proc/RemoveInfectionImages()

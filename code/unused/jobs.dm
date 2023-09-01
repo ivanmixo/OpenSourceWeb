@@ -158,7 +158,7 @@
 
 var/datum/jobs/jobs = new/datum/jobs()
 
-proc/setup_jobs()
+/proc/setup_jobs()
 	var/datum/job/JOB
 
 	JOB = new/datum/job("Station Engineer")
@@ -185,7 +185,7 @@ proc/setup_jobs()
 	jobs.all_jobs += JOB
 
 //This proc will dress the mob (employee) in the default way for the specified job title/job alias
-proc/dress_for_job_default(var/mob/living/carbon/human/employee as mob, var/job_alias)
+/proc/dress_for_job_default(var/mob/living/carbon/human/employee as mob, var/job_alias)
 	if(!ishuman(employee))
 		return
 
@@ -220,7 +220,7 @@ proc/dress_for_job_default(var/mob/living/carbon/human/employee as mob, var/job_
 //3: Assignment of remaining jobs for remaining players based on chosen departments
 //4: Random assignment of remaining jobs for remaining players based on assignment priority
 //5: Assignment of traitor / changeling to assigned roles (if appropriate game mode)
-proc/assignment_algorithm(var/list/mob/new_player/players)
+/proc/assignment_algorithm(var/list/mob/new_player/players)
 	for(var/mob/new_player/PLAYER in players)
 		if(!PLAYER.client)
 			players -= PLAYER

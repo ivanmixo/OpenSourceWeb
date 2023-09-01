@@ -45,7 +45,7 @@
 
 	var/state = 0 // 0 - Idle, 1 - Spraying, 2 - Done, 3 - Overheated
 
-obj/machinery/nanosprayer/proc/update_temp()
+/obj/machinery/nanosprayer/proc/update_temp()
 	// 1 second : 1 degree
 	if(src.state == 0)
 		var/diff = (world.time - usr_lastupdate) * 10
@@ -61,7 +61,7 @@ obj/machinery/nanosprayer/proc/update_temp()
 		usr_lastupdate = world.time
 		return temp
 
-obj/machinery/nanosprayer/process()
+/obj/machinery/nanosprayer/process()
 	src.time_started = world.time
 	totalpoints = length(payload) * rand(5,10)
 	if(!totalpoints)
@@ -81,7 +81,7 @@ obj/machinery/nanosprayer/process()
 			return 1
 
 
-obj/machinery/nanosprayer/proc/cooldown()
+/obj/machinery/nanosprayer/proc/cooldown()
 	while(state != 1)
 		sleep(200)
 		temp -= rand(5,20)
@@ -89,16 +89,16 @@ obj/machinery/nanosprayer/proc/cooldown()
 			temp = 100
 			return
 
-obj/machinery/nanosprayer/proc/overheat()
+/obj/machinery/nanosprayer/proc/overheat()
 	return
 
-obj/machinery/nanosprayer/proc/complete()
+/obj/machinery/nanosprayer/proc/complete()
 	src.totalpoints = 0
 	src.points = 0
 	spawn() cooldown()
 	return
 
-obj/machinery/nanosprayer/attack_hand(user as mob)
+/obj/machinery/nanosprayer/attack_hand(user as mob)
 	var/dat
 	if(..())
 		return
@@ -135,7 +135,7 @@ obj/machinery/nanosprayer/attack_hand(user as mob)
 	user << browse("<HEAD><TITLE>NANO SPRAY 1.1</TITLE></HEAD><TT>[dat]</TT>", "window=nanosprayer")
 	onclose(user, "nanosprayer")
 
-obj/machinery/nanosprayer/Topic(href, href_list)
+/obj/machinery/nanosprayer/Topic(href, href_list)
 	if(..())
 		return
 	usr.machine = src
@@ -177,7 +177,7 @@ obj/machinery/nanosprayer/Topic(href, href_list)
 	var/slag = 0
 	var/hacked = 0
 
-obj/machinery/smelter/attack_hand(user as mob)
+/obj/machinery/smelter/attack_hand(user as mob)
 	var/dat
 	if(..())
 		return
@@ -209,7 +209,7 @@ obj/machinery/smelter/attack_hand(user as mob)
 	onclose(user, "smelter")
 
 
-obj/machinery/smelter/Topic(href, href_list)
+/obj/machinery/smelter/Topic(href, href_list)
 	if(..())
 		return
 	usr.machine = src

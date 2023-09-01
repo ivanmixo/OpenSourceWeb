@@ -1,4 +1,4 @@
-obj/structure/door_assembly
+/obj/structure/door_assembly
 	icon = 'icons/obj/doors/door_assembly.dmi'
 
 	name = "airlock assembly"

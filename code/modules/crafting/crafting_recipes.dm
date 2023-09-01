@@ -13,7 +13,7 @@
 	var/between_walls = FALSE
 	var/place_on_wall = FALSE
 
-proc/pick_craft_recipe(var/recipe_id)
+/proc/pick_craft_recipe(var/recipe_id)
 	var/list/recipes = subtypesof(/datum/craft_recipe)
 	for(var/CR in recipes)
 		var/datum/craft_recipe/R = new CR

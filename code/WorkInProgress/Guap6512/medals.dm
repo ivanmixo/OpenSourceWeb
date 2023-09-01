@@ -28,12 +28,12 @@ var/list/achievements_unlocked = list()
 //This crashes the game.
 
 
-client/verb/show_achievements()
+/client/verb/show_achievements()
 	set name = "Show Achievements"
 	set category = "OOC"
 	show_medal(ckeychecking = "[src.ckey]")
 
-client/proc/show_medal(var/ckeychecking = "[src.ckey]")
+/client/proc/show_medal(var/ckeychecking = "[src.ckey]")
 	//set name = "Show Achievements"
 	//set category = "OOC"
 

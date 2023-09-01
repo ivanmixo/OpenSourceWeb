@@ -20,7 +20,7 @@
 	lighting_use_dynamic = FALSE
 
 
-obj/structure/helldoor
+/obj/structure/helldoor
 	name = "ESCAPE"
 	icon = 'icons/turf/hell.dmi'
 

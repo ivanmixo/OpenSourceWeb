@@ -131,7 +131,7 @@
 	goonchem_vortex(T, 0, 5, 6)
 	return
 
-proc/goonchem_vortex(var/turf/simulated/T, var/setting_type, var/range, var/pull_times)
+/proc/goonchem_vortex(var/turf/simulated/T, var/setting_type, var/range, var/pull_times)
 	for(var/atom/movable/X in orange(range, T))
 		if(istype(X, /obj/effect))
 			continue  //stop pulling smoke and hotspots please

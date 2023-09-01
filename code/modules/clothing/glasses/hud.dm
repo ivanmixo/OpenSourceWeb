@@ -101,7 +101,7 @@
 	icon_state = "securityhudnight"
 	darkness_view = 4
 
-obj/item/clothing/glasses/hud/security/gars
+/obj/item/clothing/glasses/hud/security/gars
 	name = "HUD GAR glasses"
 	desc = "GAR glasses with a HUD."
 	icon_state = "gars"
@@ -111,7 +111,7 @@ obj/item/clothing/glasses/hud/security/gars
 	attack_verb = list("sliced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
-obj/item/clothing/glasses/hud/security/supergars
+/obj/item/clothing/glasses/hud/security/supergars
 	name = "SUPER HUD GAR glasses"
 	desc = "SUPER GAR glasses with a HUD."
 	icon_state = "supergars"

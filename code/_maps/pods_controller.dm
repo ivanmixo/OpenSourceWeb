@@ -11,7 +11,7 @@
 
 var/global/datum/shuttle_controller/emergency_shuttle/emergency_shuttle
 
-datum/shuttle_controller
+/datum/shuttle_controller
 	var/alert = 0 //0 = emergency, 1 = crew cycle
 
 	var/location = 0 //0 = somewhere far away (in spess), 1 = at SS13, 2 = returned from SS13
@@ -48,11 +48,11 @@ datum/shuttle_controller
 				if(istype(A, /area/hallway))
 					A.readyalert()
 
-datum/shuttle_controller/proc/shuttlealert(var/X)
+/datum/shuttle_controller/proc/shuttlealert(var/X)
 		alert = X
 
 
-datum/shuttle_controller/proc/recall()
+/datum/shuttle_controller/proc/recall()
 	var/obj/item/device/radio/headset/bracelet/a = new /obj/item/device/radio/headset/bracelet(null)
 	if(direction == 1)
 		var/timeleft = timeleft()
@@ -76,7 +76,7 @@ datum/shuttle_controller/proc/recall()
 
 	// returns the time (in seconds) before shuttle arrival
 	// note if direction = -1, gives a count-up to SHUTTLEARRIVETIME
-datum/shuttle_controller/proc/timeleft()
+/datum/shuttle_controller/proc/timeleft()
 	if(online)
 		var/timeleft = round((endtime - world.timeofday)/10 ,1)
 		if(direction == 1 || direction == 2)
@@ -87,13 +87,13 @@ datum/shuttle_controller/proc/timeleft()
 		return SHUTTLEARRIVETIME
 
 	// sets the time left to a given delay (in seconds)
-datum/shuttle_controller/proc/settimeleft(var/delay)
+/datum/shuttle_controller/proc/settimeleft(var/delay)
 	endtime = world.timeofday + delay * 10
 	timelimit = delay
 
 	// sets the shuttle direction
 	// 1 = towards SS13, -1 = back to centcom
-datum/shuttle_controller/proc/setdirection(var/dirn)
+/datum/shuttle_controller/proc/setdirection(var/dirn)
 	if(direction == dirn)
 		return
 	direction = dirn
@@ -102,9 +102,9 @@ datum/shuttle_controller/proc/setdirection(var/dirn)
 	endtime = world.timeofday + (SHUTTLEARRIVETIME*10 - ticksleft)
 	return
 
-datum/shuttle_controller/proc/process()
+/datum/shuttle_controller/proc/process()
 
-datum/shuttle_controller/emergency_shuttle/process()
+/datum/shuttle_controller/emergency_shuttle/process()
 	if(!online)
 		return
 	var/timeleft = timeleft()

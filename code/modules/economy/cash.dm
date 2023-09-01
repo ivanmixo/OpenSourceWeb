@@ -363,7 +363,7 @@
 	icon_state = "320"
 	worth = 320
 
-proc/spawn_money(var/sum, spawnloc)
+/proc/spawn_money(var/sum, spawnloc)
 	var/cash_type
 	for(var/i in list(20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1))
 		cash_type = text2path("/obj/item/weapon/spacecash/c[i]")
@@ -372,7 +372,7 @@ proc/spawn_money(var/sum, spawnloc)
 			PoolOrNew(cash_type, spawnloc)
 	return
 
-proc/spawn_money_silver(var/sum, spawnloc)
+/proc/spawn_money_silver(var/sum, spawnloc)
 	var/cash_type
 	for(var/i in list(20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1))
 		cash_type = text2path("/obj/item/weapon/spacecash/silver/c[i]")
@@ -381,7 +381,7 @@ proc/spawn_money_silver(var/sum, spawnloc)
 			PoolOrNew(cash_type, spawnloc)
 	return
 
-proc/spawn_money_gold(var/sum, spawnloc)
+/proc/spawn_money_gold(var/sum, spawnloc)
 	var/cash_type
 	for(var/i in list(20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1))
 		cash_type = text2path("/obj/item/weapon/spacecash/gold/c[i]")

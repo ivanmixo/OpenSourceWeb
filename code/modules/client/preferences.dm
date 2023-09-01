@@ -28,7 +28,7 @@ var/list/VicesList = list(vices)
 #define LEGAL_RELIGION  "Gray Church"
 #define ILLEGAL_RELIGION "Thanati"
 
-datum/preferences
+/datum/preferences
 	//doohickeys for savefiles
 	var/path
 	var/default_slot = 1				//Holder so it doesn't default to slot 1, rather the last one used
@@ -1466,9 +1466,9 @@ datum/preferences
 	proc/close_load_dialog(mob/user)
 		user << browse(null, "window=saves")
 
-client/var/fullscreen = 0
+/client/var/fullscreen = 0
 
-client/New()
+/client/New()
 	..()
 	FullscreenLoad()
 	LoadGraphics()
@@ -1565,18 +1565,18 @@ var/global/lovedepletion = 0
 	lovedepletion++
 	return
 
-client/verb/ToggleRightClick()
+/client/verb/ToggleRightClick()
 	set name = "Toggle-RightClick(NO.)"
 	set category = "OOC"
 	show_popup_menus = !show_popup_menus
 
-client/verb/FullscreenLoad()
+/client/verb/FullscreenLoad()
 	set name = ".toggleload"
 	set category = "OOC"
 	if(src.prefs.fullscreenSetting)
 		ToggleFullscreen()
 
-client/verb/ToggleFullscreen()
+/client/verb/ToggleFullscreen()
 	set name = ".togglefullscreen"
 	set category = "OOC"
 	src.prefs.fullscreenSetting = !src.prefs.fullscreenSetting
@@ -1587,7 +1587,7 @@ client/verb/ToggleFullscreen()
 		winset(src, "mainwindow", "is-maximized=false;can-resize=true;titlebar=true;menu=menu")
 	src.prefs.save_preferences()
 
-client/verb/LoadGraphics()
+/client/verb/LoadGraphics()
 	set name = ".loadgraphics"
 	set category = "OOC"
 	if(src.prefs.graphicsSetting)
@@ -1595,7 +1595,7 @@ client/verb/LoadGraphics()
 	else
 		winset(src, "mapwindow.map", "zoom-mode=normal")
 
-client/verb/ToggleGraphics()
+/client/verb/ToggleGraphics()
 	set name = ".togglegraphics"
 	set category = "OOC"
 	src.prefs.graphicsSetting = !src.prefs.graphicsSetting
@@ -1605,7 +1605,7 @@ client/verb/ToggleGraphics()
 		winset(src, "mapwindow.map", "zoom-mode=normal")
 	src.prefs.save_preferences()
 
-client/verb/addEffects()
+/client/verb/addEffects()
 	set name = ".addeffects"
 	set category = "OOC"
 	for(var/obj/I in src?.usingPlanes)

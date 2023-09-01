@@ -176,7 +176,7 @@ var/global/list/updateQueueTestCount = list()
 
 
 
-datum/uqTestDatum
+/datum/uqTestDatum
 	var/testNum
 	New(testNum)
 		..()
@@ -187,23 +187,23 @@ datum/uqTestDatum
 		set background = 1
 		for(var/i=0,i<cycles,)
 			i++
-datum/uqTestDatum/fast
+/datum/uqTestDatum/fast
 
-datum/uqTestDatum/slow
+/datum/uqTestDatum/slow
 	update()
 		set background = 1
 		var/start = world.timeofday
 		while(world.timeofday - start < 5) // lag 4 deciseconds
 		..()
 		
-datum/uqTestDatum/reallySlow
+/datum/uqTestDatum/reallySlow
 	update()
 		set background = 1
 		var/start = world.timeofday
 		while(world.timeofday - start < 300) // lag 30 seconds
 		..()
 
-datum/uqTestDatum/crasher
+/datum/uqTestDatum/crasher
 	update()
 		CRASH("I crashed! (I am supposed to crash XD)")
 		..() // This should do nothing lol

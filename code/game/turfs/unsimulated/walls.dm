@@ -17,7 +17,7 @@
 	icon_state = "fakewindows"
 	opacity = 0
 
-turf/unsimulated/wall/splashscreen
+/turf/unsimulated/wall/splashscreen
 	name = "Space Station 13"
 	icon = 'icons/misc/fullscreen.dmi'
 	icon_state = "title"

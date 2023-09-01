@@ -1,4 +1,4 @@
-client/proc/invite_ckey()
+/client/proc/invite_ckey()
 	var/invitee = input("Input the user's ckey. Double check if it's correct.", "Farweb")
 	var/age = input("Enter their age (minimum is 18)", "Farweb")
 	if(text2num(age) < 18)
@@ -82,7 +82,7 @@ client/proc/invite_ckey()
 			return
 
 
-client/proc/remove_whitelist()
+/client/proc/remove_whitelist()
 	var/ckeyy = ckey(input("Who do you want to ban?", "Farweb")) as null|text
 	var/reason = input("Why are you doing this for?", "Farweb") as null|message
 	var/DBQuery/query = dbcon.NewQuery("INSERT INTO bansfarweb (ckey, reason, adminckey, isbanned) VALUES (\"[ckeyy]\", \"[reason]\", \"[usr.ckey]\", \"1\")")
@@ -100,7 +100,7 @@ client/proc/remove_whitelist()
 	HttpPost("https://discord.com/api/webhooks/809920414796349440/mZWJvl9vTmVUYaiq-nLGESFoIkkDV58xCGqD1rZWpfS-qBG55bcf9n_s95Rarw8EJ_vi",list(content = banz,username = usr.ckey))
 	return
 
-client/proc/game_remove_whitelist(var/reason = "", var/stickyban = TRUE) // Used for setting bans in the code
+/client/proc/game_remove_whitelist(var/reason = "", var/stickyban = TRUE) // Used for setting bans in the code
 	var/DBQuery/query = dbcon.NewQuery("INSERT INTO bansfarweb (ckey, reason, adminckey, isbanned) VALUES (\"[ckey]\", \"[reason]\", \"Automatic Ban\", \"1\")")
 	if(!query.Execute())
 		world.log << query.ErrorMsg()

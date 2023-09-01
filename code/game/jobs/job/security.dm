@@ -1,4 +1,4 @@
-datum/job/ordinator
+/datum/job/ordinator
 	title = "Marduk"
 	titlebr = "Marduk"
 	flag = HOS

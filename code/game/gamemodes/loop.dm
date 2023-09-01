@@ -117,7 +117,7 @@
 #define KS_CLOSE_BRACKET 221
 #define KS_APOSTROPHE	222
 
-client
+/client
 	var/manual_focus = 0
 	proc
 		KeyDown(KeyCode,shift)
@@ -138,7 +138,7 @@ Created by Loduwijk
 June 2005
 */
 
-proc/keycode2char(N)
+/proc/keycode2char(N)
 	switch(N)
 		if(9)return "	"
 		if(13)return ascii2text(13)
@@ -197,7 +197,7 @@ KeyState
 					mouse_x=copytext(T,1,findtext(T,","))
 					mouse_y=copytext(T,findtext(T,",")+1,0)
 
-client
+/client
 	var
 		KeyState/keystate
 		resolution

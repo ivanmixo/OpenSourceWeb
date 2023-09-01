@@ -165,7 +165,7 @@
 
 // Returns the surrounding cardinal turfs with open links
 // Including through doors openable with the ID
-turf/proc/CardinalTurfsWithAccess(var/obj/item/weapon/card/id/ID)
+/turf/proc/CardinalTurfsWithAccess(var/obj/item/weapon/card/id/ID)
 	var/L[] = new()
 
 	//	for(var/turf/simulated/t in oview(src,1))

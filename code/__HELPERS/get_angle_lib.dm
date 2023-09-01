@@ -1,4 +1,4 @@
-proc
+/proc
 	get_dir_angle(atom/a,atom/b)
 		var/d
 		var/n=get_angle(a,b)

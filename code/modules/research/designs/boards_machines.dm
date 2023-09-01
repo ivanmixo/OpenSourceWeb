@@ -47,7 +47,7 @@
 	materials = list("$glass" = 2000, "sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/rdserver
 
-datum/design/telepad
+/datum/design/telepad
 	name = "Machine Design (Telepad Board)"
 	desc = "The circuit board for a telescience telepad."
 	id = "telepad"

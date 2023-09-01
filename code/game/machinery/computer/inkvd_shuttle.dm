@@ -2,7 +2,7 @@ var/church_shuttle_tickstomove = 10
 var/church_shuttle_moving = 0
 var/church_shuttle_location = 1 // 0 = station 13, 1 = mining station
 
-proc/move_church_shuttle()
+/proc/move_church_shuttle()
 	if(church_shuttle_moving)	return
 	church_shuttle_moving = 1
 	spawn(church_shuttle_tickstomove*10)

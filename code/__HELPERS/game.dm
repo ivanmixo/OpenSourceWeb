@@ -224,7 +224,7 @@
 
 #define SIGN(X) ((X<0)?-1:1)
 
-proc
+/proc
 	inLineOfSight(X1,Y1,X2,Y2,Z=1,PX1=16.5,PY1=16.5,PX2=16.5,PY2=16.5)
 		var/turf/T
 		if(X1==X2)
@@ -256,7 +256,7 @@ proc
 		return 1
 #undef SIGN
 
-proc/isInSight(var/atom/A, var/atom/B)
+/proc/isInSight(var/atom/A, var/atom/B)
 	var/turf/Aturf = get_turf(A)
 	var/turf/Bturf = get_turf(B)
 
@@ -337,7 +337,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 			for(var/client/C in group)
 				C.screen -= O
 
-datum/projectile_data
+/datum/projectile_data
 	var/src_x
 	var/src_y
 	var/time

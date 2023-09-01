@@ -25,7 +25,7 @@
 
 //############################## THE ACTUAL DECALS ###########################
 
-obj/structure/sign/poster
+/obj/structure/sign/poster
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
 	icon = 'icons/obj/contraband.dmi'
@@ -34,7 +34,7 @@ obj/structure/sign/poster
 	var/ruined = 0
 
 
-obj/structure/sign/poster/New(var/serial)
+/obj/structure/sign/poster/New(var/serial)
 
 	serial_number = serial
 
@@ -48,7 +48,7 @@ obj/structure/sign/poster/New(var/serial)
 	icon_state = design.icon_state // poster[serial_number]
 	..()
 
-obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wirecutters))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		if(ruined)

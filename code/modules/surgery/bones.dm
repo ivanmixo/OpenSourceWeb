@@ -2,7 +2,7 @@
 //////////////////////////////////////////////////////////////////
 //						BONE SURGERY							//
 //////////////////////////////////////////////////////////////////
-datum/surgery_step/set_bone
+/datum/surgery_step/set_bone
 	allowed_tools = list(
 	/obj/item/weapon/surgery_tool/bonesetter = 100,	\
 	/obj/item/weapon/wrench = 75		\

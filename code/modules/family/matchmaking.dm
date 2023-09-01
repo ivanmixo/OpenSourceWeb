@@ -311,7 +311,7 @@ var/client/list/set_spoused = list() //prevents set_spoused people from being sh
 /datum/relation/proc/get_desc_string()
 	return "[relation_holder] and [connected_relation.relation_holder] know each connected_relation."
 
-mob/living/carbon/human/proc/adjust_age(var/target_age, var/direction)
+/mob/living/carbon/human/proc/adjust_age(var/target_age, var/direction)
 	switch(direction)
 		if(AGE_SAME)
 			src.age = target_age + rand(-17,17)

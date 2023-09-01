@@ -77,7 +77,7 @@
 				playsound(user.loc, T.operation_sound_fail, 50, 3)
 		return null
 
-proc/spread_germs_to_organ(datum/organ/external/E, mob/living/carbon/human/user)
+/proc/spread_germs_to_organ(datum/organ/external/E, mob/living/carbon/human/user)
 	if(!istype(user) || !istype(E)) return
 
 	var/germ_level = user.germ_level
@@ -89,7 +89,7 @@ proc/spread_germs_to_organ(datum/organ/external/E, mob/living/carbon/human/user)
 
 	E.germ_level = max(germ_level,E.germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
 
-proc/do_surgery(mob/living/carbon/human/M, mob/living/carbon/human/user, obj/item/tool)
+/proc/do_surgery(mob/living/carbon/human/M, mob/living/carbon/human/user, obj/item/tool)
 	if(!istype(M))
 		return 0
 	if (user.a_intent == "harm")	//check for Hippocratic Oath
@@ -126,7 +126,7 @@ proc/do_surgery(mob/living/carbon/human/M, mob/living/carbon/human/user, obj/ite
 		return 1
 	return 0
 
-proc/sort_surgeries()
+/proc/sort_surgeries()
 	var/gap = surgery_steps.len
 	var/swapped = 1
 	while (gap > 1 || swapped)

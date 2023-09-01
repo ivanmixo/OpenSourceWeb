@@ -18,7 +18,7 @@
 	create_reagents(5)
 
 
-obj/item/weapon/mop/proc/clean(turf/simulated/A)
+/obj/item/weapon/mop/proc/clean(turf/simulated/A)
 	if(reagents.has_reagent("water", 1))
 		A.clean_blood()
 		for(var/obj/effect/O in A)

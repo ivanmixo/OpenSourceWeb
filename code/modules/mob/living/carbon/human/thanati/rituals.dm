@@ -33,7 +33,7 @@
 /obj/effect/decal/cleanable/thanati/C
 	icon_state = "center"
 
-proc/isRitualPlace(var/turf/place)
+/proc/isRitualPlace(var/turf/place)
 	for(var/obj/effect/decal/cleanable/thanati/T in place.contents)
 		var/turf/reference = place
 		switch(T.type)
@@ -66,7 +66,7 @@ proc/isRitualPlace(var/turf/place)
 			return reference
 	return
 
-proc/debug(var/text, var/mob/living/carbon/human/H,)
+/proc/debug(var/text, var/mob/living/carbon/human/H,)
 	H.my_stats.st += 2
 	H.updatePig()
 
@@ -280,7 +280,7 @@ arguments = ""
 
 )
 // /obj/item/weapon/shard
-proc/ritual(var/turf/locc)
+/proc/ritual(var/turf/locc)
 	var/list/L = list(
 	get_step(locc, NORTHEAST),
 	get_step(locc, EAST),

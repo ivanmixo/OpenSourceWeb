@@ -281,7 +281,7 @@
 
 
 
-mob/living/carbon/human/proc
+/mob/living/carbon/human/proc
 	RevConvert(mob/M as mob in oview(src))
 		set name = "Rev-Convert"
 		if(((src.mind in ticker.mode:head_revolutionaries) || (src.mind in ticker.mode:revolutionaries)))

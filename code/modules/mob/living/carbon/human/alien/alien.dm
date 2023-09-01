@@ -1,4 +1,4 @@
-proc/create_new_xenomorph(var/alien_caste,var/target)
+/proc/create_new_xenomorph(var/alien_caste,var/target)
 
 	target = get_turf(target)
 	if(!target || !alien_caste) return
@@ -25,7 +25,7 @@ proc/create_new_xenomorph(var/alien_caste,var/target)
 
 // I feel like we should generalize/condense down all the various icon-rendering antag procs.
 /*----------------------------------------
-Proc: AddInfectionImages()
+/Proc: AddInfectionImages()
 Des: Gives the client of the alien an image on each infected mob.
 ----------------------------------------*/
 /mob/living/carbon/human/proc/AddInfectionImages()
@@ -38,7 +38,7 @@ Des: Gives the client of the alien an image on each infected mob.
 	return
 
 /*----------------------------------------
-Proc: RemoveInfectionImages()
+/Proc: RemoveInfectionImages()
 Des: Removes all infected images from the alien.
 ----------------------------------------*/
 /mob/living/carbon/human/proc/RemoveInfectionImages()

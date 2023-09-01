@@ -1,15 +1,15 @@
-obj/machinery/door
+/obj/machinery/door
 	var/health = 900
 	var/broken_icon
 	var/isshaking = FALSE
 
-obj/machinery/door/airlock/orbital/gates
+/obj/machinery/door/airlock/orbital/gates
 	safe = 0
 
-obj/machinery/door/airlock/orbital/gates/attack_paw(mob/user as mob)
+/obj/machinery/door/airlock/orbital/gates/attack_paw(mob/user as mob)
 	attack_hand(user)
 
-obj/machinery/door/airlock/orbital/gates/proc/healthcheck()
+/obj/machinery/door/airlock/orbital/gates/proc/healthcheck()
 	if(health <= 0)
 		playsound(src.loc, 'sound/effects/metalwall.ogg', 80, 1)
 		src.visible_message("<span class='badmood'>THE GATES ARE DESTROYED!</span>",)
@@ -58,7 +58,7 @@ obj/machinery/door/airlock/orbital/gates/proc/healthcheck()
 	else
 		return
 
-obj/machinery/door/airlock/orbital/gates/attack_hand(mob/user as mob)
+/obj/machinery/door/airlock/orbital/gates/attack_hand(mob/user as mob)
 	if(!user)
 		return playsound(loc, 'sound/effects/metalwall.ogg', 80, 1)
 	playsound(loc, 'sound/effects/metalwall.ogg', 80, 1)
@@ -97,7 +97,7 @@ obj/machinery/door/airlock/orbital/gates/attack_hand(mob/user as mob)
 						 "You hear twisting metal.")
 	healthcheck()
 
-obj/machinery/door/airlock/orbital/gates/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/door/airlock/orbital/gates/attackby(obj/item/W as obj, mob/user as mob)
 	src.health -= W.force * 0.75
 	playsound(src.loc, 'sound/effects/metalwall.ogg', 80, 1)
 	visible_message("<span class='danger'>[src] has been hit by [user] with [W].</span>")
@@ -110,14 +110,14 @@ obj/machinery/door/airlock/orbital/gates/attackby(obj/item/W as obj, mob/user as
 	if(src.health <= 0)
 		src.healthcheck()
 
-obj/machinery/door/airlock/orbital/gates/ins
+/obj/machinery/door/airlock/orbital/gates/ins
 	name = "Internal Gates"
 	airlock_tag = "gatein"
 	broken_icon = "door_broken"
 	locked = 0
 	autoclose = 0
 
-obj/machinery/door/airlock/orbital/gates/ins/healthcheck()
+/obj/machinery/door/airlock/orbital/gates/ins/healthcheck()
 	if(health <= 0 && !broken)
 		playsound(src.loc, 'sound/effects/gates_done.ogg', 100, 1)
 		src.visible_message("<span class='badmood'>THE GATES ARE DESTROYED!</span>",)
@@ -165,7 +165,7 @@ obj/machinery/door/airlock/orbital/gates/ins/healthcheck()
 	icon = 'icons/life/gate3.dmi'
 	icon_state = "door_closed"
 
-obj/machinery/door/airlock/orbital/gates/ex/healthcheck()
+/obj/machinery/door/airlock/orbital/gates/ex/healthcheck()
 	if(health <= 0 && !broken)
 		playsound(src.loc, 'sound/effects/gates_done.ogg', 100, 1)
 		src.visible_message("<span class='badmood'>THE GATES ARE DESTROYED!</span>",)

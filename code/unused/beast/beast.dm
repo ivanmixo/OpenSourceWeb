@@ -1,1 +1,1 @@
-mob/living/carbon/beast
+/mob/living/carbon/beast

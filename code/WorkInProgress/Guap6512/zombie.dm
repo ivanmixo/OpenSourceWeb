@@ -1,5 +1,5 @@
-mob/var/zombieleader = 0
-mob/var/zombieimmune = 0
+/mob/var/zombieleader = 0
+/mob/var/zombieimmune = 0
 var/list/zombies = list()
 
 /datum/species/human/zombie

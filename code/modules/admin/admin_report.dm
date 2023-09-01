@@ -3,7 +3,7 @@
 // they can only be read by admins and moderators.
 
 // a single admin report
-datum/admin_report/var
+/datum/admin_report/var
 	ID     // the ID of the report
 	body   // the content of the report
 	author // key of the author
@@ -14,7 +14,7 @@ datum/admin_report/var
 	offender_cid // store the cid of the offender
 
 
-datum/report_topic_handler
+/datum/report_topic_handler
 	Topic(href,href_list)
 		..()
 		var/client/C = locate(href_list["client"])
@@ -47,12 +47,12 @@ datum/report_topic_handler
 var/datum/report_topic_handler/report_topic_handler
 
 
-world/New()
+/world/New()
 	..()
 	report_topic_handler = new
 
 // add a new news datums
-proc/make_report(body, author)
+/proc/make_report(body, author)
 	var/savefile/Reports = new("data/reports.sav")
 	var/list/reports
 	var/lastID
@@ -75,7 +75,7 @@ proc/make_report(body, author)
 	Reports["lastID"] << lastID
 
 // load the reports from disk
-proc/load_reports()
+/proc/load_reports()
 	var/savefile/Reports = new("data/reports.sav")
 	var/list/reports
 
@@ -86,7 +86,7 @@ proc/load_reports()
 	return reports
 
 // check if there are any unhandled reports
-client/proc/unhandled_reports()
+/client/proc/unhandled_reports()
 	if(!src.holder) return 0
 	var/list/reports = load_reports()
 
@@ -98,7 +98,7 @@ client/proc/unhandled_reports()
 	return 0
 
 // checks if the player has an unhandled report against him
-client/proc/is_reported()
+/client/proc/is_reported()
 	var/list/reports = load_reports()
 
 	for(var/datum/admin_report/N in reports) if(!N.done)
@@ -108,7 +108,7 @@ client/proc/is_reported()
 	return 0
 
 // display only the reports that haven't been handled
-client/proc/display_admin_reports()
+/client/proc/display_admin_reports()
 	set category = "Admin"
 	set name = "Display Bug Reports"
 	if(!src.holder) return
@@ -132,7 +132,7 @@ client/proc/display_admin_reports()
 	usr << browse(output, "window=news;size=600x400")
 
 /*
-client/proc/Report(mob/M as mob in world)
+/client/proc/Report(mob/M as mob in world)
 	set category = "Admin"
 	if(!src.holder)
 		return
@@ -150,7 +150,7 @@ client/proc/Report(mob/M as mob in world)
 	spawn(1)
 		display_admin_reports()*/
 
-client/proc/mark_report_done(ID as num)
+/client/proc/mark_report_done(ID as num)
 //	if(!src.holder || src.holder.level < 0)
 	//	return
 
@@ -170,7 +170,7 @@ client/proc/mark_report_done(ID as num)
 	Reports["reports"]   << reports
 
 
-client/proc/edit_report(ID as num)
+/client/proc/edit_report(ID as num)
 //	if(!src.holder || src.holder.level < 0)
 	//	src << "<b>You tried to modify the news, but you're not an admin!"
 	//	return

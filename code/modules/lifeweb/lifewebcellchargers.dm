@@ -16,13 +16,13 @@ var/list/affectedItems = list()
 	var/powered = FALSE
 	var/image/powerOverlay
 
-obj/item/weapon/cell/web/New()
+/obj/item/weapon/cell/web/New()
     ..()
 
     for(var/x = 0; x <= charge; x++)
         item_worth++
 
-obj/item/weapon/cell/web/empty/New()
+/obj/item/weapon/cell/web/empty/New()
     ..()
 
     charge = 0

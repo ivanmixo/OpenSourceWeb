@@ -1,4 +1,4 @@
-obj/item/weapon/gun/energy/freezegun
+/obj/item/weapon/gun/energy/freezegun
 	name = "Freezer gun"
 	desc = "Special gun to freeze some badasses"
 	icon = 'gun.dmi'
@@ -242,7 +242,7 @@ obj/item/weapon/gun/energy/freezegun
 
 
 
-proc/freezemob(mob/M as mob in world)
+/proc/freezemob(mob/M as mob in world)
 	M.canmove = 0
 	M << "\red You fell how ice starts to cower your body"
 	sleep(5)

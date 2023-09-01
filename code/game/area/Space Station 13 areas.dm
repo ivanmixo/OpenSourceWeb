@@ -2349,7 +2349,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Robotics Lab"
 	icon_state = "ass_line"
 
-area/assembly/podbay
+/area/assembly/podbay
 	name = "\improper Pod Bay"
 	icon_state = "ass_line"
 

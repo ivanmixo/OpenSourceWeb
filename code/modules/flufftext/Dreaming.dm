@@ -1,4 +1,4 @@
-mob/living/carbon/proc/dream()
+/mob/living/carbon/proc/dream()
 	dreaming = 1
 	var/list/dreams = list(
 		"Copetti","Gmyza","Crumb","Cerberus","Ravenheart","Firethorn","Orphan","Cultist","Thanati","Consyte","I need","Terrorism","Run","Cry","Look behind you!","Thanati","Baron","Warlock","SAGE","HELP US","Help us","Enoch","Ballidar Cons","God-King", "Evergreen", "Fool","Night","Enoch","Sherold","Dragon","Mutate","SCREAM!","Hell","Decapitation","Suffer","Ashes","Dust","BURN!","Bleed"
@@ -17,7 +17,7 @@ mob/living/carbon/proc/dream()
 		dreaming = 0
 		return 1
 
-mob/living/carbon/proc/handle_dreams()
+/mob/living/carbon/proc/handle_dreams()
 	if(prob(5) && !dreaming) dream()
 
-mob/living/carbon/var/dreaming = 0
+/mob/living/carbon/var/dreaming = 0

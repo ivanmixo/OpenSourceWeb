@@ -17,9 +17,9 @@ var/global/const/MAXIMUM_MEME_POINTS = 750
 // ================
 
 // a list of all the parasites in the mob
-mob/living/carbon/var/list/parasites = list()
+/mob/living/carbon/var/list/parasites = list()
 
-mob/living/parasite
+/mob/living/parasite
 	var/mob/living/carbon/host // the host that this parasite occupies
 
 	Login()
@@ -30,7 +30,7 @@ mob/living/parasite
 		client.perspective = EYE_PERSPECTIVE
 
 
-mob/living/parasite/proc/enter_host(mob/living/carbon/host)
+/mob/living/parasite/proc/enter_host(mob/living/carbon/host)
 	// by default, parasites can't share a body with other life forms
 	if(host.parasites.len > 0)
 		return 0
@@ -43,7 +43,7 @@ mob/living/parasite/proc/enter_host(mob/living/carbon/host)
 
 	return 1
 
-mob/living/parasite/proc/exit_host()
+/mob/living/parasite/proc/exit_host()
 	src.host.parasites.Remove(src)
 	src.host = null
 	src.loc = null
@@ -55,13 +55,13 @@ mob/living/parasite/proc/exit_host()
 // ============
 
 // Memes use points for many actions
-mob/living/parasite/meme/var/meme_points = 100
-mob/living/parasite/meme/var/dormant = 0
+/mob/living/parasite/meme/var/meme_points = 100
+/mob/living/parasite/meme/var/dormant = 0
 
 // Memes have a list of indoctrinated hosts
-mob/living/parasite/meme/var/list/indoctrinated = list()
+/mob/living/parasite/meme/var/list/indoctrinated = list()
 
-mob/living/parasite/meme/Life()
+/mob/living/parasite/meme/Life()
 	..()
 
 	if(client)
@@ -95,7 +95,7 @@ mob/living/parasite/meme/Life()
 	else 			 				   src.blinded = 0
 
 
-mob/living/parasite/meme/death()
+/mob/living/parasite/meme/death()
 	// make sure the mob is on the actual map before gibbing
 	if(host) src.loc = host.loc
 	src.stat = 2
@@ -103,7 +103,7 @@ mob/living/parasite/meme/death()
 	del src
 
 // When a meme speaks, it speaks through its host
-mob/living/parasite/meme/say(message as text)
+/mob/living/parasite/meme/say(message as text)
 	if(dormant)
 		usr << "\red You're dormant!"
 		return
@@ -114,7 +114,7 @@ mob/living/parasite/meme/say(message as text)
 	return host.say(message)
 
 // Same as speak, just with whisper
-mob/living/parasite/meme/whisper(message as text)
+/mob/living/parasite/meme/whisper(message as text)
 	if(dormant)
 		usr << "\red You're dormant!"
 		return
@@ -125,7 +125,7 @@ mob/living/parasite/meme/whisper(message as text)
 	return host.whisper(message)
 
 // Make the host do things
-mob/living/parasite/meme/me_verb(message as text)
+/mob/living/parasite/meme/me_verb(message as text)
 	set name = "Me"
 
 
@@ -140,13 +140,13 @@ mob/living/parasite/meme/me_verb(message as text)
 	return host.me_verb(message)
 
 // A meme understands everything their host understands
-mob/living/parasite/meme/say_understands(mob/other)
+/mob/living/parasite/meme/say_understands(mob/other)
 	if(!host) return 0
 
 	return host.say_understands(other)
 
 // Try to use amount points, return 1 if successful
-mob/living/parasite/meme/proc/use_points(amount)
+/mob/living/parasite/meme/proc/use_points(amount)
 	if(dormant)
 		usr << "\red You're dormant!"
 		return
@@ -158,7 +158,7 @@ mob/living/parasite/meme/proc/use_points(amount)
 	return 1
 
 // Let the meme choose one of his indoctrinated mobs as target
-mob/living/parasite/meme/proc/select_indoctrinated(var/title, var/message)
+/mob/living/parasite/meme/proc/select_indoctrinated(var/title, var/message)
 	var/list/candidates
 
 	// Can only affect other mobs thant he host if not blinded
@@ -192,7 +192,7 @@ mob/living/parasite/meme/proc/select_indoctrinated(var/title, var/message)
 
 
 // A meme can make people hear things with the thought ability
-mob/living/parasite/meme/verb/Thought()
+/mob/living/parasite/meme/verb/Thought()
 	set category = "Meme"
 	set name	 = "Thought(50)"
 	set desc     = "Implants a thought into the target, making them think they heard someone talk."
@@ -226,7 +226,7 @@ mob/living/parasite/meme/verb/Thought()
 	usr << "<i>You make [target] hear:</i> [rendered]"
 
 // Mutes the host
-mob/living/parasite/meme/verb/Mute()
+/mob/living/parasite/meme/verb/Mute()
 	set category = "Meme"
 	set name	 = "Mute(250)"
 	set desc     = "Prevents your host from talking for a while."
@@ -253,7 +253,7 @@ mob/living/parasite/meme/verb/Mute()
 		usr << "\red [host] can speak again."
 
 // Makes the host unable to emote
-mob/living/parasite/meme/verb/Paralyze()
+/mob/living/parasite/meme/verb/Paralyze()
 	set category = "Meme"
 	set name	 = "Paralyze(250)"
 	set desc     = "Prevents your host from using emote for a while."
@@ -282,7 +282,7 @@ mob/living/parasite/meme/verb/Paralyze()
 
 
 // Cause great agony with the host, used for conditioning the host
-mob/living/parasite/meme/verb/Agony()
+/mob/living/parasite/meme/verb/Agony()
 	set category = "Meme"
 	set name	 = "Agony(200)"
 	set desc     = "Causes significant pain in your host."
@@ -318,7 +318,7 @@ mob/living/parasite/meme/verb/Agony()
 		host << "\red The pain subsides.."
 
 // Cause great joy with the host, used for conditioning the host
-mob/living/parasite/meme/verb/Joy()
+/mob/living/parasite/meme/verb/Joy()
 	set category = "Meme"
 	set name	 = "Joy(200)"
 	set desc     = "Causes significant joy in your host."
@@ -341,7 +341,7 @@ mob/living/parasite/meme/verb/Joy()
 		host << "\red You are feeling clear-headed again.."
 
 // Cause the target to hallucinate.
-mob/living/parasite/meme/verb/Hallucinate()
+/mob/living/parasite/meme/verb/Hallucinate()
 	set category = "Meme"
 	set name	 = "Hallucinate(300)"
 	set desc     = "Makes your host hallucinate, has a short delay."
@@ -356,7 +356,7 @@ mob/living/parasite/meme/verb/Hallucinate()
 	usr << "<b>You make [target] hallucinate.</b>"
 
 // Jump to a closeby target through a whisper
-mob/living/parasite/meme/verb/SubtleJump(mob/living/carbon/human/target as mob in world)
+/mob/living/parasite/meme/verb/SubtleJump(mob/living/carbon/human/target as mob in world)
 	set category = "Meme"
 	set name	 = "Subtle Jump(350)"
 	set desc     = "Move to a closeby human through a whisper."
@@ -395,7 +395,7 @@ mob/living/parasite/meme/verb/SubtleJump(mob/living/carbon/human/target as mob i
 	message_admins("[src.key] has jumped to [target]")
 
 // Jump to a distant target through a shout
-mob/living/parasite/meme/verb/ObviousJump(mob/living/carbon/human/target as mob in world)
+/mob/living/parasite/meme/verb/ObviousJump(mob/living/carbon/human/target as mob in world)
 	set category = "Meme"
 	set name	 = "Obvious Jump(750)"
 	set desc     = "Move to any mob in view through a shout."
@@ -434,7 +434,7 @@ mob/living/parasite/meme/verb/ObviousJump(mob/living/carbon/human/target as mob 
 	message_admins("[src.key] has jumped to [target]")
 
 // Jump to an attuned mob for free
-mob/living/parasite/meme/verb/AttunedJump(mob/living/carbon/human/target as mob in world)
+/mob/living/parasite/meme/verb/AttunedJump(mob/living/carbon/human/target as mob in world)
 	set category = "Meme"
 	set name	 = "Attuned Jump(0)"
 	set desc     = "Move to a mob in sight that you have already attuned."
@@ -458,7 +458,7 @@ mob/living/parasite/meme/verb/AttunedJump(mob/living/carbon/human/target as mob 
 	message_admins("[src.key] has jumped to [target]")
 
 // ATTUNE a mob, adding it to the indoctrinated list
-mob/living/parasite/meme/verb/Attune()
+/mob/living/parasite/meme/verb/Attune()
 	set category = "Meme"
 	set name	 = "Attune(400)"
 	set desc     = "Change the host's brain structure, making it easier for you to manipulate him."
@@ -479,7 +479,7 @@ mob/living/parasite/meme/verb/Attune()
 	message_admins("[src.key] has attuned [host]")
 
 // Enables the mob to take a lot more damage
-mob/living/parasite/meme/verb/Analgesic()
+/mob/living/parasite/meme/verb/Analgesic()
 	set category = "Meme"
 	set name	 = "Analgesic(500)"
 	set desc     = "Combat drug that the host to move normally, even under life-threatening pain."
@@ -498,11 +498,11 @@ mob/living/parasite/meme/verb/Analgesic()
 	host << "\red The dizziness wears off, and you can feel pain again.."
 
 
-mob/proc/clearHUD()
+/mob/proc/clearHUD()
 	if(client) client.screen.Cut()
 
 // Take control of the mob
-mob/living/parasite/meme/verb/Possession()
+/mob/living/parasite/meme/verb/Possession()
 	set category = "Meme"
 	set name	 = "Possession(500)"
 	set desc     = "Take direct control of the host for a while."
@@ -548,7 +548,7 @@ mob/living/parasite/meme/verb/Possession()
 		del dummy
 
 // Enter dormant mode, increases meme point gain
-mob/living/parasite/meme/verb/Dormant()
+/mob/living/parasite/meme/verb/Dormant()
 	set category = "Meme"
 	set name	 = "Dormant(100)"
 	set desc     = "Speed up point recharging, will force you to cease all actions until all points are recharged."
@@ -567,7 +567,7 @@ mob/living/parasite/meme/verb/Dormant()
 
 	usr << "\red You have regained all points and exited dormant mode!"
 
-mob/living/parasite/meme/verb/Show_Points()
+/mob/living/parasite/meme/verb/Show_Points()
 	set category = "Meme"
 
 	usr << "<b>Meme Points: [src.meme_points]/[MAXIMUM_MEME_POINTS]</b>"
@@ -585,12 +585,12 @@ mob/living/parasite/meme/verb/Show_Points()
 
 // Game mode helpers, used for theft objectives
 // --------------------------------------------
-mob/living/parasite/check_contents_for(t)
+/mob/living/parasite/check_contents_for(t)
 	if(!host) return 0
 
 	return host.check_contents_for(t)
 
-mob/living/parasite/check_contents_for_reagent(t)
+/mob/living/parasite/check_contents_for_reagent(t)
 	if(!host) return 0
 
 	return host.check_contents_for_reagent(t)

@@ -55,7 +55,7 @@
 	build_path = /obj/item/weapon/gun/energy/toxgun
 */
 
-datum/design/xray
+/datum/design/xray
 	name = "Xray Laser Gun"
 	desc = "Not quite as menacing as it sounds"
 	id = "xray"

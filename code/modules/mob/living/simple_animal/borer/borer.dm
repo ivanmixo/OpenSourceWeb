@@ -231,7 +231,7 @@
 /mob/living/simple_animal/mouse/can_use_vents()
 	return 1
 
-mob/proc/clearHUD()
+/mob/proc/clearHUD()
 	if(client)
 		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.g_dither, global_hud.r_dither, global_hud.gray_dither, global_hud.lp_dither)
 		update_action_buttons()

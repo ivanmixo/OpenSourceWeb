@@ -1,5 +1,5 @@
 
-obj/machinery/atmospherics/pipe/simple/heat_exchanging
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging
 	icon = 'icons/obj/pipes/heat.dmi'
 	icon_state = "intact"
 	level = 2
@@ -58,7 +58,7 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging
 
 
 
-obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
 	icon = 'icons/obj/pipes/junction.dmi'
 	icon_state = "intact"
 	level = 2

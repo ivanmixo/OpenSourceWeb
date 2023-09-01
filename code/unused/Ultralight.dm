@@ -32,11 +32,11 @@
 							7, 7)
 
 
-proc
+/proc
 	ul_Clamp(var/Value)
 		return min(max(Value, 0), ul_Steps)
 
-atom
+/atom
 	var/LuminosityRed = 0
 	var/LuminosityGreen = 0
 	var/LuminosityBlue = 0
@@ -238,7 +238,7 @@ atom
 			ul_Illuminate()
 			return
 
-turf
+/turf
 	var/LightLevelRed = 0
 	var/LightLevelGreen = 0
 	var/LightLevelBlue = 0
@@ -301,7 +301,7 @@ turf
 
 			return
 
-area
+/area
 	var/ul_Overlay = null
 	var/ul_Lighting = 1
 

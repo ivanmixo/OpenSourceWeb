@@ -248,7 +248,7 @@
 	armor = list(melee = 40, bullet = 30, laser = 20,energy = 15, bomb = 25, bio = 10, rad = 10)
 
 
-obj/item/clothing/suit/powered/spawnable/badmin
+/obj/item/clothing/suit/powered/spawnable/badmin
 	New()
 		servos = new /obj/item/powerarmor/servos(src)
 		servos.parent = src
@@ -264,7 +264,7 @@ obj/item/clothing/suit/powered/spawnable/badmin
 		var/obj/item/clothing/head/powered/helm = new /obj/item/clothing/head/powered(src.loc)
 		helm.verbs += /obj/item/clothing/head/powered/proc/atmotoggle
 
-obj/item/clothing/suit/powered/spawnable/regular
+/obj/item/clothing/suit/powered/spawnable/regular
 	New()
 		servos = new /obj/item/powerarmor/servos(src)
 		servos.parent = src

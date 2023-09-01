@@ -1,6 +1,6 @@
 var/global/list/datum/pipe_network/pipe_networks = list()
 
-datum/pipe_network
+/datum/pipe_network
 	var/list/datum/gas_mixture/gases = list() //All of the gas_mixtures continuously connected in this network
 
 	var/list/obj/machinery/atmospherics/normal_members = list()
@@ -75,7 +75,7 @@ datum/pipe_network
 		equalize_gases(gases)
 
 /*
-proc/equalize_gases(datum/gas_mixture/list/gases)
+/proc/equalize_gases(datum/gas_mixture/list/gases)
 	//Perfectly equalize all gases members instantly
 
 	//Calculate totals from individual components

@@ -432,7 +432,7 @@ Implants;
 //////////////////////////
 //Reports player logouts//
 //////////////////////////
-proc/display_roundstart_logout_report()
+/proc/display_roundstart_logout_report()
 	var/msg = "\blue <b>Roundstart logout report\n\n"
 	for(var/mob/living/L in mob_list)
 
@@ -486,7 +486,7 @@ proc/display_roundstart_logout_report()
 			M << msg
 
 
-proc/get_nt_opposed()
+/proc/get_nt_opposed()
 	var/list/dudes = list()
 	for(var/mob/living/carbon/human/man in player_list)
 		if(man.client)

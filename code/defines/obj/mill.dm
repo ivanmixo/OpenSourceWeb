@@ -1,11 +1,11 @@
-obj/structure/millstone
+/obj/structure/millstone
 	name = "millstone"
 	icon = 'icons/obj/miscobjs.dmi'
 	density = TRUE
 
 	icon_state = "millstone"
 
-obj/structure/millstone/attackby(obj/item/C, mob/user)
+/obj/structure/millstone/attackby(obj/item/C, mob/user)
 	if(istype(C, /obj/item/weapon/bone))
 		user.drop_from_inventory(C)
 		qdel(C)

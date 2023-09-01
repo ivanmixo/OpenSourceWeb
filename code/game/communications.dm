@@ -144,7 +144,7 @@ var/global/datum/controller/radio/radio_controller
 	radio_controller = new /datum/controller/radio()
 	return 1
 
-datum/controller/radio
+/datum/controller/radio
 	var/list/datum/radio_frequency/frequencies = list()
 
 	proc/add_object(obj/device as obj, var/new_frequency as num, var/d_filter = null as text|null)
@@ -185,7 +185,7 @@ datum/controller/radio
 
 		return frequency
 
-datum/radio_frequency
+/datum/radio_frequency
 	var/frequency as num
 	var/list/list/obj/devices = list()
 
@@ -275,10 +275,10 @@ datum/radio_frequency
 					qdel(devices_line)
 
 
-obj/proc/receive_signal(datum/signal/signal, receive_method, receive_param)
+/obj/proc/receive_signal(datum/signal/signal, receive_method, receive_param)
 	return null
 
-datum/signal
+/datum/signal
 	var/obj/source
 
 	var/transmission_method = 0

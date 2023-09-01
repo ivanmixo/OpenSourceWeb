@@ -35,7 +35,7 @@
 	t = replacetext(t, "&#", "")
 	return t
 
-proc/sanitize_PDA(var/msg)
+/proc/sanitize_PDA(var/msg)
 	var/index = findtext(msg, "�")
 	while(index)
 		msg = copytext_char(msg, 1, index) + "&#1103;" + copytext_char(msg, index+1)
@@ -147,7 +147,7 @@ proc/sanitize_PDA(var/msg)
 //checks text for html tags
 //if tag is not in whitelist (var/list/paper_tag_whitelist in global.dm)
 //relpaces < with &lt;
-proc/checkhtml(var/t)
+/proc/checkhtml(var/t)
 	t = html_encode(t)
 	var/p = findtext(t,"<",1)
 	while (p)	//going through all the tags
@@ -399,7 +399,7 @@ proc/checkhtml(var/t)
 
 //Used in preferences' SetFlavorText and human's set_flavor verb
 //Previews a string of len or less length
-proc/TextPreview(var/string,var/len=40)
+/proc/TextPreview(var/string,var/len=40)
 	if(length(string) <= len)
 		if(!length(string))
 			return "\[...\]"

@@ -38,7 +38,7 @@
 		else  return "[jointext(input, comma_text, 1, -1)][final_comma_text][and_text][input[input.len]]"
 
 //Returns list element or null. Should prevent "index out of bounds" error.
-proc/listgetindex(var/list/list,index)
+/proc/listgetindex(var/list/list,index)
 	if(istype(list) && list.len)
 		if(isnum(index))
 			if(InRange(index,1,list.len))
@@ -47,19 +47,19 @@ proc/listgetindex(var/list/list,index)
 			return list[index]
 	return
 
-proc/isinlist(list/list)
+/proc/isinlist(list/list)
 	if(istype(list))
 		return 1
 	return 0
 
 //Return either pick(list) or null if list is not of type /list or is empty
-proc/safepick(list/list)
+/proc/safepick(list/list)
 	if(!islist(list) || !list.len)
 		return
 	return pick(list)
 
 //Checks if the list is empty
-proc/isemptylist(list/list)
+/proc/isemptylist(list/list)
 	if(!list.len)
 		return 1
 	return 0
@@ -72,13 +72,13 @@ proc/isemptylist(list/list)
 	return 0
 
 //Empties the list by setting the length to 0. Hopefully the elements get garbage collected
-proc/clearlist(list/list)
+/proc/clearlist(list/list)
 	if(istype(list))
 		list.len = 0
 	return
 
 //Removes any null entries from the list
-proc/listclearnulls(list/list)
+/proc/listclearnulls(list/list)
 	if(istype(list))
 		while(null in list)
 			list -= null
@@ -375,7 +375,7 @@ proc/listclearnulls(list/list)
 	//world.log << "	output: [out.len]"
 	return reverselist(out)
 
-proc/dd_sortedObjectList(list/incoming)
+/proc/dd_sortedObjectList(list/incoming)
 	/*
 	   Use binary search to order by dd_SortValue().
 	   This works by going to the half-point of the list, seeing if the node in
@@ -432,7 +432,7 @@ proc/dd_sortedObjectList(list/incoming)
 		sorted_list += list_bottom
 	return sorted_list
 
-datum/proc/dd_SortValue()
+/datum/proc/dd_SortValue()
 	return "[src]"
 
 /obj/machinery/dd_SortValue()

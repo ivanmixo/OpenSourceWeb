@@ -3,7 +3,7 @@
 var/list/datum/craftlathe_item/CRAFT_ITEMS = list()
 var/CRAFT_ITEMS_SETUP = 1        //this should probably be a pre-game thing, but i'll do it so the first lathe2 that's created will set-up the recipes.
 
-proc/check_craftlathe_recipe(var/list/param_recipe)
+/proc/check_craftlathe_recipe(var/list/param_recipe)
 	if(param_recipe.len != 9)
 		return
 	var/i

@@ -5,14 +5,14 @@
 
 var/global/datum/processSchedulerView/processSchedulerView
 
-world
+/world
 	loop_checks = 0
 	New()
 		..()
 		processScheduler = new
 		processSchedulerView = new
 
-mob
+/mob
 	step_size = 8
 
 	New()

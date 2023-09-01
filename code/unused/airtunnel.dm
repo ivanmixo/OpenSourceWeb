@@ -160,7 +160,7 @@
 /obj/machinery/computer/airtunnel/attack_paw(user as mob)
 	return src.attack_hand(user)
 
-obj/machinery/computer/airtunnel/attack_ai(user as mob)
+/obj/machinery/computer/airtunnel/attack_ai(user as mob)
 	return src.attack_hand(user)
 
 /obj/machinery/computer/airtunnel/attack_hand(var/mob/user as mob)

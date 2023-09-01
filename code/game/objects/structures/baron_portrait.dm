@@ -29,7 +29,7 @@
 			processing_objects.Remove(src)
 
 
-proc/get_portrait_photo(var/mob/living/carbon/human/H)
+/proc/get_portrait_photo(var/mob/living/carbon/human/H)
 	var/icon/preview_icon = null
 
 	var/g = "m"

@@ -41,7 +41,7 @@
 	to_chat(src, "DICE :[roll]")
 */
 
-proc/human_roll_mods(var/mob/living/carbon/human/H)
+/proc/human_roll_mods(var/mob/living/carbon/human/H)
 	var/BaseMath = 0
 	if(H.handcuffed)
 		BaseMath -= rand(0,2)
@@ -95,7 +95,7 @@ proc/human_roll_mods(var/mob/living/carbon/human/H)
 
 	return BaseMath
 
-proc/roll3d6(var/mob/living/carbon/human/H, var/skill, var/mod, var/hide_roll = FALSE, var/using_stat = FALSE)
+/proc/roll3d6(var/mob/living/carbon/human/H, var/skill, var/mod, var/hide_roll = FALSE, var/using_stat = FALSE)
 	if(!H)
 		throw EXCEPTION("roll3d6 called without human!")
 		return

@@ -29,7 +29,7 @@
 
 */
 
-datum/mind
+/datum/mind
 	var/key
 	var/name				//replaces mob/var/original_name
 	var/mob/living/current

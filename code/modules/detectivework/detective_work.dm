@@ -1,8 +1,8 @@
 //CONTAINS: Suit fibers and Detective's Scanning Computer
 
-atom/var/list/suit_fibers
+/atom/var/list/suit_fibers
 
-atom/proc/add_fibers(mob/living/carbon/human/M)
+/atom/proc/add_fibers(mob/living/carbon/human/M)
 	if(M.gloves && istype(M.gloves,/obj/item/clothing/))
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.transfer_blood) //bloodied gloves transfer blood to touched objects
@@ -51,7 +51,7 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(print) proc, and means about 80% of
 								//the print must be there for it to be complete.  (Prints are 32 digits)
 
-obj/machinery/computer/forensic_scanning
+/obj/machinery/computer/forensic_scanning
 	name = "\improper High-Res Forensic Scanning Computer"
 	icon_state = "forensic"
 	var/obj/item/scanning

@@ -1,9 +1,9 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-atom/movable/var/pressure_resistance = 5
-atom/movable/var/last_forced_movement = 0
+/atom/movable/var/pressure_resistance = 5
+/atom/movable/var/last_forced_movement = 0
 
-atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
+/atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	if(last_forced_movement >= air_master.current_cycle)
 		return 0
 	else if(!anchored)
@@ -12,7 +12,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			spawn step(src, direction)
 		return 1
 
-turf
+/turf
 	assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
 		qdel(giver)
 		return 0
@@ -44,7 +44,7 @@ turf
 
 		return GM
 
-turf
+/turf
 	var/pressure_difference = 0
 	var/pressure_direction = 0
 	var/reporting_pressure_difference
@@ -72,7 +72,7 @@ turf
 			pressure_difference = connection_difference
 			pressure_direction = connection_direction
 
-turf/simulated/proc/consider_pressure_difference_space(connection_difference)
+/turf/simulated/proc/consider_pressure_difference_space(connection_difference)
 	for(var/direction in cardinal)
 		if(direction&group_border)
 			if(istype(get_step(src,direction),/turf/space))
@@ -85,7 +85,7 @@ turf/simulated/proc/consider_pressure_difference_space(connection_difference)
 				return 1
 
 
-turf/simulated
+/turf/simulated
 
 	var/current_graphic = null
 

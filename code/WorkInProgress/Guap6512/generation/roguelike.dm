@@ -1,7 +1,7 @@
 //#define DEBUG
 
 var/list/mobs = list()
-proc
+/proc
 	mapGen()
 		for(var/atom/A in world)
 			if(A.z == 7)
@@ -95,7 +95,7 @@ proc
 				L += get_steps(A,i,X)
 		return L
 /*
-turf
+/turf
 	floor
 		text = " "
 		upStairs
@@ -111,11 +111,11 @@ turf
 		opacity = 1
 		text = "+"
 
-obj
+/obj
 	locobj //For testing purposes only.
 		text = "O"
 
-mob
+/mob
 	Player
 		text = "@"
 		Login()

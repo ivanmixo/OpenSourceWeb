@@ -2,7 +2,7 @@
 n_Json v11.3.21
 */
 
-proc
+/proc
 	json2list(json)
 		var/static/json_reader/_jsonr = new()
 		return _jsonr.ReadObject(_jsonr.ScanJson(json))

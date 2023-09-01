@@ -1,4 +1,4 @@
-datum/air_group
+/datum/air_group
 	var/group_processing = 1 //Processing all tiles as one large tile if 1
 
 	var/datum/gas_mixture/air = new

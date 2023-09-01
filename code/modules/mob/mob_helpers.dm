@@ -107,17 +107,17 @@
 		return 1
 	return 0
 
-proc/isobserver(A)
+/proc/isobserver(A)
 	if(istype(A, /mob/dead/observer))
 		return 1
 	return 0
 
-proc/isorgan(A)
+/proc/isorgan(A)
 	if(istype(A, /datum/organ/external))
 		return 1
 	return 0
 
-proc/iszombie(A)
+/proc/iszombie(A)
 	if(istype(A, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = A
 		if(H.species && (H.species.name == "Zombie" || H.species.name == "Zombie Child"))
@@ -128,21 +128,21 @@ proc/iszombie(A)
 			return 1
 	return 0
 
-proc/isVampire(A)
+/proc/isVampire(A)
 	if(istype(A, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = A
 		if(H.isVampire)
 			return 1
 	return 0
 
-proc/isskeleton(A)
+/proc/isskeleton(A)
 	if(istype(A, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = A
 		if(H.species && istype(H.species, /datum/species/human/skeleton))
 			return 1
 	return 0
 
-proc/hasorgans(A)
+/proc/hasorgans(A)
 	return ishuman(A)
 
 /proc/hsl2rgb(h, s, l)
@@ -266,7 +266,7 @@ proc/hasorgans(A)
 	return t
 
 // For drunken speak, etc
-proc/slur(phrase)
+/proc/slur(phrase)
 	phrase = html_decode(phrase)
 	var/index = findtext(phrase, "&#255;")
 	while(index)
@@ -347,7 +347,7 @@ proc/slur(phrase)
 	return sanitize(dd_list2text(split_phrase," "))
 
 
-proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
+/proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
@@ -364,7 +364,7 @@ proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 fo
 
 	return returntext
 
-proc/NoChords(t, p)
+/proc/NoChords(t, p)
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
 
@@ -380,7 +380,7 @@ proc/NoChords(t, p)
 
 	return returntext
 
-proc/Illiterate(t, p)
+/proc/Illiterate(t, p)
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
 

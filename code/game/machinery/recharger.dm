@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-obj/machinery/recharger
+/obj/machinery/recharger
 	name = "recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger0"
@@ -10,7 +10,7 @@ obj/machinery/recharger
 	active_power_usage = 250
 	var/obj/item/weapon/charging = null
 
-obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
+/obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 	if(istype(user,/mob/living/silicon))
 		return
 	if(istype(G, /obj/item/weapon/gun/energy) || istype(G, /obj/item/weapon/melee/baton) || istype(G, /obj/item/weapon/cell/crap))
@@ -46,7 +46,7 @@ obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 		user << "You [anchored ? "attached" : "detached"] the recharger."
 		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
 
-obj/machinery/recharger/attack_hand(mob/user as mob)
+/obj/machinery/recharger/attack_hand(mob/user as mob)
 	add_fingerprint(user)
 
 	if(charging)
@@ -70,7 +70,7 @@ obj/machinery/recharger/attack_hand(mob/user as mob)
 		use_power = 1
 		update_icon()
 
-obj/machinery/recharger/process()
+/obj/machinery/recharger/process()
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		return
 
@@ -101,7 +101,7 @@ obj/machinery/recharger/process()
 			else
 				icon_state = "recharger2"
 
-obj/machinery/recharger/emp_act(severity)
+/obj/machinery/recharger/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		..(severity)
 		return
@@ -116,18 +116,18 @@ obj/machinery/recharger/emp_act(severity)
 		B.charges = 0
 	..(severity)
 
-obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
+/obj/machinery/recharger/update_icon()	//we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
 	if(charging)
 		icon_state = "recharger1"
 	else
 		icon_state = "recharger0"
 
-obj/machinery/recharger/wallcharger
+/obj/machinery/recharger/wallcharger
 	name = "wall recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "wrecharger0"
 
-obj/machinery/recharger/wallcharger/process()
+/obj/machinery/recharger/wallcharger/process()
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		return
 
@@ -150,7 +150,7 @@ obj/machinery/recharger/wallcharger/process()
 			else
 				icon_state = "wrecharger2"
 
-obj/machinery/recharger/wallcharger/update_icon()
+/obj/machinery/recharger/wallcharger/update_icon()
 	if(charging)
 		icon_state = "wrecharger1"
 	else

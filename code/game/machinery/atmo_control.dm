@@ -1,4 +1,4 @@
-obj/machinery/air_sensor
+/obj/machinery/air_sensor
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "gsensor1"
 	name = "Gas Sensor"
@@ -73,7 +73,7 @@ obj/machinery/air_sensor
 	if(radio_controller)
 		set_frequency(frequency)
 
-obj/machinery/computer/general_air_control
+/obj/machinery/computer/general_air_control
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "tank"
 

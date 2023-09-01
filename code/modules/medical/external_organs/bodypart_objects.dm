@@ -1,10 +1,10 @@
 //a gente usa datum de orgao por enquanto
 //entao por enquanto fica essa merda escrota de item aqui
-obj/item/weapon/organ
+/obj/item/weapon/organ
 	icon = 'icons/mob/human_races/r_human.dmi'
 	var/body_part
 
-obj/item/weapon/organ/New(loc, mob/living/carbon/human/H)
+/obj/item/weapon/organ/New(loc, mob/living/carbon/human/H)
 	..(loc)
 	if(!istype(H))
 		return
@@ -94,7 +94,7 @@ obj/item/weapon/organ/New(loc, mob/living/carbon/human/H)
 	body_part = EYES
 	icon = 'surgery.dmi'
 
-obj/item/weapon/organ/l_arm
+/obj/item/weapon/organ/l_arm
 	name = "severed left arm"
 	icon = 'human_severed.dmi'
 	icon_state = "left_arm"
@@ -102,21 +102,21 @@ obj/item/weapon/organ/l_arm
 	force = 20
 	body_part = ARM_LEFT
 
-obj/item/weapon/organ/l_foot
+/obj/item/weapon/organ/l_foot
 	name = "severed left foot"
 	icon = 'human_severed.dmi'
 	icon_state = "left_foot"
 	item_state = "limb"
 	body_part = FOOT_LEFT
 
-obj/item/weapon/organ/l_hand
+/obj/item/weapon/organ/l_hand
 	name = "severed left hand"
 	icon = 'human_severed.dmi'
 	icon_state = "left_hand"
 	item_state = "limb"
 	body_part =	HAND_LEFT
 
-obj/item/weapon/organ/l_leg
+/obj/item/weapon/organ/l_leg
 	name = "severed left leg"
 	icon = 'human_severed.dmi'
 	icon_state = "left_leg_nofoot"
@@ -124,7 +124,7 @@ obj/item/weapon/organ/l_leg
 	force = 20
 	body_part =	LEG_LEFT
 
-obj/item/weapon/organ/r_arm
+/obj/item/weapon/organ/r_arm
 	name = "severed right arm"
 	icon = 'human_severed.dmi'
 	icon_state = "right_arm"
@@ -132,21 +132,21 @@ obj/item/weapon/organ/r_arm
 	force = 20
 	body_part = ARM_RIGHT
 
-obj/item/weapon/organ/r_foot
+/obj/item/weapon/organ/r_foot
 	name = "severed right foot"
 	icon = 'human_severed.dmi'
 	icon_state = "right_foot"
 	item_state = "limb"
 	body_part = FOOT_RIGHT
 
-obj/item/weapon/organ/r_hand
+/obj/item/weapon/organ/r_hand
 	name = "severed right hand"
 	icon = 'human_severed.dmi'
 	icon_state = "right_hand"
 	item_state = "limb"
 	body_part = HAND_RIGHT
 
-obj/item/weapon/organ/r_leg
+/obj/item/weapon/organ/r_leg
 	name = "severed right leg"
 	icon = 'human_severed.dmi'
 	icon_state = "right_leg_nofoot"
@@ -154,7 +154,7 @@ obj/item/weapon/organ/r_leg
 	force = 20
 	body_part = LEG_RIGHT
 
-obj/item/weapon/organ/head
+/obj/item/weapon/organ/head
 	name = "severed head"
 	icon_state = "head_m"
 	item_state = "head"
@@ -165,7 +165,7 @@ obj/item/weapon/organ/head
 /obj/item/weapon/organ/head/posi
 	name = "robotic head"
 
-obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
+/obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
 	if(istype(H))
 		src.icon_state = H.gender == MALE? "head_m" : "head_f"
 	..()
@@ -212,7 +212,7 @@ obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
 	brainmob.stat = 2
 	brainmob.death()
 
-obj/item/weapon/organ/head/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->head
+/obj/item/weapon/organ/head/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->head
 	H.ghostize(1)
 	brainmob = new(src)
 	brainmob.name = H.real_name
@@ -222,7 +222,7 @@ obj/item/weapon/organ/head/proc/transfer_identity(var/mob/living/carbon/human/H)
 		H.mind.transfer_to(brainmob)
 	brainmob.container = src
 
-obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/surgery_tool/scalpel))
 		switch(brain_op_stage)
 			if(0)

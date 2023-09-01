@@ -339,7 +339,7 @@ var/datum/global_hud/global_hud = new()
 	var/list/obj/screen/item_action/item_action_list = list()	//Used for the item action ui buttons.
 
 
-datum/hud/New(mob/owner)
+/datum/hud/New(mob/owner)
 	mymob = owner
 	instantiate()
 	..()

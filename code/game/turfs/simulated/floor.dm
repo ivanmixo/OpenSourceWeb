@@ -147,7 +147,7 @@ var/list/wood_icons = list("wood","wood-broken")
 		if(prob(howmany/2))
 			M.stumble(0, src, "\the [src] is clustered, you stumble.")
 */
-turf/simulated/floor/proc/update_icon()
+/turf/simulated/floor/proc/update_icon()
 	if(lava)
 		return
 	else if(is_plasteel_floor())

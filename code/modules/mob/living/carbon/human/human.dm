@@ -1873,12 +1873,12 @@
 
 	return
 
-mob/living/carbon/human/proc/display_job()
+/mob/living/carbon/human/proc/display_job()
 	if(assignment)
 		return assignment
 	return job
 
-mob/living/carbon/human/Destroy()
+/mob/living/carbon/human/Destroy()
 	.=..()
 	if(src.old_key && src.old_job)
 		var/datum/showlads_holder/S = new()

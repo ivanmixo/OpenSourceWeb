@@ -8,7 +8,7 @@ var/list/moving_levels = list()
 //Proc to 'move' stars in spess
 //yes it looks ugly, but it should only fire when state actually change.
 //null direction stops movement
-proc/toggle_move_stars(var/obj/effect/map/ship/ship, direction)
+/proc/toggle_move_stars(var/obj/effect/map/ship/ship, direction)
 	if(!ship)
 		return
 
@@ -37,7 +37,7 @@ proc/toggle_move_stars(var/obj/effect/map/ship/ship, direction)
 //list used to cache empty zlevels to avoid nedless map bloat
 var/list/cached_space = list()
 
-proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
+/proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 	var/obj/effect/map/M = map_sectors["[T.z]"]
 	if (!M)
 		return

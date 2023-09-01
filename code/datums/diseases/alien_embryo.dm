@@ -104,7 +104,7 @@
 	RefreshInfectionImage()
 
 /*----------------------------------------
-Proc: RefreshInfectionImage()
+/Proc: RefreshInfectionImage()
 Des: Removes all infection images from aliens and places an infection image on all infected mobs for aliens.
 ----------------------------------------*/
 /datum/disease/alien_embryo/proc/RefreshInfectionImage()
@@ -125,7 +125,7 @@ Des: Removes all infection images from aliens and places an infection image on a
 		return
 
 /*----------------------------------------
-Proc: AddInfectionImages(C)
+/Proc: AddInfectionImages(C)
 Des: Checks if the passed mob (C) is infected with the alien egg, then gives each alien client an infected image at C.
 ----------------------------------------*/
 /datum/disease/alien_embryo/proc/AddInfectionImages(var/mob/living/carbon/C)
@@ -138,7 +138,7 @@ Des: Checks if the passed mob (C) is infected with the alien egg, then gives eac
 	return
 
 /*----------------------------------------
-Proc: RemoveInfectionImage(C)
+/Proc: RemoveInfectionImage(C)
 Des: Removes the alien infection image from all aliens in the world located in passed mob (C).
 ----------------------------------------*/
 

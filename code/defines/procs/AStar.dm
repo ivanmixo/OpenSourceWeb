@@ -108,10 +108,10 @@ PathNode
 		source.bestF = f
 		nt = pnt
 
-datum
+/datum
 	var
 		bestF
-proc
+/proc
 	PathWeightCompare(PathNode/a, PathNode/b)
 		return a.f - b.f
 

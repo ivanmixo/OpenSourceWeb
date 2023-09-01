@@ -8,7 +8,7 @@ var/ert_base_chance = 10 // Default base chance. Will be incremented by incremen
 var/can_call_ert
 
 /*
-client/verb/JoinResponseTeam()
+/client/verb/JoinResponseTeam()
 	set category = "IC"
 
 	if(istype(usr,/mob/dead/observer) || istype(usr,/mob/new_player))
@@ -49,7 +49,7 @@ client/verb/JoinResponseTeam()
 		usr << "You need to be an observer or new player to use this."
 */
 // returns a number of dead players in %
-proc/percentage_dead()
+/proc/percentage_dead()
 	var/total = 0
 	var/deadcount = 0
 	for(var/mob/living/carbon/human/H in mob_list)
@@ -62,7 +62,7 @@ proc/percentage_dead()
 
 // Increments the ERT chance automatically, so that the later it is in the round,
 // the more likely an ERT is to be able to be called.
-proc/increment_ert_chance()
+/proc/increment_ert_chance()
 	while(send_emergency_team == 0) // There is no ERT at the time.
 		if(get_security_level() == "green")
 			ert_base_chance += 1

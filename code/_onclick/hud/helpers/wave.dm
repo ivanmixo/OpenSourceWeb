@@ -1,4 +1,4 @@
-mob/proc/water(var/wavecount=1, var/intensity=0.5, var/delay=100, var/effectDrug=0)
+/mob/proc/water(var/wavecount=1, var/intensity=0.5, var/delay=100, var/effectDrug=0)
 	if(src.client)
 		if(effectDrug)
 			filters = filter(type="color",color=list(1,0,0, 0,1.2,0, 0,0,1, 0,0,0),space=FILTER_COLOR_HSL)
@@ -10,7 +10,7 @@ mob/proc/water(var/wavecount=1, var/intensity=0.5, var/delay=100, var/effectDrug
 			i.remove_filter("AS1")
 		filters = null
 
-atom/proc/WaterEffect(var/wavecount, var/intensity)
+/atom/proc/WaterEffect(var/wavecount, var/intensity)
 
     var/X,Y,rsq,i,f
     for(i=1, i<=wavecount, ++i)

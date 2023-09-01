@@ -28,31 +28,31 @@
 /obj/structure/bookcase/empty
 	empty = TRUE
 
-obj/structure/bookcase/engi
+/obj/structure/bookcase/engi
 	name = "Engineering Bookcase"
 	category = "Engineering"
-obj/structure/bookcase/med
+/obj/structure/bookcase/med
 	name = "Medical Bookcase"
 	category = "Medical"
-obj/structure/bookcase/his
+/obj/structure/bookcase/his
 	name = "History Bookcase"
 	category = "History"
-obj/structure/bookcase/bus
+/obj/structure/bookcase/bus
 	name = "Non-Fiction Bookcase"
 	category = "Non-Fiction"
-obj/structure/bookcase/sh
+/obj/structure/bookcase/sh
 	name = "Learn Bookcase"
 	category = "Learn"
-obj/structure/bookcase/sci
+/obj/structure/bookcase/sci
 	name = "Science Bookcase"
 	category = "Science"
-obj/structure/bookcase/reli
+/obj/structure/bookcase/reli
 	name = "Religion Bookcase"
 	category = "Religion"
-obj/structure/bookcase/cook
+/obj/structure/bookcase/cook
 	name = "Cooking Bookcase"
 	category = "Cooking"
-obj/structure/bookcase/adult
+/obj/structure/bookcase/adult
 	name = "Adult Bookcase"
 	category = "Adult"
 

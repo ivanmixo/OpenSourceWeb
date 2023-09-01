@@ -12,13 +12,13 @@
 //Defines.
 #define OPPOSITE_DIR(D) turn(D, 180)
 
-mob/
+/mob/
 	var/list/hidden_mobs = list()
 
-client/
+/client/
 	var/list/hidden_atoms = list()
 
-atom/proc/InCone(atom/center = usr, dir = NORTH)
+/atom/proc/InCone(atom/center = usr, dir = NORTH)
 	if(get_dist(center, src) == 0 || src == center) return 0
 	var/d = get_dir(center, src)
 
@@ -33,10 +33,10 @@ atom/proc/InCone(atom/center = usr, dir = NORTH)
 		return (dir & (NORTH|SOUTH)) ? 1 : 0
 	return (dir & (EAST|WEST)) ? 1 : 0
 
-mob/dead/InCone(mob/center = usr, dir = NORTH)
+/mob/dead/InCone(mob/center = usr, dir = NORTH)
 	return
 
-mob/living/InCone(mob/center = usr, dir = NORTH)
+/mob/living/InCone(mob/center = usr, dir = NORTH)
 	. = ..()
 	for(var/obj/item/weapon/grab/G in center)//TG doesn't have the grab item. But if you're porting it and you do then uncomment this.
 		if(src == G.affecting)
@@ -45,16 +45,16 @@ mob/living/InCone(mob/center = usr, dir = NORTH)
 			return .
 
 
-proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
+/proc/cone(atom/center = usr, dir = NORTH, list/list = oview(center))
 	for(var/turf/T in list)
 		for(var/mob/M in T.contents)
 			if(!M.InCone(center, dir)) list -= M
 	return list
 
-mob/proc/update_vision_cone()
+/mob/proc/update_vision_cone()
 	return
 
-mob/living/carbon/human/update_vision_cone()
+/mob/living/carbon/human/update_vision_cone()
 	var/datum/organ/external/head/E = get_organ("head")
 	var/delay = 10
 	var/image/I = null
@@ -115,26 +115,26 @@ mob/living/carbon/human/update_vision_cone()
 	else
 		return
 
-mob/living/carbon/human/proc/SetFov(var/n)
+/mob/living/carbon/human/proc/SetFov(var/n)
 	if(!n)
 		hide_cone()
 	else
 		show_cone()
 
-mob/living/carbon/human/proc/check_fov()
+/mob/living/carbon/human/proc/check_fov()
 	if(resting || lying || zoomed || isLeaning)
 		hide_cone()
 	else
 		show_cone()
 
 //Making these generic procs so you can call them anywhere.
-mob/living/carbon/human/proc/show_cone()
+/mob/living/carbon/human/proc/show_cone()
 	if(src.fov)
 		src.fov.alpha = 255
 		src.fov_mask.alpha = 255
 		src.fov_mask_two.alpha = 255
 
-mob/living/carbon/human/proc/hide_cone()
+/mob/living/carbon/human/proc/hide_cone()
 	if(src.fov)
 		src.fov.alpha = 0
 		src.fov_mask.alpha = 0

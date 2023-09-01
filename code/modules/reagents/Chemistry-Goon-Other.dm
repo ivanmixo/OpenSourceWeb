@@ -4,63 +4,63 @@
 
 #define REM REAGENTS_EFFECT_MULTIPLIER
 
-datum/reagent/oil
+/datum/reagent/oil
 	name = "Oil"
 	id = "oil"
 	description = "A slippery solution."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-datum/reagent/stable_plasma
+/datum/reagent/stable_plasma
 	name = "Stable Plasma"
 	id = "stable_plasma"
 	description = "Non-flammable plasma locked into a liquid form that cannot ignite or become gaseous/solid."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-datum/reagent/iodine
+/datum/reagent/iodine
 	name = "Iodine"
 	id = "iodine"
 	description = "A slippery solution."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-datum/reagent/fluorine
+/datum/reagent/fluorine
 	name = "Fluorine"
 	id = "fluorine"
 	description = "A slippery solution."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-datum/reagent/carpet
+/datum/reagent/carpet
 	name = "Carpet"
 	id = "carpet"
 	description = "A slippery solution."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-datum/reagent/bromine
+/datum/reagent/bromine
 	name = "Bromine"
 	id = "bromine"
 	description = "A slippery solution."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-datum/reagent/phenol
+/datum/reagent/phenol
 	name = "Phenol"
 	id = "phenol"
 	description = "A slippery solution."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-datum/reagent/ash
+/datum/reagent/ash
 	name = "Ash"
 	id = "ash"
 	description = "A burnt solution."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-datum/reagent/acetone
+/datum/reagent/acetone
 	name = "Acetone"
 	id = "acetone"
 	description = "A solution."
@@ -103,7 +103,7 @@ datum/reagent/acetone
 	result_amount = 1
 	required_temp = 480
 
-datum/reagent/colorful_reagent
+/datum/reagent/colorful_reagent
 	name = "Colorful Reagent"
 	id = "colorful_reagent"
 	description = "A solution."
@@ -118,24 +118,24 @@ datum/reagent/colorful_reagent
 	required_reagents = list("stable_plasma" = 1, "radium" = 1, "space_drugs" = 1, "cryoxadone" = 1, "triple_citrus" = 1)
 	result_amount = 5
 
-datum/reagent/colorful_reagent/reaction_mob(var/mob/living/M, var/volume)
+/datum/reagent/colorful_reagent/reaction_mob(var/mob/living/M, var/volume)
 	if(M && isliving(M))
 		M.color = pick(potential_colors)
 	..()
 	return
-datum/reagent/colorful_reagent/reaction_obj(var/obj/O, var/volume)
+/datum/reagent/colorful_reagent/reaction_obj(var/obj/O, var/volume)
 	if(O)
 		O.color = pick(potential_colors)
 	..()
 	return
-datum/reagent/colorful_reagent/reaction_turf(var/turf/T, var/volume)
+/datum/reagent/colorful_reagent/reaction_turf(var/turf/T, var/volume)
 	if(T)
 		T.color = pick(potential_colors)
 	..()
 	return
 
 
-datum/reagent/triple_citrus
+/datum/reagent/triple_citrus
 	name = "Triple Citrus"
 	id = "triple_citrus"
 	description = "A solution."

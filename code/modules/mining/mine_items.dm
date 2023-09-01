@@ -44,7 +44,7 @@ var/mining_shuttle_tickstomove = 10
 var/mining_shuttle_moving = 0
 var/mining_shuttle_location = 0 // 0 = station 13, 1 = mining station
 
-proc/move_mining_shuttle()
+/proc/move_mining_shuttle()
 	if(mining_shuttle_moving)	return
 	mining_shuttle_moving = 1
 	spawn(mining_shuttle_tickstomove*10)

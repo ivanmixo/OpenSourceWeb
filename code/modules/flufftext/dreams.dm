@@ -1,7 +1,7 @@
 /*************************
 **************************/
 
-mob/living/carbon/var
+/mob/living/carbon/var
 	image/turfimage
 	is_dreaming = 0
 	dreams_tick = 0
@@ -13,7 +13,7 @@ mob/living/carbon/var
 	may_dreamer_see = 0
 
 
-mob/living/carbon/proc/handle_dreamer()
+/mob/living/carbon/proc/handle_dreamer()
 	if(is_dreaming) return
 	is_dreaming = 1
 	if(client && mind && mind.special_role == "Waker")

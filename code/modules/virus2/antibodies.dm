@@ -30,7 +30,7 @@ var/global/list/ANTIGENS = list(
 )
 
 // pure concentrated antibodies
-datum/reagent/antibodies
+/datum/reagent/antibodies
 	data = list("antibodies"=0)
 	name = "Antibodies"
 	id = "antibodies"

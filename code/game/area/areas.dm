@@ -627,7 +627,7 @@ var/list/areas = list()
 			a.cancelAlarm("Atmosphere", src, src)
 	return
 
-proc/get_doors(area/A) //Luckily for the CPU, this generally is only run once per area.
+/proc/get_doors(area/A) //Luckily for the CPU, this generally is only run once per area.
 	. = list()
 	for(var/area/AR in A.related)
 		for(var/obj/machinery/door/D in AR)

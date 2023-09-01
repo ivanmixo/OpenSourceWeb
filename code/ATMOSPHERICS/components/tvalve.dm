@@ -1,4 +1,4 @@
-obj/machinery/atmospherics/tvalve
+/obj/machinery/atmospherics/tvalve
 	icon = 'icons/obj/atmospherics/valve.dmi'
 	icon_state = "tvalve0"
 
@@ -344,7 +344,7 @@ obj/machinery/atmospherics/tvalve
 			new /obj/item/pipe(loc, make_from=src)
 			qdel(src)
 
-obj/machinery/atmospherics/tvalve/mirrored
+/obj/machinery/atmospherics/tvalve/mirrored
 	icon_state = "tvalvem0"
 
 	New()

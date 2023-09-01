@@ -66,13 +66,13 @@
 					M.reagents.add_reagent(self.id,self.volume/2)
 	return 1
 
-datum/reagent/proc/reaction_obj(var/obj/O, var/volume) //By default we transfer a small part of the reagent to the object
+/datum/reagent/proc/reaction_obj(var/obj/O, var/volume) //By default we transfer a small part of the reagent to the object
 	src = null						//if it can hold reagents. nope!
 	//if(O.reagents)
 	//	O.reagents.add_reagent(id,volume/3)
 	return
 
-datum/reagent/proc/reaction_turf(var/turf/T, var/volume, var/shouldNull = 1)
+/datum/reagent/proc/reaction_turf(var/turf/T, var/volume, var/shouldNull = 1)
 	if(shouldNull)
 		src = null
 	return
@@ -83,60 +83,60 @@ datum/reagent/proc/reaction_turf(var/turf/T, var/volume, var/shouldNull = 1)
 /datum/reagent/proc/on_remove(var/data)
 	return
 
-datum/reagent/proc/on_mob_life(var/mob/living/M as mob, var/alien)
+/datum/reagent/proc/on_mob_life(var/mob/living/M as mob, var/alien)
 	if(!istype(M, /mob/living))
 		return //Noticed runtime errors from pacid trying to damage ghosts, this should fix. --NEO
 	holder.remove_reagent(src.id, metabolization_rate) //By default it slowly disappears.
 	first_life = FALSE
 	return
 
-datum/reagent/proc/on_move(var/mob/M)
+/datum/reagent/proc/on_move(var/mob/M)
 	return
 
 // Called after add_reagents creates a new reagent.
-datum/reagent/proc/on_new(var/data)
+/datum/reagent/proc/on_new(var/data)
 	return
 
 // Called when two reagents of the same are mixing.
-datum/reagent/proc/on_merge(var/data)
+/datum/reagent/proc/on_merge(var/data)
 	return
 
-datum/reagent/proc/on_update(var/atom/A)
+/datum/reagent/proc/on_update(var/atom/A)
 	return
 
 // Called if the reagent has passed the overdose threshold and is set to be triggering overdose effects
-datum/reagent/proc/overdose_process(var/mob/living/M as mob)
+/datum/reagent/proc/overdose_process(var/mob/living/M as mob)
 	return
 
-datum/reagent/proc/addiction_act_stage1(var/mob/living/M as mob)
+/datum/reagent/proc/addiction_act_stage1(var/mob/living/M as mob)
 	if(prob(30))
 		M << "<span class = 'notice'>You feel like some [name] right about now.</span>"
 	return
 
-datum/reagent/proc/addiction_act_stage2(var/mob/living/M as mob)
+/datum/reagent/proc/addiction_act_stage2(var/mob/living/M as mob)
 	if(prob(30))
 		M << "<span class = 'notice'>You feel like you need [name]. You just can't get enough.</span>"
 	return
 
-datum/reagent/proc/addiction_act_stage3(var/mob/living/M as mob)
+/datum/reagent/proc/addiction_act_stage3(var/mob/living/M as mob)
 	if(prob(30))
 		M << "<span class = 'danger'>You have an intense craving for [name].</span>"
 	return
 
-datum/reagent/proc/addiction_act_stage4(var/mob/living/M as mob)
+/datum/reagent/proc/addiction_act_stage4(var/mob/living/M as mob)
 	if(prob(30))
 		M << "<span class = 'userdanger'>You're not feeling good at all! You really need some [name].</span>"
 	return
 
 
-datum/reagent/blood
+/datum/reagent/blood
 	data = new/list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null, "antibodies" = null)
 	name = "Blood"
 	id = "blood"
 	reagent_state = LIQUID
 	color = BLOOD_COLOR // rgb: 200, 0, 0
 
-datum/reagent/blood/proc/herege()
+/datum/reagent/blood/proc/herege()
 	var/datum/reagent/blood/B = src
 	for(var/i = 1, i <= B.data.len, i++)
 		var/coisas = B.data[i]
@@ -150,7 +150,7 @@ datum/reagent/blood/proc/herege()
 
 
 
-datum/reagent/blood/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
+/datum/reagent/blood/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 	var/datum/reagent/blood/self = src
 	src = null
 	if(self.data && self.data["viruses"])
@@ -173,7 +173,7 @@ datum/reagent/blood/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 		C.antibodies |= self.data["antibodies"]
 
 
-datum/reagent/blood/reaction_turf(var/turf/simulated/T, var/volume)//splash the blood all over the place
+/datum/reagent/blood/reaction_turf(var/turf/simulated/T, var/volume)//splash the blood all over the place
 	if(!istype(T)) return
 	var/datum/reagent/blood/self = src
 	src = null
@@ -212,7 +212,7 @@ datum/reagent/blood/reaction_turf(var/turf/simulated/T, var/volume)//splash the 
 			newVirus.holder = blood_prop
 	return
 
-datum/reagent/vaccine
+/datum/reagent/vaccine
 	//data must contain virus type
 	name = "Vaccine"
 	id = "vaccine"
@@ -236,7 +236,7 @@ datum/reagent/vaccine
 		return
 
 
-datum/reagent/semen
+/datum/reagent/semen
 	name = "Semen"
 	id = "semen"
 	description = "Sperm from someone."
@@ -244,7 +244,7 @@ datum/reagent/semen
 	color = "#FFFFFF" // rgb: 255, 255, 255
 	metabolization_rate = 0.01
 
-datum/reagent/semen/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/semen/on_mob_life(var/mob/living/M as mob)
 	//M.bladder += nutriment_factor
 	if(ticker.eof.id == "freshmalemilk")
 		M.hidratacao += 30
@@ -252,10 +252,10 @@ datum/reagent/semen/on_mob_life(var/mob/living/M as mob)
 	..()
 	return
 
-datum/reagent/semen/reaction_turf(var/turf/T)
+/datum/reagent/semen/reaction_turf(var/turf/T)
 	new/obj/effect/decal/cleanable/cum(T)
 
-datum/reagent/water
+/datum/reagent/water
 	name = "Water"
 	id = "water"
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
@@ -326,7 +326,7 @@ datum/reagent/water
 				M.ExtinguishMob()
 			return
 
-datum/reagent/water/holywater
+/datum/reagent/water/holywater
 	name = "Holy Water"
 	id = "holywater"
 	description = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
@@ -345,7 +345,7 @@ datum/reagent/water/holywater
 		holder.remove_reagent(src.id, 10 * REAGENTS_METABOLISM) //high metabolism to prevent extended uncult rolls.
 		return
 
-datum/reagent/lube
+/datum/reagent/lube
 	name = "Space Lube"
 	id = "lube"
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
@@ -367,7 +367,7 @@ datum/reagent/lube
 					T.wet_overlay = null
 				return
 
-datum/reagent/plasticide
+/datum/reagent/plasticide
 	name = "Plasticide"
 	id = "plasticide"
 	description = "Liquid plastic, do not eat."
@@ -382,7 +382,7 @@ datum/reagent/plasticide
 		..()
 		return
 
-datum/reagent/srejuvenate
+/datum/reagent/srejuvenate
 	name = "Soporific Rejuvenant"
 	id = "stoxin2"
 	description = "Put people to sleep, and heals them."
@@ -416,7 +416,7 @@ datum/reagent/srejuvenate
 		..()
 		return
 
-datum/reagent/space_drugs
+/datum/reagent/space_drugs
 	name = "Space drugs"
 	id = "space_drugs"
 	description = "An illegal chemical compound used as drug."
@@ -435,7 +435,7 @@ datum/reagent/space_drugs
 		holder.remove_reagent(src.id, 0.5 * REAGENTS_METABOLISM)
 		return
 
-datum/reagent/serotrotium
+/datum/reagent/serotrotium
 	name = "Serotrotium"
 	id = "serotrotium"
 	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
@@ -485,7 +485,7 @@ datum/reagent/serotrotium
 
 		return*/
 
-datum/reagent/oxygen
+/datum/reagent/oxygen
 	name = "Oxygen"
 	id = "oxygen"
 	description = "A colorless, odorless gas."
@@ -502,7 +502,7 @@ datum/reagent/oxygen
 			return
 		..()
 
-datum/reagent/copper
+/datum/reagent/copper
 	name = "Copper"
 	id = "copper"
 	description = "A highly ductile metal."
@@ -510,7 +510,7 @@ datum/reagent/copper
 
 	metabolization_rate = 0.01
 
-datum/reagent/nitrogen
+/datum/reagent/nitrogen
 	name = "Nitrogen"
 	id = "nitrogen"
 	description = "A colorless, odorless, tasteless gas."
@@ -527,7 +527,7 @@ datum/reagent/nitrogen
 			return
 		..()
 
-datum/reagent/hydrogen
+/datum/reagent/hydrogen
 	name = "Hydrogen"
 	id = "hydrogen"
 	description = "A colorless, odorless, nonmetallic, tasteless, highly combustible diatomic gas."
@@ -536,7 +536,7 @@ datum/reagent/hydrogen
 
 	metabolization_rate = 0.01
 
-datum/reagent/potassium
+/datum/reagent/potassium
 	name = "Potassium"
 	id = "potassium"
 	description = "A soft, low-melting solid that can easily be cut with a knife. Reacts violently with water."
@@ -545,7 +545,7 @@ datum/reagent/potassium
 
 	metabolization_rate = 0.01
 
-datum/reagent/mercury
+/datum/reagent/mercury
 	name = "Mercury"
 	id = "mercury"
 	description = "A chemical element."
@@ -562,7 +562,7 @@ datum/reagent/mercury
 		..()
 		return
 
-datum/reagent/sulfur
+/datum/reagent/sulfur
 	name = "Sulfur"
 	id = "sulfur"
 	description = "A chemical element with a pungent smell."
@@ -571,7 +571,7 @@ datum/reagent/sulfur
 
 	metabolization_rate = 0.01
 
-datum/reagent/carbon
+/datum/reagent/carbon
 	name = "Carbon"
 	id = "carbon"
 	description = "A chemical element, the builing block of life."
@@ -585,7 +585,7 @@ datum/reagent/carbon
 		if(!istype(T, /turf/space))
 			new /obj/effect/decal/cleanable/dirt(T)
 
-datum/reagent/chlorine
+/datum/reagent/chlorine
 	name = "Chlorine"
 	id = "chlorine"
 	description = "A chemical element with a characteristic odour."
@@ -599,7 +599,7 @@ datum/reagent/chlorine
 		..()
 		return
 
-datum/reagent/fluorine
+/datum/reagent/fluorine
 	name = "Fluorine"
 	id = "fluorine"
 	description = "A highly-reactive chemical element."
@@ -613,7 +613,7 @@ datum/reagent/fluorine
 		..()
 		return
 
-datum/reagent/sodium
+/datum/reagent/sodium
 	name = "Sodium"
 	id = "sodium"
 	description = "A chemical element, readily reacts with water."
@@ -622,7 +622,7 @@ datum/reagent/sodium
 
 	metabolization_rate = 0.01
 
-datum/reagent/phosphorus
+/datum/reagent/phosphorus
 	name = "Phosphorus"
 	id = "phosphorus"
 	description = "A chemical element, the backbone of biological energy carriers."
@@ -631,7 +631,7 @@ datum/reagent/phosphorus
 
 	metabolization_rate = 0.01
 
-datum/reagent/lithium
+/datum/reagent/lithium
 	name = "Lithium"
 	id = "lithium"
 	description = "A chemical element, used as antidepressant."
@@ -647,7 +647,7 @@ datum/reagent/lithium
 		..()
 		return
 
-datum/reagent/sugar
+/datum/reagent/sugar
 	name = "Sugar"
 	id = "sugar"
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
@@ -661,7 +661,7 @@ datum/reagent/sugar
 		return
 
 
-datum/reagent/glycerol
+/datum/reagent/glycerol
 	name = "Glycerol"
 	id = "glycerol"
 	description = "Glycerol is a simple polyol compound. Glycerol is sweet-tasting and of low toxicity."
@@ -670,7 +670,7 @@ datum/reagent/glycerol
 
 	metabolization_rate = 0.01
 
-datum/reagent/nitroglycerin
+/datum/reagent/nitroglycerin
 	name = "Nitroglycerin"
 	id = "nitroglycerin"
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
@@ -679,7 +679,7 @@ datum/reagent/nitroglycerin
 
 	metabolization_rate = 0.01
 
-datum/reagent/radium
+/datum/reagent/radium
 	name = "Radium"
 	id = "radium"
 	description = "Radium is an alkaline earth metal. It is extremely radioactive."
@@ -719,7 +719,7 @@ datum/reagent/radium
 					new /obj/effect/decal/cleanable/greenglow(T)
 				return
 
-datum/reagent/thermite
+/datum/reagent/thermite
 	name = "Thermite"
 	id = "thermite"
 	description = "Thermite produces an aluminothermic reaction known as a thermite reaction. Can be used to melt walls."
@@ -741,7 +741,7 @@ datum/reagent/thermite
 		..()
 		return
 
-datum/reagent/paracetamol
+/datum/reagent/paracetamol
 	name = "Paracetamol"
 	id = "paracetamol"
 	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller."
@@ -753,7 +753,7 @@ datum/reagent/paracetamol
 		M.hallucination = max(M.hallucination, 2)
 		return
 
-datum/reagent/tramadol
+/datum/reagent/tramadol
 	name = "Tramadol"
 	id = "tramadol"
 	description = "A simple, yet effective painkiller."
@@ -765,7 +765,7 @@ datum/reagent/tramadol
 		M.hallucination = max(M.hallucination, 2)
 		return
 
-datum/reagent/oxycodone
+/datum/reagent/oxycodone
 	name = "Oxycodone"
 	id = "oxycodone"
 	description = "An effective and very addictive painkiller."
@@ -779,7 +779,7 @@ datum/reagent/oxycodone
 		return
 
 
-datum/reagent/virus_food
+/datum/reagent/virus_food
 	name = "Virus Food"
 	id = "virusfood"
 	description = "A mixture of water, milk, and oxygen. Virus cells can use this mixture to reproduce."
@@ -794,7 +794,7 @@ datum/reagent/virus_food
 		..()
 		return
 
-datum/reagent/sterilizine
+/datum/reagent/sterilizine
 	name = "Sterilizine"
 	id = "sterilizine"
 	description = "Sterilizes wounds in preparation for surgery."
@@ -816,7 +816,7 @@ datum/reagent/sterilizine
 			..()
 			return
 */
-datum/reagent/iron
+/datum/reagent/iron
 	name = "Iron"
 	id = "iron"
 	description = "Pure iron is a metal."
@@ -824,21 +824,21 @@ datum/reagent/iron
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose_threshold = REAGENTS_OVERDOSE
 
-datum/reagent/gold
+/datum/reagent/gold
 	name = "Gold"
 	id = "gold"
 	description = "Gold is a dense, soft, shiny metal and the most malleable and ductile metal known."
 	reagent_state = SOLID
 	color = "#F7C430" // rgb: 247, 196, 48
 
-datum/reagent/silver
+/datum/reagent/silver
 			name = "Silver"
 			id = "silver"
 			description = "A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
 			reagent_state = SOLID
 			color = "#D0D0D0" // rgb: 208, 208, 208
 
-datum/reagent/uranium
+/datum/reagent/uranium
 	name ="Uranium"
 	id = "uranium"
 	description = "A silvery-white metallic chemical element in the actinide series, weakly radioactive."
@@ -857,21 +857,21 @@ datum/reagent/uranium
 			if(!istype(T, /turf/space))
 				new /obj/effect/decal/cleanable/greenglow(T)
 
-datum/reagent/aluminum
+/datum/reagent/aluminum
 	name = "Aluminum"
 	id = "aluminum"
 	description = "A silvery white and ductile member of the boron group of chemical elements."
 	reagent_state = SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
 
-datum/reagent/silicon
+/datum/reagent/silicon
 	name = "Silicon"
 	id = "silicon"
 	description = "A tetravalent metalloid, silicon is less reactive than its chemical analog carbon."
 	reagent_state = SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
 
-datum/reagent/fuel
+/datum/reagent/fuel
 	name = "Welding fuel"
 	id = "fuel"
 	description = "Required for welders. Flamable."
@@ -900,7 +900,7 @@ datum/reagent/fuel
 		..()
 		return
 
-datum/reagent/space_cleaner
+/datum/reagent/space_cleaner
 	name = "Space cleaner"
 	id = "cleaner"
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
@@ -947,7 +947,7 @@ datum/reagent/space_cleaner
 						H.update_inv_shoes(0)
 			M.clean_blood()
 
-datum/reagent/leporazine
+/datum/reagent/leporazine
 	name = "Leporazine"
 	id = "leporazine"
 	description = "Leporazine can be use to stabilize an individuals body temperature."
@@ -964,7 +964,7 @@ datum/reagent/leporazine
 		..()
 		return
 
-datum/reagent/cryptobiolin
+/datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
 	id = "cryptobiolin"
 	description = "Cryptobiolin causes confusion and dizzyness."
@@ -981,7 +981,7 @@ datum/reagent/cryptobiolin
 		..()
 		return
 
-datum/reagent/adminordrazine //An OP chemical for admins
+/datum/reagent/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"
 	id = "adminordrazine"
 	description = "It's magic. We don't have to explain it."
@@ -1020,7 +1020,7 @@ datum/reagent/adminordrazine //An OP chemical for admins
 		..()
 		return
 
-datum/reagent/synaptizine
+/datum/reagent/synaptizine
 	name = "Synaptizine"
 	id = "synaptizine"
 	description = "Synaptizine is used to treat various diseases."
@@ -1042,7 +1042,7 @@ datum/reagent/synaptizine
 		..()
 		return
 
-datum/reagent/impedrezene
+/datum/reagent/impedrezene
 	name = "Impedrezene"
 	id = "impedrezene"
 	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
@@ -1059,7 +1059,7 @@ datum/reagent/impedrezene
 		..()
 		return
 
-datum/reagent/peridaxon
+/datum/reagent/peridaxon
 	name = "Peridaxon"
 	id = "peridaxon"
 	description = "Used to encourage recovery of internal organs and nervous systems. Medicate cautiously."
@@ -1078,7 +1078,7 @@ datum/reagent/peridaxon
 		..()
 		return
 
-datum/reagent/cryoxadone
+/datum/reagent/cryoxadone
 	name = "Cryoxadone"
 	id = "cryoxadone"
 	description = "A chemical mixture with almost magical healing powers. Its main limitation is that the targets body temperature must be under 170K for it to metabolise correctly."
@@ -1095,7 +1095,7 @@ datum/reagent/cryoxadone
 		..()
 		return
 
-datum/reagent/clonexadone
+/datum/reagent/clonexadone
 	name = "Clonexadone"
 	id = "clonexadone"
 	description = "A liquid compound similar to that used in the cloning process. Can be used to 'finish' the cloning process when used in conjunction with a cryo tube."
@@ -1112,7 +1112,7 @@ datum/reagent/clonexadone
 		..()
 		return
 
-datum/reagent/rezadone
+/datum/reagent/rezadone
 	name = "Rezadone"
 	id = "rezadone"
 	description = "A powder derived from fish toxin, this substance can effectively treat genetic damage in humanoids, though excessive consumption has side effects."
@@ -1140,7 +1140,7 @@ datum/reagent/rezadone
 		..()
 		return
 
-datum/reagent/spaceacillin
+/datum/reagent/spaceacillin
 	name = "Spaceacillin"
 	id = "spaceacillin"
 	description = "An all-purpose antiviral agent."
@@ -1156,7 +1156,7 @@ datum/reagent/spaceacillin
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-datum/reagent/nanites
+/datum/reagent/nanites
 	name = "Nanomachines"
 	id = "nanites"
 	description = "Microscopic construction robots."
@@ -1168,7 +1168,7 @@ datum/reagent/nanites
 		if( (prob(10) && method==TOUCH) || method==INGEST)
 			M.contract_disease(new /datum/disease/robotic_transformation(0),1)
 
-datum/reagent/xenomicrobes
+/datum/reagent/xenomicrobes
 	name = "Xenomicrobes"
 	id = "xenomicrobes"
 	description = "Microbes with an entirely alien cellular structure."
@@ -1180,41 +1180,41 @@ datum/reagent/xenomicrobes
 		if( (prob(10) && method==TOUCH) || method==INGEST)
 			M.contract_disease(new /datum/disease/xeno_transformation(0),1)
 
-datum/reagent/fluorosurfactant//foam precursor
+/datum/reagent/fluorosurfactant//foam precursor
 	name = "Fluorosurfactant"
 	id = "fluorosurfactant"
 	description = "A perfluoronated sulfonic acid that forms a foam when mixed with water."
 	reagent_state = LIQUID
 	color = "#9E6B38" // rgb: 158, 107, 56
 
-datum/reagent/foaming_agent// Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
+/datum/reagent/foaming_agent// Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
 	name = "Foaming agent"
 	id = "foaming_agent"
 	description = "A agent that yields metallic foam when mixed with light metal and a strong acid."
 	reagent_state = SOLID
 	color = "#664B63" // rgb: 102, 75, 99
 
-datum/reagent/ammonia
+/datum/reagent/ammonia
 	name = "Ammonia"
 	id = "ammonia"
 	description = "A caustic substance commonly used in fertilizer or household cleaners."
 	reagent_state = GAS
 	color = "#404030" // rgb: 64, 64, 48
 
-datum/reagent/ultraglue
+/datum/reagent/ultraglue
 	name = "Ultra Glue"
 	id = "glue"
 	description = "An extremely powerful bonding agent."
 	color = "#FFFFCC" // rgb: 255, 255, 204
 
-datum/reagent/diethylamine
+/datum/reagent/diethylamine
 	name = "Diethylamine"
 	id = "diethylamine"
 	description = "A secondary amine, mildly corrosive."
 	reagent_state = LIQUID
 	color = "#604030" // rgb: 96, 64, 48
 
-datum/reagent/ethylredoxrazine	// FUCK YOU, ALCOHOL
+/datum/reagent/ethylredoxrazine	// FUCK YOU, ALCOHOL
 	name = "Ethylredoxrazine"
 	id = "ethylredoxrazine"
 	description = "A powerful oxidizer that reacts with ethanol."
@@ -1234,7 +1234,7 @@ datum/reagent/ethylredoxrazine	// FUCK YOU, ALCOHOL
 
 //////////////////////////Poison stuff///////////////////////
 
-datum/reagent/toxin
+/datum/reagent/toxin
 	name = "Toxin"
 	id = "toxin"
 	description = "A toxic chemical."
@@ -1250,7 +1250,7 @@ datum/reagent/toxin
 		..()
 		return
 
-datum/reagent/toxin/amatoxin
+/datum/reagent/toxin/amatoxin
 	name = "Amatoxin"
 	id = "amatoxin"
 	description = "A powerful poison derived from certain species of mushroom."
@@ -1258,7 +1258,7 @@ datum/reagent/toxin/amatoxin
 	color = "#792300" // rgb: 121, 35, 0
 	toxpwr = 1
 
-datum/reagent/toxin/mutagen
+/datum/reagent/toxin/mutagen
 	name = "Unstable mutagen"
 	id = "mutagen"
 	description = "Might cause unpredictable mutations. Keep away from children."
@@ -1284,7 +1284,7 @@ datum/reagent/toxin/mutagen
 		..()
 		return
 
-datum/reagent/toxin/plasma
+/datum/reagent/toxin/plasma
 	name = "Plasma"
 	id = "plasma"
 	description = "Plasma in its liquid form."
@@ -1314,7 +1314,7 @@ datum/reagent/toxin/plasma
 		T.assume_gas("plasma", volume, T20C)
 		return
 
-datum/reagent/toxin/lexorin
+/datum/reagent/toxin/lexorin
 	name = "Lexorin"
 	id = "lexorin"
 	description = "Lexorin temporarily stops respiration. Causes tissue damage."
@@ -1334,7 +1334,7 @@ datum/reagent/toxin/lexorin
 		..()
 		return
 
-datum/reagent/toxin/minttoxin
+/datum/reagent/toxin/minttoxin
 	name = "Mint Toxin"
 	id = "minttoxin"
 	description = "Useful for dealing with undesirable customers."
@@ -1349,7 +1349,7 @@ datum/reagent/toxin/minttoxin
 		..()
 		return
 
-datum/reagent/toxin/carpotoxin
+/datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
 	id = "carpotoxin"
 	description = "A deadly neurotoxin produced by the dreaded space carp."
@@ -1357,7 +1357,7 @@ datum/reagent/toxin/carpotoxin
 	color = "#003333" // rgb: 0, 51, 51
 	toxpwr = 2
 
-datum/reagent/toxin/zombiepowder
+/datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"
 	id = "zombiepowder"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
@@ -1381,7 +1381,7 @@ datum/reagent/toxin/zombiepowder
 			M.status_flags &= ~FAKEDEATH
 		..()
 
-datum/reagent/toxin/mindbreaker
+/datum/reagent/toxin/mindbreaker
 	name = "Mindbreaker Toxin"
 	id = "mindbreaker"
 	description = "A powerful hallucinogen, it can cause fatal effects in users."
@@ -1398,7 +1398,7 @@ datum/reagent/toxin/mindbreaker
 		return
 
 //Reagents used for plant fertilizers.
-datum/reagent/toxin/fertilizer
+/datum/reagent/toxin/fertilizer
 	name = "fertilizer"
 	id = "fertilizer"
 	description = "A chemical mix good for growing plants with."
@@ -1406,19 +1406,19 @@ datum/reagent/toxin/fertilizer
 	toxpwr = 0.2 //It's not THAT poisonous.
 	color = "#664330" // rgb: 102, 67, 48
 
-datum/reagent/toxin/fertilizer/eznutrient
+/datum/reagent/toxin/fertilizer/eznutrient
 	name = "EZ Nutrient"
 	id = "eznutrient"
 
-datum/reagent/toxin/fertilizer/left4zed
+/datum/reagent/toxin/fertilizer/left4zed
 	name = "Left-4-Zed"
 	id = "left4zed"
 
-datum/reagent/toxin/fertilizer/robustharvest
+/datum/reagent/toxin/fertilizer/robustharvest
 	name = "Robust Harvest"
 	id = "robustharvest"
 
-datum/reagent/toxin/plantbgone
+/datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
 	id = "plantbgone"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
@@ -1470,7 +1470,7 @@ datum/reagent/toxin/plantbgone
 				if(H.dna)
 					if(H.species.flags & IS_PLANT) //plantmen take a LOT of damage
 						H.adjustToxLoss(50)
-datum/reagent/toxin/stoxin
+/datum/reagent/toxin/stoxin
 	name = "Sleep Toxin"
 	id = "stoxin"
 	description = "An effective hypnotic used to treat insomnia."
@@ -1499,7 +1499,7 @@ datum/reagent/toxin/stoxin
 		..()
 		return
 
-datum/reagent/toxin/chloralhydrate
+/datum/reagent/toxin/chloralhydrate
 	name = "Chloral Hydrate"
 	id = "chloralhydrate"
 	description = "A powerful sedative."
@@ -1528,7 +1528,7 @@ datum/reagent/toxin/chloralhydrate
 		..()
 		return
 
-datum/reagent/toxin/potassium_chloride
+/datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
 	id = "potassium_chloride"
 	description = "A delicious salt that stops the heart when injected into cardiac muscle."
@@ -1547,7 +1547,7 @@ datum/reagent/toxin/potassium_chloride
 		..()
 		return
 
-datum/reagent/toxin/potassium_chlorophoride
+/datum/reagent/toxin/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
 	id = "potassium_chlorophoride"
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
@@ -1567,7 +1567,7 @@ datum/reagent/toxin/potassium_chlorophoride
 		..()
 		return
 
-datum/reagent/toxin/beer2	//disguised as normal beer for use by emagged brobots
+/datum/reagent/toxin/beer2	//disguised as normal beer for use by emagged brobots
 	name = "Beer"
 	id = "beer2"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be imcomplete." //If the players manage to analyze this, they deserve to know something is wrong.
@@ -1592,7 +1592,7 @@ datum/reagent/toxin/beer2	//disguised as normal beer for use by emagged brobots
 		..()
 		return
 
-datum/reagent/toxin/acid
+/datum/reagent/toxin/acid
 	name = "Sulphuric acid"
 	id = "sacid"
 	description = "A very corrosive mineral acid with the molecular formula H2SO4."
@@ -1676,7 +1676,7 @@ datum/reagent/toxin/acid
 					M << "\red \the [O] melts."
 				qdel(O)
 
-datum/reagent/toxin/acid/polyacid
+/datum/reagent/toxin/acid/polyacid
 	name = "Polytrinic acid"
 	id = "pacid"
 	description = "Polytrinic acid is a an extremely corrosive chemical substance."
@@ -1685,7 +1685,7 @@ datum/reagent/toxin/acid/polyacid
 	toxpwr = 2
 	meltprob = 30
 
-datum/reagent/toxin/acid/fluacid
+/datum/reagent/toxin/acid/fluacid
 	name = "Fluorosulfuric acid"
 	id = "facid"
 	description = "Fluorosulfuric acid is a an extremely corrosive chemical substance."
@@ -1697,7 +1697,7 @@ datum/reagent/toxin/acid/fluacid
 /////////////////////////Food Reagents////////////////////////////
 // Part of the food code. Nutriment is used instead of the old "heal_amt" code. Also is where all the food
 // 	condiments, additives, and such go.
-datum/reagent/nutriment
+/datum/reagent/nutriment
 	name = "Nutriment"
 	id = "nutriment"
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
@@ -1713,7 +1713,7 @@ datum/reagent/nutriment
 		..()
 		return
 
-datum/reagent/vitamin
+/datum/reagent/vitamin
 	name = "Vitamin"
 	id = "vitamin"
 	description = "All the best vitamins, minerals, and carbohydrates the body needs in pure form."
@@ -1727,7 +1727,7 @@ datum/reagent/vitamin
 		..()
 		return
 
-datum/reagent/soysauce
+/datum/reagent/soysauce
 	name = "Soysauce"
 	id = "soysauce"
 	description = "A salty sauce made from the soy plant."
@@ -1735,7 +1735,7 @@ datum/reagent/soysauce
 	nutriment_factor = 6 * REAGENTS_METABOLISM
 	color = "#792300" // rgb: 121, 35, 0
 
-datum/reagent/ketchup
+/datum/reagent/ketchup
 	name = "Ketchup"
 	id = "ketchup"
 	description = "Ketchup, catsup, whatever. It's tomato paste."
@@ -1743,7 +1743,7 @@ datum/reagent/ketchup
 	nutriment_factor = 10 * REAGENTS_METABOLISM
 	color = "#731008" // rgb: 115, 16, 8
 
-datum/reagent/capsaicin
+/datum/reagent/capsaicin
 	name = "Capsaicin Oil"
 	id = "capsaicin"
 	description = "This is what makes chilis hot."
@@ -1767,7 +1767,7 @@ datum/reagent/capsaicin
 		..()
 		return
 
-datum/reagent/condensedcapsaicin
+/datum/reagent/condensedcapsaicin
 	name = "Condensed Capsaicin"
 	id = "condensedcapsaicin"
 	description = "A chemical agent used for self-defense and in police work."
@@ -1835,7 +1835,7 @@ datum/reagent/condensedcapsaicin
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>")
 		return
 
-datum/reagent/frostoil
+/datum/reagent/frostoil
 	name = "Frost Oil"
 	id = "frostoil"
 	description = "A special oil that noticably chills the body. Extracted from Ice Peppers."
@@ -1860,7 +1860,7 @@ datum/reagent/frostoil
 		..()
 		return
 
-datum/reagent/sodiumchloride
+/datum/reagent/sodiumchloride
 	name = "Table Salt"
 	id = "sodiumchloride"
 	description = "A salt made of sodium chloride. Commonly used to season food."
@@ -1868,14 +1868,14 @@ datum/reagent/sodiumchloride
 	color = "#FFFFFF" // rgb: 255,255,255
 	overdose_threshold = REAGENTS_OVERDOSE
 
-datum/reagent/blackpepper
+/datum/reagent/blackpepper
 	name = "Black Pepper"
 	id = "blackpepper"
 	description = "A powder ground from peppercorns. *AAAACHOOO*"
 	reagent_state = SOLID
 	// no color (ie, black)
 
-datum/reagent/coco
+/datum/reagent/coco
 	name = "Coco Powder"
 	id = "coco"
 	description = "A fatty, bitter paste made from coco beans."
@@ -1889,7 +1889,7 @@ datum/reagent/coco
 		..()
 		return
 
-datum/reagent/hot_coco
+/datum/reagent/hot_coco
 	name = "Hot Chocolate"
 	id = "hot_coco"
 	description = "Made with love! And cocoa beans."
@@ -1905,7 +1905,7 @@ datum/reagent/hot_coco
 		..()
 		return
 
-datum/reagent/psilocybin
+/datum/reagent/psilocybin
 	name = "Psilocybin"
 	id = "psilocybin"
 	description = "A strong psycotropic derived from certain species of mushroom."
@@ -1939,7 +1939,7 @@ datum/reagent/psilocybin
 		..()
 		return
 
-datum/reagent/sprinkles
+/datum/reagent/sprinkles
 	name = "Sprinkles"
 	id = "sprinkles"
 	description = "Multi-colored little bits of sugar, commonly found on donuts. Loved by cops."
@@ -1978,7 +1978,7 @@ syndicream
 				return
 		..()
 */
-datum/reagent/cornoil
+/datum/reagent/cornoil
 	name = "Corn Oil"
 	id = "cornoil"
 	description = "An oil derived from various types of corn."
@@ -2018,7 +2018,7 @@ datum/reagent/cornoil
 			T.assume_air(lowertemp)
 			qdel(hotspot)
 
-datum/reagent/enzyme
+/datum/reagent/enzyme
 	name = "Universal Enzyme"
 	id = "enzyme"
 	description = "A universal enzyme used in the preperation of certain chemicals and foods."
@@ -2026,7 +2026,7 @@ datum/reagent/enzyme
 	color = "#365E30" // rgb: 54, 94, 48
 	overdose_threshold = REAGENTS_OVERDOSE
 
-datum/reagent/dry_ramen
+/datum/reagent/dry_ramen
 	name = "Dry Ramen"
 	id = "dry_ramen"
 	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, and chemicals that boil in contact with water."
@@ -2040,7 +2040,7 @@ datum/reagent/dry_ramen
 		..()
 		return
 
-datum/reagent/hot_ramen
+/datum/reagent/hot_ramen
 	name = "Hot Ramen"
 	id = "hot_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
@@ -2056,7 +2056,7 @@ datum/reagent/hot_ramen
 		..()
 		return
 
-datum/reagent/hell_ramen
+/datum/reagent/hell_ramen
 	name = "Hell Ramen"
 	id = "hell_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
@@ -2071,7 +2071,7 @@ datum/reagent/hell_ramen
 		..()
 		return
 
-datum/reagent/flour
+/datum/reagent/flour
 	name = "flour"
 	id = "flour"
 	description = "This is what you rub all over yourself to pretend to be a ghost."
@@ -2090,7 +2090,7 @@ datum/reagent/flour
 		if(!istype(T, /turf/space))
 			new /obj/effect/decal/cleanable/flour(T)
 
-datum/reagent/rice
+/datum/reagent/rice
 	name = "Rice"
 	id = "rice"
 	description = "Enjoy the great taste of nothing."
@@ -2104,7 +2104,7 @@ datum/reagent/rice
 		..()
 		return
 
-datum/reagent/cherryjelly
+/datum/reagent/cherryjelly
 	name = "Cherry Jelly"
 	id = "cherryjelly"
 	description = "Totally the best. Only to be spread on foods with excellent lateral symmetry."
@@ -2122,7 +2122,7 @@ datum/reagent/cherryjelly
 /////////////////////// DRINKS BELOW, Beer is up there though, along with cola. Cap'n Pete's Cuban Spiced Rum////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-datum/reagent/drink
+/datum/reagent/drink
 	name = "Drink"
 	id = "drink"
 	description = "Uh, some kind of drink."
@@ -2151,12 +2151,12 @@ datum/reagent/drink
 		..()
 		return
 
-datum/reagent/drink/reaction_mob(var/mob/living/M as mob, var/method=INGEST, var/volume)
+/datum/reagent/drink/reaction_mob(var/mob/living/M as mob, var/method=INGEST, var/volume)
 	M.bladder += nutriment_factor/2
 	..()
 	return
 
-datum/reagent/drink/orangejuice
+/datum/reagent/drink/orangejuice
 	name = "Orange juice"
 	id = "orangejuice"
 	description = "Both delicious AND rich in Vitamin C, what more do you need?"
@@ -2167,7 +2167,7 @@ datum/reagent/drink/orangejuice
 		if(M.getOxyLoss() && prob(30)) M.adjustOxyLoss(-1)
 		return
 
-datum/reagent/drink/tomatojuice
+/datum/reagent/drink/tomatojuice
 	name = "Tomato Juice"
 	id = "tomatojuice"
 	description = "Tomatoes made into juice. What a waste of big, juicy tomatoes, huh?"
@@ -2178,7 +2178,7 @@ datum/reagent/drink/tomatojuice
 		if(M.getFireLoss() && prob(20)) M.heal_organ_damage(0,1)
 		return
 
-datum/reagent/drink/limejuice
+/datum/reagent/drink/limejuice
 	name = "Lime Juice"
 	id = "limejuice"
 	description = "The sweet-sour juice of limes."
@@ -2188,7 +2188,7 @@ datum/reagent/drink/limejuice
 		if(M.getToxLoss() && prob(20)) M.adjustToxLoss(-1*REM)
 		return
 
-datum/reagent/drink/carrotjuice
+/datum/reagent/drink/carrotjuice
 	name = "Carrot juice"
 	id = "carrotjuice"
 	description = "It is just like a carrot but without crunching."
@@ -2208,26 +2208,26 @@ datum/reagent/drink/carrotjuice
 		data++
 		return
 
-datum/reagent/drink/berryjuice
+/datum/reagent/drink/berryjuice
 	name = "Berry Juice"
 	id = "berryjuice"
 	description = "A delicious blend of several different kinds of berries."
 	color = "#990066" // rgb: 153, 0, 102
 
-datum/reagent/drink/grapejuice
+/datum/reagent/drink/grapejuice
 	name = "Grape Juice"
 	id = "grapejuice"
 	description = "It's grrrrrape!"
 	color = "#863333" // rgb: 134, 51, 51
 
-datum/reagent/drink/grapesoda
+/datum/reagent/drink/grapesoda
 	name = "Grape Soda"
 	id = "grapesoda"
 	description = "Grapes made into a fine drank."
 	color = "#421C52" // rgb: 98, 57, 53
 	adj_drowsy 	= 	-3
 
-datum/reagent/drink/poisonberryjuice
+/datum/reagent/drink/poisonberryjuice
 	name = "Poison Berry Juice"
 	id = "poisonberryjuice"
 	description = "A tasty juice blended from various kinds of very deadly and toxic berries."
@@ -2238,37 +2238,37 @@ datum/reagent/drink/poisonberryjuice
 		M.adjustToxLoss(1)
 		return
 
-datum/reagent/drink/watermelonjuice
+/datum/reagent/drink/watermelonjuice
 	name = "Watermelon Juice"
 	id = "watermelonjuice"
 	description = "Delicious juice made from watermelon."
 	color = "#863333" // rgb: 134, 51, 51
 
-datum/reagent/drink/lemonjuice
+/datum/reagent/drink/lemonjuice
 	name = "Lemon Juice"
 	id = "lemonjuice"
 	description = "This juice is VERY sour."
 	color = "#863333" // rgb: 175, 175, 0
 
-datum/reagent/drink/banana
+/datum/reagent/drink/banana
 	name = "Banana Juice"
 	id = "banana"
 	description = "The raw essence of a banana."
 	color = "#863333" // rgb: 175, 175, 0
 
-datum/reagent/drink/nothing
+/datum/reagent/drink/nothing
 	name = "Nothing"
 	id = "nothing"
 	description = "Absolutely nothing."
 
-datum/reagent/drink/potato_juice
+/datum/reagent/drink/potato_juice
 	name = "Potato Juice"
 	id = "potato"
 	description = "Juice of the potato. Bleh."
 	nutriment_factor = 5 * FOOD_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
-datum/reagent/drink/milk
+/datum/reagent/drink/milk
 	name = "Milk"
 	id = "milk"
 	description = "An opaque white liquid produced by the mammary glands of mammals."
@@ -2281,25 +2281,25 @@ datum/reagent/drink/milk
 		..()
 		return
 
-datum/reagent/drink/milk/soymilk
+/datum/reagent/drink/milk/soymilk
 	name = "Soy Milk"
 	id = "soymilk"
 	description = "An opaque white liquid made from soybeans."
 	color = "#DFDFC7" // rgb: 223, 223, 199
 
-datum/reagent/drink/milk/cream
+/datum/reagent/drink/milk/cream
 	name = "Cream"
 	id = "cream"
 	description = "The fatty, still liquid part of milk. Why don't you mix this with sum scotch, eh?"
 	color = "#DFD7AF" // rgb: 223, 215, 175
 
-datum/reagent/drink/grenadine
+/datum/reagent/drink/grenadine
 	name = "Grenadine Syrup"
 	id = "grenadine"
 	description = "Made in the modern day with proper pomegranate substitute. Who uses real fruit, anyways?"
 	color = "#FF004F" // rgb: 255, 0, 79
 
-datum/reagent/drink/hot_coco
+/datum/reagent/drink/hot_coco
 	name = "Hot Chocolate"
 	id = "hot_coco"
 	description = "Made with love! And cocoa beans."
@@ -2307,7 +2307,7 @@ datum/reagent/drink/hot_coco
 	color = "#403010" // rgb: 64, 48, 16
 	adj_temp = 5
 
-datum/reagent/drink/coffee
+/datum/reagent/drink/coffee
 	name = "Coffee"
 	id = "coffee"
 	description = "Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant."
@@ -2325,14 +2325,14 @@ datum/reagent/drink/coffee
 
 		holder.remove_reagent(src.id, 0.1)
 
-datum/reagent/drink/coffee/icecoffee
+/datum/reagent/drink/coffee/icecoffee
 	name = "Iced Coffee"
 	id = "icecoffee"
 	description = "Coffee and ice, refreshing and cool."
 	color = "#102838" // rgb: 16, 40, 56
 	adj_temp = -5
 
-datum/reagent/drink/coffee/soy_latte
+/datum/reagent/drink/coffee/soy_latte
 	name = "Soy Latte"
 	id = "soy_latte"
 	description = "A nice and tasty beverage while you are reading your hippie books."
@@ -2346,7 +2346,7 @@ datum/reagent/drink/coffee/soy_latte
 		if(M.getBruteLoss() && prob(20)) M.heal_organ_damage(1,0)
 		return
 
-datum/reagent/drink/coffee/cafe_latte
+/datum/reagent/drink/coffee/cafe_latte
 	name = "Cafe Latte"
 	id = "cafe_latte"
 	description = "A nice, strong and tasty beverage while you are reading."
@@ -2360,7 +2360,7 @@ datum/reagent/drink/coffee/cafe_latte
 		if(M.getBruteLoss() && prob(20)) M.heal_organ_damage(1,0)
 		return
 
-datum/reagent/drink/tea
+/datum/reagent/drink/tea
 	name = "Tea"
 	id = "tea"
 	description = "Tasty black tea, it has antioxidants, it's good for you!"
@@ -2376,18 +2376,18 @@ datum/reagent/drink/tea
 			M.adjustToxLoss(-1)
 		return
 
-datum/reagent/drink/tea/icetea
+/datum/reagent/drink/tea/icetea
 	name = "Iced Tea"
 	id = "icetea"
 	description = "No relation to a certain rap artist/ actor."
 	color = "#104038" // rgb: 16, 64, 56
 	adj_temp = -5
 
-datum/reagent/drink/cold
+/datum/reagent/drink/cold
 	name = "Cold drink"
 	adj_temp = -5
 
-datum/reagent/drink/cold/tonic
+/datum/reagent/drink/cold/tonic
 	name = "Tonic Water"
 	id = "tonic"
 	description = "It tastes strange but at least the quinine keeps the Space Malaria at bay."
@@ -2396,7 +2396,7 @@ datum/reagent/drink/cold/tonic
 	adj_drowsy = -3
 	adj_sleepy = -2
 
-datum/reagent/drink/cold/sodawater
+/datum/reagent/drink/cold/sodawater
 	name = "Soda Water"
 	id = "sodawater"
 	description = "A can of club soda. Why not make a scotch and soda?"
@@ -2404,14 +2404,14 @@ datum/reagent/drink/cold/sodawater
 	adj_dizzy = -5
 	adj_drowsy = -3
 
-datum/reagent/drink/cold/ice
+/datum/reagent/drink/cold/ice
 	name = "Ice"
 	id = "ice"
 	description = "Frozen water, your dentist wouldn't like you chewing this."
 	reagent_state = SOLID
 	color = "#619494" // rgb: 97, 148, 148
 
-datum/reagent/drink/cold/space_cola
+/datum/reagent/drink/cold/space_cola
 	name = "Space Cola"
 	id = "cola"
 	description = "A refreshing beverage."
@@ -2419,7 +2419,7 @@ datum/reagent/drink/cold/space_cola
 	color = "#100800" // rgb: 16, 8, 0
 	adj_drowsy 	= 	-3
 
-datum/reagent/drink/cold/nuka_cola
+/datum/reagent/drink/cold/nuka_cola
 	name = "Nuka Cola"
 	id = "nuka_cola"
 	description = "Cola, cola never changes."
@@ -2435,7 +2435,7 @@ datum/reagent/drink/cold/nuka_cola
 		..()
 		return
 
-datum/reagent/drink/cold/spacemountainwind
+/datum/reagent/drink/cold/spacemountainwind
 	name = "Mountain Wind"
 	id = "spacemountainwind"
 	description = "Blows right through you like a space wind."
@@ -2443,47 +2443,47 @@ datum/reagent/drink/cold/spacemountainwind
 	adj_drowsy = -7
 	adj_sleepy = -1
 
-datum/reagent/drink/cold/dr_gibb
+/datum/reagent/drink/cold/dr_gibb
 	name = "Dr. Gibb"
 	id = "dr_gibb"
 	description = "A delicious blend of 42 different flavours"
 	color = "#102000" // rgb: 16, 32, 0
 	adj_drowsy = -6
 
-datum/reagent/drink/cold/space_up
+/datum/reagent/drink/cold/space_up
 	name = "Space-Up"
 	id = "space_up"
 	description = "Tastes like a hull breach in your mouth."
 	color = "#202800" // rgb: 32, 40, 0
 	adj_temp = -8
 
-datum/reagent/drink/cold/lemon_lime
+/datum/reagent/drink/cold/lemon_lime
 	name = "Lemon Lime"
 	description = "A tangy substance made of 0.5% natural citrus!"
 	id = "lemon_lime"
 	color = "#878F00" // rgb: 135, 40, 0
 	adj_temp = -8
 
-datum/reagent/drink/cold/lemonade
+/datum/reagent/drink/cold/lemonade
 	name = "Lemonade"
 	description = "Oh the nostalgia..."
 	id = "lemonade"
 	color = "#FFFF00" // rgb: 255, 255, 0
 
-datum/reagent/drink/cold/kiraspecial
+/datum/reagent/drink/cold/kiraspecial
 	name = "Kira Special"
 	description = "Long live the guy who everyone had mistaken for a girl. Baka!"
 	id = "kiraspecial"
 	color = "#CCCC99" // rgb: 204, 204, 153
 
-datum/reagent/drink/cold/brownstar
+/datum/reagent/drink/cold/brownstar
 	name = "Brown Star"
 	description = "It's not what it sounds like..."
 	id = "brownstar"
 	color = "#9F3400" // rgb: 159, 052, 000
 	adj_temp = - 2
 
-datum/reagent/drink/cold/milkshake
+/datum/reagent/drink/cold/milkshake
 	name = "Milkshake"
 	description = "Glorious brainfreezing mixture."
 	id = "milkshake"
@@ -2508,7 +2508,7 @@ datum/reagent/drink/cold/milkshake
 		..()
 		return
 
-datum/reagent/drink/cold/rewriter
+/datum/reagent/drink/cold/rewriter
 	name = "Rewriter"
 	description = "The secret of the sanctuary of the Libarian..."
 	id = "rewriter"
@@ -2520,7 +2520,7 @@ datum/reagent/drink/cold/rewriter
 		return
 
 /*
-datum/reagent/doctor_delight
+/datum/reagent/doctor_delight
 	name = "The Doctor's Delight"
 	id = "omnizine"
 	description = "A gulp a day keeps the MediBot away. That's probably for the best."
@@ -2543,7 +2543,7 @@ datum/reagent/doctor_delight
 */
 //////////////////////////////////////////////The ten friggen million reagents that get you drunk//////////////////////////////////////////////
 
-datum/reagent/atomicbomb
+/datum/reagent/atomicbomb
 	name = "Atomic Bomb"
 	id = "atomicbomb"
 	description = "Nuclear proliferation never tasted so good."
@@ -2567,7 +2567,7 @@ datum/reagent/atomicbomb
 		..()
 		return
 
-datum/reagent/gargle_blaster
+/datum/reagent/gargle_blaster
 	name = "Pan-Galactic Gargle Blaster"
 	id = "gargleblaster"
 	description = "Whoah, this stuff looks volatile!"
@@ -2590,7 +2590,7 @@ datum/reagent/gargle_blaster
 		..()
 		return
 
-datum/reagent/neurotoxin
+/datum/reagent/neurotoxin
 	name = "Neurotoxin"
 	id = "neurotoxin"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
@@ -2615,7 +2615,7 @@ datum/reagent/neurotoxin
 		..()
 		return
 
-datum/reagent/hippies_delight
+/datum/reagent/hippies_delight
 	name = "Hippies' Delight"
 	id = "hippiesdelight"
 	description = "You just don't get it maaaan."
@@ -2663,7 +2663,7 @@ datum/reagent/hippies_delight
 <6 = deadly toxic
 */
 
-datum/reagent/ethanol
+/datum/reagent/ethanol
 	name = "Ethanol" //Parent class for all alcoholic reagents.
 	id = "ethanol"
 	description = "A well-known alcohol with a variety of applications."
@@ -2743,7 +2743,7 @@ datum/reagent/ethanol
 			M.adjust_fire_stacks(volume / 15)
 			return
 
-datum/reagent/ethanol/beer
+/datum/reagent/ethanol/beer
 	name = "Beer"
 	id = "beer"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water."
@@ -2758,7 +2758,7 @@ datum/reagent/ethanol/beer
 		..()
 		return
 
-datum/reagent/ethanol/kahlua
+/datum/reagent/ethanol/kahlua
 	name = "Kahlua"
 	id = "kahlua"
 	description = "A widely known, Mexican coffee-flavoured liqueur. In production since 1936!"
@@ -2773,7 +2773,7 @@ datum/reagent/ethanol/kahlua
 		..()
 		return
 
-datum/reagent/ethanol/whiskey
+/datum/reagent/ethanol/whiskey
 	name = "Whiskey"
 	id = "whiskey"
 	description = "A superb and well-aged single-malt whiskey. Damn."
@@ -2781,7 +2781,7 @@ datum/reagent/ethanol/whiskey
 	boozepwr = 2
 	dizzy_adj = 4
 
-datum/reagent/ethanol/specialwhiskey
+/datum/reagent/ethanol/specialwhiskey
 	name = "Special Blend Whiskey"
 	id = "specialwhiskey"
 	description = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
@@ -2790,7 +2790,7 @@ datum/reagent/ethanol/specialwhiskey
 	dizzy_adj = 4
 	slur_start = 30		//amount absorbed after which mob starts slurring
 
-datum/reagent/ethanol/thirteenloko
+/datum/reagent/ethanol/thirteenloko
 	name = "Thirteen Loko"
 	id = "thirteenloko"
 	description = "A potent mixture of caffeine and alcohol."
@@ -2806,7 +2806,7 @@ datum/reagent/ethanol/thirteenloko
 		..()
 		return
 
-datum/reagent/ethanol/vodka
+/datum/reagent/ethanol/vodka
 	name = "Vodka"
 	id = "vodka"
 	description = "Number one drink AND fueling choice for Salarians."
@@ -2820,7 +2820,7 @@ datum/reagent/ethanol/vodka
 		..()
 		return
 
-datum/reagent/ethanol/bilk
+/datum/reagent/ethanol/bilk
 	name = "Bilk"
 	id = "bilk"
 	description = "This appears to be beer mixed with milk. Disgusting."
@@ -2828,7 +2828,7 @@ datum/reagent/ethanol/bilk
 	boozepwr = 1
 	nutriment_factor = 2 * FOOD_METABOLISM
 
-datum/reagent/ethanol/threemileisland
+/datum/reagent/ethanol/threemileisland
 	name = "Three Mile Island Iced Tea"
 	id = "threemileisland"
 	description = "Made for a woman, strong enough for a man."
@@ -2840,7 +2840,7 @@ datum/reagent/ethanol/threemileisland
 		..()
 		return
 
-datum/reagent/ethanol/gin
+/datum/reagent/ethanol/gin
 	name = "Gin"
 	id = "gin"
 	description = "It's gin. In space. I say, good sir."
@@ -2848,28 +2848,28 @@ datum/reagent/ethanol/gin
 	boozepwr = 1
 	dizzy_adj = 3
 
-datum/reagent/ethanol/rum
+/datum/reagent/ethanol/rum
 	name = "Rum"
 	id = "rum"
 	description = "Yohoho and all that."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1.5
 
-datum/reagent/ethanol/tequilla
+/datum/reagent/ethanol/tequilla
 	name = "Tequila"
 	id = "tequilla"
 	description = "A strong and mildly flavoured, mexican produced spirit. Feeling thirsty hombre?"
 	color = "#FFFF91" // rgb: 255, 255, 145
 	boozepwr = 2
 
-datum/reagent/ethanol/vermouth
+/datum/reagent/ethanol/vermouth
 	name = "Vermouth"
 	id = "vermouth"
 	description = "You suddenly feel a craving for a martini..."
 	color = "#91FF91" // rgb: 145, 255, 145
 	boozepwr = 1.5
 
-datum/reagent/ethanol/wine
+/datum/reagent/ethanol/wine
 	name = "Wine"
 	id = "wine"
 	description = "An premium alchoholic beverage made from distilled grape juice."
@@ -2879,7 +2879,7 @@ datum/reagent/ethanol/wine
 	slur_start = 65			//amount absorbed after which mob starts slurring
 	confused_start = 145	//amount absorbed after which mob starts confusing directions
 
-datum/reagent/ethanol/dwine
+/datum/reagent/ethanol/dwine
 	name = "Dwarven Wine"
 	id = "dwine"
 	description = "Strike the planet! Celebratory NanoTrasen drink, limited edition."
@@ -2891,7 +2891,7 @@ datum/reagent/ethanol/dwine
 	blur_start = 50
 	pass_out = 100
 
-datum/reagent/ethanol/cognac
+/datum/reagent/ethanol/cognac
 	name = "Cognac"
 	id = "cognac"
 	description = "A sweet and strongly alchoholic drink, made after numerous distillations and years of maturing. Classy as fornication."
@@ -2900,7 +2900,7 @@ datum/reagent/ethanol/cognac
 	dizzy_adj = 4
 	confused_start = 115	//amount absorbed after which mob starts confusing directions
 
-datum/reagent/ethanol/hooch
+/datum/reagent/ethanol/hooch
 	name = "Hooch"
 	id = "hooch"
 	description = "Either someone's failure at cocktail making or attempt in alchohol production. In any case, do you really want to drink that?"
@@ -2911,14 +2911,14 @@ datum/reagent/ethanol/hooch
 	slur_start = 35			//amount absorbed after which mob starts slurring
 	confused_start = 90	//amount absorbed after which mob starts confusing directions
 
-datum/reagent/ethanol/ale
+/datum/reagent/ethanol/ale
 	name = "Ale"
 	id = "ale"
 	description = "A dark alchoholic beverage made by malted barley and yeast."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1
 
-datum/reagent/ethanol/absinthe
+/datum/reagent/ethanol/absinthe
 	name = "Absinthe"
 	id = "absinthe"
 	description = "Watch out that the Green Fairy doesn't come for you!"
@@ -2929,7 +2929,7 @@ datum/reagent/ethanol/absinthe
 	confused_start = 30
 
 
-datum/reagent/ethanol/pwine
+/datum/reagent/ethanol/pwine
 	name = "Poison Wine"
 	id = "pwine"
 	description = "Is this even wine? Toxic! Hallucinogenic! Probably consumed in boatloads by your superiors!"
@@ -2986,7 +2986,7 @@ datum/reagent/ethanol/pwine
 						L.take_damage(100, 0)
 		holder.remove_reagent(src.id, FOOD_METABOLISM)
 
-datum/reagent/ethanol/deadrum
+/datum/reagent/ethanol/deadrum
 	name = "Deadrum"
 	id = "rum"
 	description = "Popular with the sailors. Not very popular with everyone else."
@@ -2998,7 +2998,7 @@ datum/reagent/ethanol/deadrum
 		M.dizziness +=5
 		return
 
-datum/reagent/ethanol/sake
+/datum/reagent/ethanol/sake
 	name = "Sake"
 	id = "sake"
 	description = "Anime's favorite drink."
@@ -3009,98 +3009,98 @@ datum/reagent/ethanol/sake
 /////////////////////////////////////////////////////////////////cocktail entities//////////////////////////////////////////////
 
 
-datum/reagent/ethanol/goldschlager
+/datum/reagent/ethanol/goldschlager
 	name = "Goldschlager"
 	id = "goldschlager"
 	description = "100 proof cinnamon schnapps, made for alcoholic teen girls on spring break."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
-datum/reagent/ethanol/patron
+/datum/reagent/ethanol/patron
 	name = "Patron"
 	id = "patron"
 	description = "Tequila with silver in it, a favorite of alcoholic women in the club scene."
 	color = "#585840" // rgb: 88, 88, 64
 	boozepwr = 1.5
 
-datum/reagent/ethanol/gintonic
+/datum/reagent/ethanol/gintonic
 	name = "Gin and Tonic"
 	id = "gintonic"
 	description = "An all time classic, mild cocktail."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1
 
-datum/reagent/ethanol/cuba_libre
+/datum/reagent/ethanol/cuba_libre
 	name = "Cuba Libre"
 	id = "cubalibre"
 	description = "Rum, mixed with cola. Viva la revolucion."
 	color = "#3E1B00" // rgb: 62, 27, 0
 	boozepwr = 1.5
 
-datum/reagent/ethanol/whiskey_cola
+/datum/reagent/ethanol/whiskey_cola
 	name = "Whiskey Cola"
 	id = "whiskeycola"
 	description = "Whiskey, mixed with cola. Surprisingly refreshing."
 	color = "#3E1B00" // rgb: 62, 27, 0
 	boozepwr = 2
 
-datum/reagent/ethanol/martini
+/datum/reagent/ethanol/martini
 	name = "Classic Martini"
 	id = "martini"
 	description = "Vermouth with Gin. Not quite how 007 enjoyed it, but still delicious."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 2
 
-datum/reagent/ethanol/vodkamartini
+/datum/reagent/ethanol/vodkamartini
 	name = "Vodka Martini"
 	id = "vodkamartini"
 	description = "Vodka with Gin. Not quite how 007 enjoyed it, but still delicious."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
-datum/reagent/ethanol/white_russian
+/datum/reagent/ethanol/white_russian
 	name = "White Russian"
 	id = "whiterussian"
 	description = "That's just, like, your opinion, man..."
 	color = "#A68340" // rgb: 166, 131, 64
 	boozepwr = 3
 
-datum/reagent/ethanol/screwdrivercocktail
+/datum/reagent/ethanol/screwdrivercocktail
 	name = "Screwdriver"
 	id = "screwdrivercocktail"
 	description = "Vodka, mixed with plain ol' orange juice. The result is surprisingly delicious."
 	color = "#A68310" // rgb: 166, 131, 16
 	boozepwr = 3
 
-datum/reagent/ethanol/booger
+/datum/reagent/ethanol/booger
 	name = "Booger"
 	id = "booger"
 	description = "Ewww..."
 	color = "#8CFF8C" // rgb: 140, 255, 140
 	boozepwr = 1.5
 
-datum/reagent/ethanol/bloody_mary
+/datum/reagent/ethanol/bloody_mary
 	name = "Bloody Mary"
 	id = "bloodymary"
 	description = "A strange yet pleasurable mixture made of vodka, tomato and lime juice. Or at least you THINK the red stuff is tomato juice."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
-datum/reagent/ethanol/brave_bull
+/datum/reagent/ethanol/brave_bull
 	name = "Brave Bull"
 	id = "bravebull"
 	description = "It's just as effective as Dutch-Courage!."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
-datum/reagent/ethanol/tequilla_sunrise
+/datum/reagent/ethanol/tequilla_sunrise
 	name = "Tequila Sunrise"
 	id = "tequillasunrise"
 	description = "Tequila and orange juice. Much like a Screwdriver, only Mexican~"
 	color = "#FFE48C" // rgb: 255, 228, 140
 	boozepwr = 2
 
-datum/reagent/ethanol/toxins_special
+/datum/reagent/ethanol/toxins_special
 	name = "Toxins Special"
 	id = "toxinsspecial"
 	description = "This thing is ON FIRE! CALL THE DAMN SHUTTLE!"
@@ -3114,7 +3114,7 @@ datum/reagent/ethanol/toxins_special
 		..()
 		return
 
-datum/reagent/ethanol/beepsky_smash
+/datum/reagent/ethanol/beepsky_smash
 	name = "Beepsky Smash"
 	id = "beepskysmash"
 	description = "Deny drinking this and prepare for THE LAW."
@@ -3127,70 +3127,70 @@ datum/reagent/ethanol/beepsky_smash
 		..()
 		return
 
-datum/reagent/ethanol/irish_cream
+/datum/reagent/ethanol/irish_cream
 	name = "Irish Cream"
 	id = "irishcream"
 	description = "Whiskey-imbued cream, what else would you expect from the Irish."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 2
 
-datum/reagent/ethanol/manly_dorf
+/datum/reagent/ethanol/manly_dorf
 	name = "The Manly Dorf"
 	id = "manlydorf"
 	description = "Beer and Ale, brought together in a delicious mix. Intended for true men only."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 2
 
-datum/reagent/ethanol/longislandicedtea
+/datum/reagent/ethanol/longislandicedtea
 	name = "Long Island Iced Tea"
 	id = "longislandicedtea"
 	description = "The liquor cabinet, brought together in a delicious mix. Intended for middle-aged alcoholic women only."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
-datum/reagent/ethanol/moonshine
+/datum/reagent/ethanol/moonshine
 	name = "Moonshine"
 	id = "moonshine"
 	description = "You've really hit rock bottom now... your liver packed its bags and left last night."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
-datum/reagent/ethanol/b52
+/datum/reagent/ethanol/b52
 	name = "B-52"
 	id = "b52"
 	description = "Coffee, Irish Cream, and cognac. You will get bombed."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
-datum/reagent/ethanol/irishcoffee
+/datum/reagent/ethanol/irishcoffee
 	name = "Irish Coffee"
 	id = "irishcoffee"
 	description = "Coffee, and alcohol. More fun than a Mimosa to drink in the morning."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
-datum/reagent/ethanol/margarita
+/datum/reagent/ethanol/margarita
 	name = "Margarita"
 	id = "margarita"
 	description = "On the rocks with salt on the rim. Arriba~!"
 	color = "#8CFF8C" // rgb: 140, 255, 140
 	boozepwr = 3
 
-datum/reagent/ethanol/black_russian
+/datum/reagent/ethanol/black_russian
 	name = "Black Russian"
 	id = "blackrussian"
 	description = "For the lactose-intolerant. Still as classy as a White Russian."
 	color = "#360000" // rgb: 54, 0, 0
 	boozepwr = 3
 
-datum/reagent/ethanol/manhattan
+/datum/reagent/ethanol/manhattan
 	name = "Manhattan"
 	id = "manhattan"
 	description = "The Detective's undercover drink of choice. He never could stomach gin..."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
-datum/reagent/ethanol/manhattan_proj
+/datum/reagent/ethanol/manhattan_proj
 	name = "Manhattan Project"
 	id = "manhattan_proj"
 	description = "A scientist's drink of choice, for pondering ways to blow up the station."
@@ -3202,14 +3202,14 @@ datum/reagent/ethanol/manhattan_proj
 		..()
 		return
 
-datum/reagent/ethanol/whiskeysoda
+/datum/reagent/ethanol/whiskeysoda
 	name = "Whiskey Soda"
 	id = "whiskeysoda"
 	description = "For the more refined griffon."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
-datum/reagent/ethanol/antifreeze
+/datum/reagent/ethanol/antifreeze
 	name = "Anti-freeze"
 	id = "antifreeze"
 	description = "Ultimate refreshment."
@@ -3222,48 +3222,48 @@ datum/reagent/ethanol/antifreeze
 		..()
 		return
 
-datum/reagent/ethanol/barefoot
+/datum/reagent/ethanol/barefoot
 	name = "Barefoot"
 	id = "barefoot"
 	description = "Barefoot and pregnant"
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1.5
 
-datum/reagent/ethanol/snowwhite
+/datum/reagent/ethanol/snowwhite
 	name = "Snow White"
 	id = "snowwhite"
 	description = "A cold refreshment"
 	color = "#FFFFFF" // rgb: 255, 255, 255
 	boozepwr = 1.5
 
-datum/reagent/ethanol/melonliquor
+/datum/reagent/ethanol/melonliquor
 	name = "Melon Liquor"
 	id = "melonliquor"
 	description = "A relatively sweet and fruity 46 proof liquor."
 	color = "#138808" // rgb: 19, 136, 8
 	boozepwr = 1
 
-datum/reagent/ethanol/bluecuracao
+/datum/reagent/ethanol/bluecuracao
 	name = "Blue Curacao"
 	id = "bluecuracao"
 	description = "Exotically blue, fruity drink, distilled from oranges."
 	color = "#0000CD" // rgb: 0, 0, 205
 	boozepwr = 1.5
 
-datum/reagent/ethanol/suidream
+/datum/reagent/ethanol/suidream
 	name = "Sui Dream"
 	id = "suidream"
 	description = "Comprised of: White soda, blue curacao, melon liquor."
 	color = "#00A86B" // rgb: 0, 168, 107
 	boozepwr = 0.5
 
-datum/reagent/ethanol/demonsblood
+/datum/reagent/ethanol/demonsblood
 	name = "Demons Blood"
 	id = "demonsblood"
 	description = "AHHHH!!!!"
 	color = "#820000" // rgb: 130, 0, 0
 	boozepwr = 3
-datum/reagent/ethanol/vodkatonic
+/datum/reagent/ethanol/vodkatonic
 	name = "Vodka and Tonic"
 	id = "vodkatonic"
 	description = "For when a gin and tonic isn't russian enough."
@@ -3272,7 +3272,7 @@ datum/reagent/ethanol/vodkatonic
 	dizzy_adj = 4
 	slurr_adj = 3
 
-datum/reagent/ethanol/ginfizz
+/datum/reagent/ethanol/ginfizz
 	name = "Gin Fizz"
 	id = "ginfizz"
 	description = "Refreshingly lemony, deliciously dry."
@@ -3281,14 +3281,14 @@ datum/reagent/ethanol/ginfizz
 	dizzy_adj = 4
 	slurr_adj = 3
 
-datum/reagent/ethanol/bahama_mama
+/datum/reagent/ethanol/bahama_mama
 	name = "Bahama mama"
 	id = "bahama_mama"
 	description = "Tropical cocktail."
 	color = "#FF7F3B" // rgb: 255, 127, 59
 	boozepwr = 2
 
-datum/reagent/ethanol/singulo
+/datum/reagent/ethanol/singulo
 	name = "Singulo"
 	id = "singulo"
 	description = "A blue-space beverage!"
@@ -3297,7 +3297,7 @@ datum/reagent/ethanol/singulo
 	dizzy_adj = 15
 	slurr_adj = 15
 
-datum/reagent/ethanol/sbiten
+/datum/reagent/ethanol/sbiten
 	name = "Sbiten"
 	id = "sbiten"
 	description = "A spicy Vodka! Might be a little hot for the little guys!"
@@ -3310,21 +3310,21 @@ datum/reagent/ethanol/sbiten
 		..()
 		return
 
-datum/reagent/ethanol/devilskiss
+/datum/reagent/ethanol/devilskiss
 	name = "Devils Kiss"
 	id = "devilskiss"
 	description = "Creepy time!"
 	color = "#A68310" // rgb: 166, 131, 16
 	boozepwr = 3
 
-datum/reagent/ethanol/red_mead
+/datum/reagent/ethanol/red_mead
 	name = "Red Mead"
 	id = "red_mead"
 	description = "The true Viking's drink! Even though it has a strange red color."
 	color = "#C73C00" // rgb: 199, 60, 0
 	boozepwr = 1.5
 
-datum/reagent/ethanol/mead
+/datum/reagent/ethanol/mead
 	name = "Mead"
 	id = "mead"
 	description = "A Viking's drink, though a cheap one."
@@ -3333,7 +3333,7 @@ datum/reagent/ethanol/mead
 	boozepwr = 1.5
 	nutriment_factor = 2 * FOOD_METABOLISM
 
-datum/reagent/ethanol/iced_beer
+/datum/reagent/ethanol/iced_beer
 	name = "Iced Beer"
 	id = "iced_beer"
 	description = "A beer which is so cold the air around it freezes."
@@ -3346,7 +3346,7 @@ datum/reagent/ethanol/iced_beer
 		..()
 		return
 
-datum/reagent/ethanol/grog
+/datum/reagent/ethanol/grog
 	name = "Grog"
 	id = "grog"
 	description = "Watered down rum, NanoTrasen approves!"
@@ -3354,28 +3354,28 @@ datum/reagent/ethanol/grog
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 0.5
 
-datum/reagent/ethanol/aloe
+/datum/reagent/ethanol/aloe
 	name = "Aloe"
 	id = "aloe"
 	description = "So very, very, very good."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
-datum/reagent/ethanol/andalusia
+/datum/reagent/ethanol/andalusia
 	name = "Andalusia"
 	id = "andalusia"
 	description = "A nice, strangely named drink."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
-datum/reagent/ethanol/alliescocktail
+/datum/reagent/ethanol/alliescocktail
 	name = "Allies Cocktail"
 	id = "alliescocktail"
 	description = "A drink made from your allies, not as sweet as when made from your enemies."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 2
 
-datum/reagent/ethanol/acid_spit
+/datum/reagent/ethanol/acid_spit
 	name = "Acid Spit"
 	id = "acidspit"
 	description = "A drink for the daring, can be deadly if incorrectly prepared!"
@@ -3383,7 +3383,7 @@ datum/reagent/ethanol/acid_spit
 	color = "#365000" // rgb: 54, 80, 0
 	boozepwr = 1.5
 
-datum/reagent/ethanol/amasec
+/datum/reagent/ethanol/amasec
 	name = "Amasec"
 	id = "amasec"
 	description = "Official drink of the NanoTrasen Gun-Club!"
@@ -3391,14 +3391,14 @@ datum/reagent/ethanol/amasec
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 2
 
-datum/reagent/ethanol/changelingsting
+/datum/reagent/ethanol/changelingsting
 	name = "Changeling Sting"
 	id = "changelingsting"
 	description = "You take a tiny sip and feel a burning sensation..."
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 5
 
-datum/reagent/ethanol/irishcarbomb
+/datum/reagent/ethanol/irishcarbomb
 	name = "Irish Car Bomb"
 	id = "irishcarbomb"
 	description = "Mmm, tastes like chocolate cake..."
@@ -3406,21 +3406,21 @@ datum/reagent/ethanol/irishcarbomb
 	boozepwr = 3
 	dizzy_adj = 5
 
-datum/reagent/ethanol/syndicatebomb
+/datum/reagent/ethanol/syndicatebomb
 	name = "Syndicate Bomb"
 	id = "syndicatebomb"
 	description = "Tastes like terrorism!"
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 5
 
-datum/reagent/ethanol/erikasurprise
+/datum/reagent/ethanol/erikasurprise
 	name = "Erika Surprise"
 	id = "erikasurprise"
 	description = "The surprise is it's green!"
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 3
 
-datum/reagent/ethanol/driestmartini
+/datum/reagent/ethanol/driestmartini
 	name = "Driest Martini"
 	id = "driestmartini"
 	description = "Only for the experienced. You think you see sand floating in the glass."
@@ -3428,7 +3428,7 @@ datum/reagent/ethanol/driestmartini
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 4
 
-datum/reagent/ethanol/bananahonk
+/datum/reagent/ethanol/bananahonk
 	name = "Banana Mama"
 	id = "bananahonk"
 	description = "A drink from Clown Heaven."
@@ -3436,7 +3436,7 @@ datum/reagent/ethanol/bananahonk
 	color = "#FFFF91" // rgb: 255, 255, 140
 	boozepwr = 4
 
-datum/reagent/ethanol/silencer
+/datum/reagent/ethanol/silencer
 	name = "Silencer"
 	id = "silencer"
 	description = "A drink from Mime Heaven."

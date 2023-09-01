@@ -127,7 +127,7 @@ var/global/list/bans = list()
 	while(query.NextRow())
 		villainlist.Add(query.item[1])
 
-client/proc/load_registered_by()
+/client/proc/load_registered_by()
 	set waitfor = FALSE
 	var/DBQuery/query = dbcon.NewQuery("SELECT invitedby FROM playersfarweb WHERE ckey = \"[ckey]\";")
 	if(!query.Execute())
@@ -172,8 +172,8 @@ client/proc/load_registered_by()
 
 #undef CKEYWHITELIST
 
-proc/stickyban(var/key)
+/proc/stickyban(var/key)
 	world.SetConfig("ban",ckey(key),"type=sticky;message=God be saved!;")
-proc/remove_stickyban(var/key)
+/proc/remove_stickyban(var/key)
 	world.SetConfig("ban",ckey(key),null)
 

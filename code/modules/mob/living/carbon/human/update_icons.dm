@@ -211,7 +211,7 @@ Please contact me on #coderbus IRC. ~Carn x
 
 var/global/list/damage_icon_parts = list()
 
-proc/get_damage_icon_part(damage_state, body_part, var/icon/dam_icon = 'icons/mob/dam_human.dmi')
+/proc/get_damage_icon_part(damage_state, body_part, var/icon/dam_icon = 'icons/mob/dam_human.dmi')
 	if(damage_icon_parts["[damage_state]/[body_part]/[dam_icon]"] == null)
 		var/icon/DI = new /icon(dam_icon, damage_state)			// the damage icon for whole human
 		DI.Blend(new /icon('icons/mob/dam_mask.dmi', body_part), ICON_MULTIPLY)		// mask with this organ's pixels

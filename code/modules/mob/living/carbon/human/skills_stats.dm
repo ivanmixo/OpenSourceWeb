@@ -752,7 +752,7 @@ var/static/list/global_skills
 			newStats.rand_stats()
 			my_stats = newStats
 
-proc/strToDamageModifier(var/strength, var/ht)
+/proc/strToDamageModifier(var/strength, var/ht)
 	var/diff = strength - ht
 	var/baseDamage = 5
 
@@ -831,7 +831,7 @@ proc/strToDamageModifier(var/strength, var/ht)
 
 //BASICAMENTE A PROC ABAIXO O PLANO É SER SUBSTITUIDA PELA DE CIMA
 //A DE BAIXO É MUITO CAGADA E DEIXA TUDO ROUBADO!!!
-proc/strToDamageModifierItem(var/strength, var/ht)
+/proc/strToDamageModifierItem(var/strength, var/ht)
 	switch(strength)
 		if(1 to 5)
 			return 1//+3 +3
@@ -1238,7 +1238,7 @@ proc/strToDamageModifierItem(var/strength, var/ht)
 ************HUMAN MY NIGGA*************
 ***************************************/
 
-proc/skilltxt(var/skill)
+/proc/skilltxt(var/skill)
 	switch(skill)
 		if(-INFINITY to 2)
 			return "<span class='notthatbadactually'>Worthless"
@@ -1259,7 +1259,7 @@ proc/skilltxt(var/skill)
 
 
 
-proc/skilltxt2(var/skill)
+/proc/skilltxt2(var/skill)
 	switch(skill)
 		if(-INFINITY to 0)
 			return "<span class='notthatbadactually'>0"
@@ -1373,7 +1373,7 @@ proc/skilltxt2(var/skill)
 #define SKILL_SUCESSO 1
 #define SKILL_FALHA 0
 
-proc/skillcheck(var/skill, var/requirement, var/show_message, var/mob/user, var/message = "I have failed to do this.")//1 - 100
+/proc/skillcheck(var/skill, var/requirement, var/show_message, var/mob/user, var/message = "I have failed to do this.")//1 - 100
 	skill = (skill+2)*10
 	var/mob/living/carbon/human/H = user
 	if(requirement > skill)
@@ -1390,7 +1390,7 @@ proc/skillcheck(var/skill, var/requirement, var/show_message, var/mob/user, var/
 			return SKILL_FALHA
 
 
-proc/statcheck(var/stat, var/requirement, var/show_message, var/mob/user, var/message = "I have failed to do this.")//1 - 100
+/proc/statcheck(var/stat, var/requirement, var/show_message, var/mob/user, var/message = "I have failed to do this.")//1 - 100
 	var/dice = "1d20"
 	if(stat < requirement)
 		var/H = roll(dice)
@@ -1505,7 +1505,7 @@ proc/statcheck(var/stat, var/requirement, var/show_message, var/mob/user, var/me
 	return TRUE
 
 
-proc/skill2typerson(var/amount)
+/proc/skill2typerson(var/amount)
 	switch(amount)
 		if(0)
 			return "...................."

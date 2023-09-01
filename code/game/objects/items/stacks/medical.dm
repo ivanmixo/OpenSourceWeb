@@ -154,7 +154,7 @@
 		user.visible_message("[user] wipes off the [A]!")
 	return
 
-obj/item/clothing/mask/sleeve/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/clothing/mask/sleeve/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
 		return 1
 

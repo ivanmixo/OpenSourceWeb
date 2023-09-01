@@ -11,7 +11,7 @@
 
 var/global/datum/train_controller/train_shuttle/train_shuttle
 
-datum/train_controller
+/datum/train_controller
 	var/alert = 0 //0 = emergency, 1 = crew cycle
 
 	var/location = 0 //0 = somewhere far away (in spess), 1 = at SS13, 2 = returned from SS13
@@ -47,11 +47,11 @@ datum/train_controller
 				if(istype(A, /area/hallway))
 					A.readyalert()
 
-datum/train_controller/proc/shuttlealert(var/X)
+/datum/train_controller/proc/shuttlealert(var/X)
 		alert = X
 
 
-datum/train_controller/proc/recall()
+/datum/train_controller/proc/recall()
 
 	if(direction == 1)
 		var/timeleft = timeleft()
@@ -75,7 +75,7 @@ datum/train_controller/proc/recall()
 
 	// returns the time (in seconds) before shuttle arrival
 	// note if direction = -1, gives a count-up to SHUTTLEARRIVETIME
-datum/train_controller/proc/timeleft()
+/datum/train_controller/proc/timeleft()
 	if(online)
 		var/timeleft = round((endtime - world.timeofday)/10 ,1)
 		if(direction == 1 || direction == 2)
@@ -86,13 +86,13 @@ datum/train_controller/proc/timeleft()
 		return SHUTTLEARRIVETIME
 
 	// sets the time left to a given delay (in seconds)
-datum/train_controller/proc/settimeleft(var/delay)
+/datum/train_controller/proc/settimeleft(var/delay)
 	endtime = world.timeofday + delay * 10
 	timelimit = delay
 
 	// sets the shuttle direction
 	// 1 = towards SS13, -1 = back to centcom
-datum/train_controller/proc/setdirection(var/dirn)
+/datum/train_controller/proc/setdirection(var/dirn)
 	if(direction == dirn)
 		return
 	direction = dirn
@@ -101,7 +101,7 @@ datum/train_controller/proc/setdirection(var/dirn)
 	endtime = world.timeofday + (SHUTTLEARRIVETIME*10 - ticksleft)
 	return
 
-datum/train_controller/proc/backtotransit()
+/datum/train_controller/proc/backtotransit()
 	if(location == 2 && direction == 2)
 		location = 5
 		direction = 2
@@ -151,7 +151,7 @@ datum/train_controller/proc/backtotransit()
 		backtostation()
 
 
-datum/train_controller/proc/backtostation()
+/datum/train_controller/proc/backtostation()
 	if(location == 5 && direction == 2)
 		alert = 0
 		departed = 0
@@ -203,9 +203,9 @@ datum/train_controller/proc/backtostation()
 
 
 
-datum/train_controller/proc/process()
+/datum/train_controller/proc/process()
 
-datum/train_controller/train_shuttle/process()
+/datum/train_controller/train_shuttle/process()
 	if(!online)
 		return
 	var/timeleft = timeleft()

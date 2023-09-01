@@ -122,7 +122,7 @@ var/list/datum/showlads_holder/showlads_list = list()
 	src << browse(dat, "window=whoscreen;size=450x500;can_close=1")
 */
 
-proc/sendShowlads()
+/proc/sendShowlads()
 	var/botList
 	botList += "\n STORY [story_id]\n"
 	if(master_mode == "holywar" || master_mode == "minimig")

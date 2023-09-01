@@ -46,7 +46,7 @@
 	else
 		return 0
 
-obj/machinery/hydroponics/process()
+/obj/machinery/hydroponics/process()
 
 	if(myseed && (myseed.loc != src))
 		myseed.loc = src
@@ -159,7 +159,7 @@ obj/machinery/hydroponics/process()
 
 
 
-obj/machinery/hydroponics/proc/updateicon()
+/obj/machinery/hydroponics/proc/updateicon()
 	//Refreshes the icon and sets the luminosity
 	overlays.Cut()
 	if(planted)
@@ -201,7 +201,7 @@ obj/machinery/hydroponics/proc/updateicon()
 
 
 
-obj/machinery/hydroponics/proc/weedinvasion() // If a weed growth is sufficient, this happens.
+/obj/machinery/hydroponics/proc/weedinvasion() // If a weed growth is sufficient, this happens.
 	dead = 0
 	if(myseed) // In case there's nothing in the tray beforehand
 		qdel(myseed)
@@ -235,7 +235,7 @@ obj/machinery/hydroponics/proc/weedinvasion() // If a weed growth is sufficient,
 	return
 
 
-obj/machinery/hydroponics/proc/mutate() // Mutates the current seed
+/obj/machinery/hydroponics/proc/mutate() // Mutates the current seed
 
 	myseed.lifespan += rand(-2,2)
 	if(myseed.lifespan < 10)
@@ -274,7 +274,7 @@ obj/machinery/hydroponics/proc/mutate() // Mutates the current seed
 
 
 
-obj/machinery/hydroponics/proc/hardmutate() // Strongly mutates the current seed.
+/obj/machinery/hydroponics/proc/hardmutate() // Strongly mutates the current seed.
 
 	myseed.lifespan += rand(-4,4)
 	if(myseed.lifespan < 10)
@@ -313,7 +313,7 @@ obj/machinery/hydroponics/proc/hardmutate() // Strongly mutates the current seed
 
 
 
-obj/machinery/hydroponics/proc/mutatespecie() // Mutagent produced a new plant!
+/obj/machinery/hydroponics/proc/mutatespecie() // Mutagent produced a new plant!
 
 	if ( istype(myseed, /obj/item/seeds/nettleseed ))
 		qdel(myseed)
@@ -401,7 +401,7 @@ obj/machinery/hydroponics/proc/mutatespecie() // Mutagent produced a new plant!
 
 
 
-obj/machinery/hydroponics/proc/mutateweed() // If the weeds gets the mutagent instead. Mind you, this pretty much destroys the old plant
+/obj/machinery/hydroponics/proc/mutateweed() // If the weeds gets the mutagent instead. Mind you, this pretty much destroys the old plant
 	if ( weedlevel > 5 )
 		qdel(myseed)
 		var/newWeed = pick(/obj/item/seeds/libertymycelium, /obj/item/seeds/angelmycelium, /obj/item/seeds/deathnettleseed, /obj/item/seeds/kudzuseed)
@@ -424,7 +424,7 @@ obj/machinery/hydroponics/proc/mutateweed() // If the weeds gets the mutagent in
 
 
 
-obj/machinery/hydroponics/proc/plantdies() // OH NOES!!!!! I put this all in one function to make things easier
+/obj/machinery/hydroponics/proc/plantdies() // OH NOES!!!!! I put this all in one function to make things easier
 	health = 0
 	dead = 1
 	harvest = 0
@@ -434,7 +434,7 @@ obj/machinery/hydroponics/proc/plantdies() // OH NOES!!!!! I put this all in one
 
 
 
-obj/machinery/hydroponics/proc/mutatepest()  // Until someone makes a spaceworm, this is commented out
+/obj/machinery/hydroponics/proc/mutatepest()  // Until someone makes a spaceworm, this is commented out
 	if ( pestlevel > 5 )
  	visible_message("The pests seem to behave oddly...")
 //		spawn(10)
@@ -445,7 +445,7 @@ obj/machinery/hydroponics/proc/mutatepest()  // Until someone makes a spaceworm,
 
 
 
-obj/machinery/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 	//Called when mob user "attacks" it with object O
 	if (istype(O, /obj/item/weapon/reagent_containers/glass/bucket))

@@ -54,7 +54,7 @@
 
 
 
-obj/machinery/gateway/centerstation/process()
+/obj/machinery/gateway/centerstation/process()
 	if(stat & (NOPOWER))
 		if(active) toggleoff()
 		return

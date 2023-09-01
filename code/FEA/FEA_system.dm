@@ -55,10 +55,10 @@ Important Procedures
 
 var/kill_air = 0
 
-atom/proc/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
+/atom/proc/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
 	return (!density || !height || air_group)
 
-turf
+/turf
 	CanPass(atom/movable/mover, turf/target, height=1.5,air_group=0)
 		if(!target) return 0
 
@@ -81,7 +81,7 @@ turf
 
 var/global/datum/controller/air_system/air_master
 
-datum
+/datum
 	controller
 		air_system
 			//Geoemetry lists

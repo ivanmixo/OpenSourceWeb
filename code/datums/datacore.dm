@@ -108,7 +108,7 @@
 	return
 
 
-proc/get_id_photo(var/mob/living/carbon/human/H)
+/proc/get_id_photo(var/mob/living/carbon/human/H)
 	var/icon/preview_icon = null
 
 	var/g = "m"

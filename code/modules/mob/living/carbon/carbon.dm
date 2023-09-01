@@ -362,7 +362,7 @@
 /mob/proc/throw_item(atom/target)
 	return
 
-proc/strToSpeedModifier(var/strength, var/w_class)//Looks messy. Is messy. Is also only used once. But I don't give a fuuuuuuuuck.
+/proc/strToSpeedModifier(var/strength, var/w_class)//Looks messy. Is messy. Is also only used once. But I don't give a fuuuuuuuuck.
 	switch(strength)
 		if(1 to 5)
 			if(w_class > 3)

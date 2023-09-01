@@ -107,7 +107,7 @@
 		to_chat(new_xeno, "WISH #2: HAVE ATLEAST ONE OF OURS IN THE BABYLON.")
 
 /*----------------------------------------
-Proc: RefreshInfectionImage()
+/Proc: RefreshInfectionImage()
 Des: Removes all infection images from aliens and places an infection image on all infected mobs for aliens.
 ----------------------------------------*/
 /obj/item/alien_embryo/proc/RefreshInfectionImage()
@@ -128,7 +128,7 @@ Des: Removes all infection images from aliens and places an infection image on a
 						alien.client.images += I
 
 /*----------------------------------------
-Proc: AddInfectionImages(C)
+/Proc: AddInfectionImages(C)
 Des: Checks if the passed mob (C) is infected with the alien egg, then gives each alien client an infected image at C.
 ----------------------------------------*/
 /obj/item/alien_embryo/proc/AddInfectionImages(var/mob/living/C)
@@ -145,7 +145,7 @@ Des: Checks if the passed mob (C) is infected with the alien egg, then gives eac
 					alien.client.images += I
 
 /*----------------------------------------
-Proc: RemoveInfectionImage(C)
+/Proc: RemoveInfectionImage(C)
 Des: Removes the alien infection image from all aliens in the world located in passed mob (C).
 ----------------------------------------*/
 

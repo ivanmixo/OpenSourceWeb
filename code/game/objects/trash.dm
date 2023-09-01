@@ -1,4 +1,4 @@
-obj/structure/trash
+/obj/structure/trash
 	name = "object"
 	icon = 'icons/obj/miscobjs.dmi'
 
@@ -7,25 +7,25 @@ obj/structure/trash
 	flammable = 1
 	icon_state = "equip8"
 
-obj/structure/trash/one
+/obj/structure/trash/one
 	icon_state = "2"
 
-obj/structure/trash/two
+/obj/structure/trash/two
 	icon_state = "a8"
 
-obj/structure/trash/three
+/obj/structure/trash/three
 	icon_state = "a9"
 
-obj/structure/trash/four
+/obj/structure/trash/four
 	icon_state = "a10"
 
-obj/structure/trash/five
+/obj/structure/trash/five
 	icon_state = "a11"
 
-obj/structure/trash/six
+/obj/structure/trash/six
 	icon_state = "a4"
 
-obj/structure/trash/charon
+/obj/structure/trash/charon
 	icon_state = "charon"
 	name = "babylon console"
 	density = FALSE
@@ -36,12 +36,12 @@ obj/structure/trash/charon
 	user.visible_message("<span class='passivebold'>[user] [pick("watches porn!", "smashes the keyboard!", "types in!", "licks the keyboard!")]</span>")
 	playsound(user, pick('confirm1.ogg', 'confirm2.ogg', 'confirm3.ogg', 'confirm5.ogg', 'confirm7.ogg', 'confirm8.ogg', 'confirm9.ogg'), 100)
 
-obj/structure/trash/vidcam
+/obj/structure/trash/vidcam
 	name = "video camera"
 	icon_state = "standupmoviecamera"
 
 //BRIDGE
-obj/structure/bridge_small
+/obj/structure/bridge_small
 	name = "bridge"
 	icon = 'icons/obj/structures.dmi'
 
@@ -50,5 +50,5 @@ obj/structure/bridge_small
 	icon_state = "bri"
 	blocksOpenFalling = 1
 
-obj/structure/bridge_small/end
+/obj/structure/bridge_small/end
 	icon_state = "bri2"

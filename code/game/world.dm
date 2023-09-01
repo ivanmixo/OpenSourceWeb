@@ -289,7 +289,7 @@ var/failed_db_connections = 0
 	return 1
 #endif
 
-proc/setup_database_connection()
+/proc/setup_database_connection()
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
@@ -312,7 +312,7 @@ proc/setup_database_connection()
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_db_connection()
+/proc/establish_db_connection()
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 	if(!dbcon || !dbcon.IsConnected())
@@ -339,7 +339,7 @@ proc/establish_db_connection()
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
 
-world/Error(exception/E)
+/world/Error(exception/E)
 	if(!istype(E))
 		rtlog_path << "Unknown runtime: [E]"
 		return ..()

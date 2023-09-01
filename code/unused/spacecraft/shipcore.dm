@@ -134,7 +134,7 @@
 
 
 
-obj/machinery/shipcore/attack_hand(user as mob)
+/obj/machinery/shipcore/attack_hand(user as mob)
 	var/dat
 	if(..())
 		return
@@ -165,7 +165,7 @@ obj/machinery/shipcore/attack_hand(user as mob)
 	onclose(user, "shipcore")
 	return
 
-obj/machinery/shipcore/Topic(href, href_list)
+/obj/machinery/shipcore/Topic(href, href_list)
 	if(..())
 		return
 	usr.machine = src
@@ -192,7 +192,7 @@ obj/machinery/shipcore/Topic(href, href_list)
 
 
 
-obj/machinery/ship_component
+/obj/machinery/ship_component
 	name = "ship component"
 	icon = 'craft.dmi'
 	var/obj/machinery/shipcore/core
@@ -208,7 +208,7 @@ obj/machinery/ship_component
 			else
 				return 0
 
-obj/machinery/ship_component/thruster
+/obj/machinery/ship_component/thruster
 	name = "thruster"
 	icon_state = "thruster"
 	density = 1
@@ -243,7 +243,7 @@ obj/machinery/ship_component/thruster
 			else
 				return 0
 
-obj/machinery/ship_component/engine
+/obj/machinery/ship_component/engine
 	name = "engine"
 	icon_state = "engine"
 	density = 1
@@ -259,7 +259,7 @@ obj/machinery/ship_component/engine
 		else
 			return 0
 
-obj/machinery/ship_component/control_panel
+/obj/machinery/ship_component/control_panel
 	name = "control panel"
 	icon_state = "controlpanel"
 	density = 1

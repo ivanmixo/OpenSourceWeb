@@ -173,7 +173,7 @@ var/global/list/cached_icons = list()
 		return
 */
 
-datum/reagent/paint
+/datum/reagent/paint
 	name = "Paint"
 	id = "paint_"
 	reagent_state = 2
@@ -229,7 +229,7 @@ datum/reagent/paint
 		color = "#F0F8FF"
 		id = "paint_white"
 
-datum/reagent/paint_remover
+/datum/reagent/paint_remover
 	name = "Paint Remover"
 	id = "paint_remover"
 	description = "Paint remover is used to remove floor paint from floor tiles."

@@ -16,7 +16,7 @@ var/global/pipe_processing_killed = 0
 	var/iteration = 0
 	var/processing_interval = 0
 
-datum/controller/game_controller
+/datum/controller/game_controller
 	processing = 0
 	var/breather_ticks = 2		//a somewhat crude attempt to iron over the 'bumps' caused by high-cpu use by letting the MC have a breather for this many ticks after every loop
 	var/minimum_ticks = 20		//The minimum length of time between MC ticks
@@ -42,7 +42,7 @@ datum/controller/game_controller
 
 	var/global/datum/garbage_collector/garbageCollector
 
-datum/controller/game_controller/New()
+/datum/controller/game_controller/New()
 	//There can be only one master_controller. Out with the old and in with the new.
 	if(master_controller != src)
 		if(istype(master_controller))
@@ -64,7 +64,7 @@ datum/controller/game_controller/New()
 	if(currentmaprotation == "Stoneburrow (Map 4)")
 		TRAIN_STOP = 119
 
-datum/controller/game_controller/proc/setup()
+/datum/controller/game_controller/proc/setup()
 	start_time = world.timeofday
 	if(!ticker)
 		ticker = new /datum/controller/gameticker()
@@ -84,7 +84,7 @@ datum/controller/game_controller/proc/setup()
 #define CHECK_SLEEP_MASTER if(++initialized_objects > 50) { initialized_objects=0;sleep(world.tick_lag); }
 
 
-datum/controller/game_controller/proc/setup_objects()
+/datum/controller/game_controller/proc/setup_objects()
 	var/initialized_objects = 0
 	to_chat(world, "<span class = 'messages'>1. Generating objects...</span>")
 
@@ -118,7 +118,7 @@ datum/controller/game_controller/proc/setup_objects()
 	to_chat(world, "<span class='adminlobby'>God made Evergreen in <b>[(evergreenGen - start_time)/10]</b> seconds.</pan>")
 	CHECK_SLEEP_MASTER
 
-datum/controller/game_controller/proc/MushroomGen()		//Mostly a placeholder for now.
+/datum/controller/game_controller/proc/MushroomGen()		//Mostly a placeholder for now.
 	set background = 1
 	var/initialized_objects = 0
 	//var/list/prohibitedDirs = list(list(EAST, WEST), list(EAST, SOUTHWEST), list(WEST, SOUTHEAST), list(NORTH, SOUTH), list(SOUTHWEST, SOUTHEAST), list(NORTHEAST, SOUTHWEST))

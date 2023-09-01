@@ -313,7 +313,7 @@
 
 		detatch()
 
-mob/living/simple_animal/borer/proc/detatch()
+/mob/living/simple_animal/borer/proc/detatch()
 
 	if(!host) return
 
@@ -417,7 +417,7 @@ mob/living/simple_animal/borer/proc/detatch()
 		return
 
 //Procs for grabbing players.
-mob/living/simple_animal/borer/proc/request_player()
+/mob/living/simple_animal/borer/proc/request_player()
 	for(var/mob/dead/observer/O in player_list)
 		if(jobban_isbanned(O, "Syndicate"))
 			continue
@@ -425,7 +425,7 @@ mob/living/simple_animal/borer/proc/request_player()
 			if(O.client.prefs.be_special & BE_ALIEN)
 				question(O.client)
 
-mob/living/simple_animal/borer/proc/question(var/client/C)
+/mob/living/simple_animal/borer/proc/question(var/client/C)
 	spawn(0)
 		if(!C)	return
 		var/response = alert(C, "A cortical borer needs a player. Are you interested?", "Cortical borer request", "Yes", "No", "Never for this round")
@@ -436,7 +436,7 @@ mob/living/simple_animal/borer/proc/question(var/client/C)
 		else if (response == "Never for this round")
 			C.prefs.be_special ^= BE_ALIEN
 
-mob/living/simple_animal/borer/proc/transfer_personality(var/client/candidate)
+/mob/living/simple_animal/borer/proc/transfer_personality(var/client/candidate)
 
 	if(!candidate)
 		return

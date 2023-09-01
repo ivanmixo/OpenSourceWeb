@@ -1,4 +1,4 @@
-obj/structure
+/obj/structure
 	icon = 'icons/obj/structures.dmi'
 	var/breakable
 	var/parts
@@ -8,11 +8,11 @@ obj/structure
 	var/hitstake = 0
 	var/hits = 10
 
-obj/structure/blob_act()
+/obj/structure/blob_act()
 	if(prob(50))
 		qdel(src)
 
-obj/structure/ex_act(severity)
+/obj/structure/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -97,7 +97,7 @@ obj/structure/ex_act(severity)
 /obj/structure/attack_paw(mob/user)
 	if(breakable) attack_hand(user)
 
-obj/structure/meteorhit(obj/O as obj)
+/obj/structure/meteorhit(obj/O as obj)
 	qdel(src)
 
 

@@ -1,21 +1,21 @@
 #define DEBUG
 
-datum/air_group/var/marker
-datum/air_group/var/debugging = 0
-datum/pipe_network/var/marker
+/datum/air_group/var/marker
+/datum/air_group/var/debugging = 0
+/datum/pipe_network/var/marker
 
-datum/gas_mixture
+/datum/gas_mixture
 	var/turf/parent
 
 /*
-turf/simulated
+/turf/simulated
 	New()
 		..()
 
 		if(air)
 			air.parent = src
 */
-obj/machinery/door
+/obj/machinery/door
 	verb
 		toggle_door()
 			set src in world
@@ -24,7 +24,7 @@ obj/machinery/door
 			else
 				close()
 
-turf/space
+/turf/space
 	verb
 		create_floor()
 			set src in world
@@ -37,13 +37,13 @@ turf/space
 			walk(M, direction,10)
 
 
-turf/simulated/wall
+/turf/simulated/wall
 	verb
 		create_floor()
 			set src in world
 			new /turf/simulated/floor(src)
 
-obj/item/weapon/tank
+/obj/item/weapon/tank
 	verb
 		adjust_mixture(temperature as num, target_toxin_pressure as num, target_oxygen_pressure as num)
 			set src in world
@@ -55,7 +55,7 @@ obj/item/weapon/tank
 			air_contents.oxygen = target_oxygen_pressure*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
 			air_contents.toxins = target_toxin_pressure*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
 
-turf/simulated/floor
+/turf/simulated/floor
 	verb
 		parent_info()
 			set src in world
@@ -109,7 +109,7 @@ turf/simulated/floor
 			set src in world
 			explosion(src, 3, 5, 7, 5)
 
-obj/machinery/portable_atmospherics/canister
+/obj/machinery/portable_atmospherics/canister
 	verb/test_release()
 		set src in world
 		set category = "Minor"
@@ -117,7 +117,7 @@ obj/machinery/portable_atmospherics/canister
 		valve_open = 1
 		release_pressure = 1000
 /*
-obj/machinery/atmospherics
+/obj/machinery/atmospherics
 	unary
 		heat_reservoir
 			verb
@@ -353,7 +353,7 @@ obj/machinery/atmospherics
 					usr << "Pressure: [parent.air.return_pressure()], Temperature: [parent.air.temperature]"
 					usr << "[parent.air.oxygen], [parent.air.toxins], [parent.air.nitrogen], [parent.air.carbon_dioxide] .. [parent.alert_pressure]"
 */
-mob
+/mob
 	verb
 		flag_all_pipe_networks()
 			set category = "Debug"
@@ -390,7 +390,7 @@ mob
 				else
 					V.overlays += icon('icons/Testing/atmos_testing.dmi',"marker0")
 
-turf/simulated
+/turf/simulated
 	var/fire_verbose = 0
 
 	verb
@@ -445,7 +445,7 @@ turf/simulated
 
 				assume_air(adding)
 
-obj/indicator
+/obj/indicator
 	icon = 'icons/Testing/air_meter.dmi'
 	var/measure = "temperature"
 	anchored = 1
@@ -482,14 +482,14 @@ obj/indicator
 		process()
 
 
-obj/window
+/obj/window
 	verb
 		destroy()
 			set category = "Minor"
 			set src in world
 			qdel(src)
 
-mob
+/mob
 	sight = SEE_OBJS|SEE_TURFS
 
 	verb

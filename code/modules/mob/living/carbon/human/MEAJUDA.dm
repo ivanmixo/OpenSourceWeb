@@ -204,7 +204,7 @@
 
 	return 1
 */
-proc/coisa(var/obj/item/weapon/reagent_containers/food/snacks/organ/O, var/mob/living/carbon/human/who, var/arme = 0)
+/proc/coisa(var/obj/item/weapon/reagent_containers/food/snacks/organ/O, var/mob/living/carbon/human/who, var/arme = 0)
 	var/organ_name = initial(O.name)
 	if(arme == 0)
 		who.internal_organs_by_name[organ_name] = null

@@ -98,7 +98,7 @@
 
 
 
-obj/structure/oven/proc/create_recipe()
+/obj/structure/oven/proc/create_recipe()
 	var/datum/recipe/recipe = select_recipe(available_recipes,src)
 	var/obj/item/weapon/reagent_containers/food/to_cook = null
 	if(recipe)
@@ -108,7 +108,7 @@ obj/structure/oven/proc/create_recipe()
 			return 1
 	return 0
 
-obj/structure/oven/proc/check_dish(var/list/datum/recipe/avaiable_recipes, var/obj/obj)
+/obj/structure/oven/proc/check_dish(var/list/datum/recipe/avaiable_recipes, var/obj/obj)
 	for(var/datum/recipe/recipe in avaiable_recipes)
 		var/O = recipe.result
 		//the istype is a bit of a hack. But it saves me from writing a second prompt for checking items that are put into the oven.
