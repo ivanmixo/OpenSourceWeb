@@ -136,6 +136,9 @@
 
 	if(!check_rights(R_BAN))	return
 
+	if(!establish_db_connection())
+		return
+
 	var/bantype_str
 	if(bantype)
 		var/bantype_pass = 0
@@ -175,11 +178,6 @@
 	var/sql = "SELECT id FROM erro_ban WHERE ckey = '[ckey]' AND [bantype_sql] AND (unbanned is null OR unbanned = false)"
 	if(job)
 		sql += " AND job = '[job]'"
-
-	establish_db_connection()
-	if(!dbcon.IsConnected())
-		return
-
 	var/ban_id
 	var/ban_number = 0 //failsafe
 
@@ -208,6 +206,9 @@
 /datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 
 	if(!check_rights(R_BAN))	return
+
+	if(!establish_db_connection())
+		return
 
 	if(!isnum(banid) || !istext(param))
 		usr << "Cancelled"

@@ -28,6 +28,8 @@ var/global/list/dbdatums = list()
 
 /datum/dbinfo/proc/SetFirstAndLastSeen()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/first_seen_sql = dbcon.NewQuery("SELECT firstseen FROM playersfarweb WHERE ckey = \"[ckey]\"")
 	if(!first_seen_sql.Execute())
 		world.log << first_seen_sql.ErrorMsg()
@@ -46,6 +48,8 @@ var/global/list/dbdatums = list()
 
 /datum/dbinfo/proc/LoadFirstAndLastSeeen()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/set_var = dbcon.NewQuery("SELECT firstseen FROM playersfarweb WHERE ckey = \"[ckey]\"")
 	var/DBQuery/set_var2 = dbcon.NewQuery("SELECT lastseen FROM playersfarweb WHERE ckey = \"[ckey]\"")
 	if(!set_var.Execute())
@@ -61,6 +65,8 @@ var/global/list/dbdatums = list()
 
 /datum/dbinfo/proc/LoadReputation()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/rep = dbcon.NewQuery("SELECT SUM(value) FROM reputation WHERE ckey = \"[ckey]\"")
 	if(!rep.Execute())
 		world.log << rep.ErrorMsg()
@@ -70,6 +76,8 @@ var/global/list/dbdatums = list()
 
 /datum/dbinfo/proc/LoadChromies()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/chromie = dbcon.NewQuery("SELECT chromosomes FROM playersfarweb WHERE ckey = \"[ckey]\"")
 	if(!chromie.Execute())
 		world.log << chromie.ErrorMsg()
@@ -87,6 +95,8 @@ var/global/list/dbdatums = list()
 
 /datum/dbinfo/proc/SetPassword(var/password)
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/hash = hash_password(password)
 	var/DBQuery/passquery = dbcon.NewQuery("UPDATE playersfarweb SET password = \"[hash]\" WHERE ckey = \"[ckey]\"")
 	if(!passquery.Execute())
@@ -97,6 +107,8 @@ var/global/list/dbdatums = list()
 
 /datum/dbinfo/proc/LoadHash()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/hashquery = dbcon.NewQuery("SELECT password FROM playersfarweb WHERE ckey = \"[ckey]\"")
 	if(!hashquery.Execute())
 		world.log << hashquery.ErrorMsg()

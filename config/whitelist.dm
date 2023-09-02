@@ -42,6 +42,8 @@ var/global/list/bans = list()
 
 /proc/load_db_whitelist()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/query = dbcon.NewQuery("SELECT ckey FROM playersfarweb;")
 	if(!query.Execute())
 		world.log << query.ErrorMsg()
@@ -51,6 +53,8 @@ var/global/list/bans = list()
 
 /proc/load_db_bans()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/query = dbcon.NewQuery("SELECT ckey FROM bansfarweb WHERE isbanned = 1;")
 	if(!query.Execute())
 		world.log << query.ErrorMsg()
@@ -60,6 +64,8 @@ var/global/list/bans = list()
 
 /proc/unban_bob()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	bans.Remove("ChaoticAgent")
 	var/DBQuery/query = dbcon.NewQuery("UPDATE bansfarweb SET isbanned = 0 WHERE ckey = \"ChaoticAgent\"")
 	if(!query.Execute())
@@ -68,6 +74,8 @@ var/global/list/bans = list()
 
 /proc/get_story_id()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/query = dbcon.NewQuery("SELECT storyid FROM stories;")
 	if(!query.Execute())
 		world.log << query.ErrorMsg()
@@ -81,6 +89,8 @@ var/global/list/bans = list()
 
 /proc/add_story_id()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/queryInsert = dbcon.NewQuery("UPDATE stories SET storyid =[story_id];")
 	if(!queryInsert.Execute())
 		world.log << queryInsert.ErrorMsg()
@@ -102,6 +112,8 @@ var/global/list/bans = list()
 
 /proc/load_comrade_list()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/query = dbcon.NewQuery("SELECT ckey FROM comradelist;")
 	if(!query.Execute())
 		world.log << query.ErrorMsg()
@@ -111,6 +123,8 @@ var/global/list/bans = list()
 
 /proc/load_pigplus_list()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/query = dbcon.NewQuery("SELECT ckey FROM pigpluslist;")
 	if(!query.Execute())
 		world.log << query.ErrorMsg()
@@ -120,6 +134,8 @@ var/global/list/bans = list()
 
 /proc/load_villain_list()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/query = dbcon.NewQuery("SELECT ckey FROM villainlist;")
 	if(!query.Execute())
 		world.log << query.ErrorMsg()
@@ -129,6 +145,8 @@ var/global/list/bans = list()
 
 /client/proc/load_registered_by()
 	set waitfor = FALSE
+	if(!establish_db_connection())
+		return
 	var/DBQuery/query = dbcon.NewQuery("SELECT invitedby FROM playersfarweb WHERE ckey = \"[ckey]\";")
 	if(!query.Execute())
 		world.log << query.ErrorMsg()

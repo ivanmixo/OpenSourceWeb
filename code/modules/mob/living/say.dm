@@ -196,13 +196,13 @@ var/list/department_radio_keys = list(
 	if(findtext(lowertext(message), config.ic_filter_regex))
 		src << 'vam_ban.ogg'
 		to_chat(src, "I SHOULDN'T HAVE SAID THAT!")
-		bans.Add(src.client.ckey)
+		//bans.Add(src.client.ckey)
 		sleep(10)
-		log_admin("[src.client.ckey] just tried to say cringe")
-		message_admins("[src.client.ckey] just tried to say cringe")
-		if(!client.holder)
-			client.game_remove_whitelist(reason = "Automatic ban: ([real_name]/[key] : [message])")
-		qdel(src.client)
+		log_admin("[src.client.ckey] just tried to say cringe: [message]")
+		message_admins("[src.client.ckey] just tried to say cringe: [message]")
+		//if(!client.holder)
+		//	client.game_remove_whitelist(reason = "Automatic ban: ([real_name]/[key] : [message])")
+		//qdel(src.client)
 	return 1
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)

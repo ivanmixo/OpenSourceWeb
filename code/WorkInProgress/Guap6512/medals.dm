@@ -1,30 +1,29 @@
 var/list/achievements_unlocked = list()
 
 /mob/proc/unlock_medal(title, announce, desc, diff)
-	spawn ()
-		if (ismob(src) && src.key)
-		//	var/list/keys = list()
-			if(!dbcon.IsConnected())
-				world.log << "Failed to connect to database in unlock_medal()."
-				diary << "Failed to connect to database in unlock_medal()."
-				return
-			var/DBQuery/cquery = dbcon.NewQuery("SELECT `medal` FROM `medals` WHERE ckey='[src.ckey]'")
-			if(!cquery.Execute())
-				message_admins(cquery.ErrorMsg())
-			else
-				while(cquery.NextRow())
-					var/list/column_data = cquery.GetRowData()
-					if(title == column_data["medal"])
-						return
-			var/medaldesc2 = dbcon.Quote(desc)
-			var/tit2 = dbcon.Quote(title)
-			var/DBQuery/xquery = dbcon.NewQuery("REPLACE INTO `medals` (`ckey`, `medal`, `medaldesc`, `medaldiff`) VALUES ('[src.ckey]', [tit2], [medaldesc2], '[diff]')")
-			if(!xquery.Execute())
-				message_admins(xquery.ErrorMsg())
-				to_chat(src, "Medal save failed")
-			to_chat(src, "<h3><span class='highlighttext'>Achievement Unlocked!</span> <span class='bname'><b>[title]</b></span></font></h3>")
-			achievements_unlocked.Add("<font color='green'>[src.key]</font> Unlocked \"<span class='bname'><b>[title]</b></span>\"")
-			//to_chat(src, text("<span class='passive'>[desc]</span>"))
+	if (ismob(src) && src.key)
+	//	var/list/keys = list()
+		if(!dbcon.IsConnected())
+			world.log << "Failed to connect to database in unlock_medal()."
+			diary << "Failed to connect to database in unlock_medal()."
+			return
+		var/DBQuery/cquery = dbcon.NewQuery("SELECT `medal` FROM `medals` WHERE ckey='[src.ckey]'")
+		if(!cquery.Execute())
+			message_admins(cquery.ErrorMsg())
+		else
+			while(cquery.NextRow())
+				var/list/column_data = cquery.GetRowData()
+				if(title == column_data["medal"])
+					return
+		var/medaldesc2 = dbcon.Quote(desc)
+		var/tit2 = dbcon.Quote(title)
+		var/DBQuery/xquery = dbcon.NewQuery("REPLACE INTO `medals` (`ckey`, `medal`, `medaldesc`, `medaldiff`) VALUES ('[src.ckey]', [tit2], [medaldesc2], '[diff]')")
+		if(!xquery.Execute())
+			message_admins(xquery.ErrorMsg())
+			to_chat(src, "Medal save failed")
+		to_chat(src, "<h3><span class='highlighttext'>Achievement Unlocked!</span> <span class='bname'><b>[title]</b></span></font></h3>")
+		achievements_unlocked.Add("<font color='green'>[src.key]</font> Unlocked \"<span class='bname'><b>[title]</b></span>\"")
+		//to_chat(src, text("<span class='passive'>[desc]</span>"))
 //This crashes the game.
 
 
@@ -36,6 +35,10 @@ var/list/achievements_unlocked = list()
 /client/proc/show_medal(var/ckeychecking = "[src.ckey]")
 	//set name = "Show Achievements"
 	//set category = "OOC"
+
+	if(!establish_db_connection())
+		to_chat(src, "DB not connected!")
+		return
 
 	var/DBQuery/xquery = dbcon.NewQuery("SELECT `ckey` FROM `medals` WHERE ckey='[ckeychecking]'")
 	var/DBQuery/gquery = dbcon.NewQuery("SELECT * FROM `medals` WHERE ckey='[ckeychecking]'")
